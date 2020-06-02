@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "cm": "git-cz"
   },
   "husky": {
     "hooks": {
@@ -22,6 +23,8 @@
     "react-dom": "16.13.1"
   },
   "devDependencies": {
+    "commitizen": "^4.1.2",
+    "cz-conventional-changelog": "^3.2.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.1.0",
     "eslint-config-prettier": "^6.11.0",
@@ -33,5 +36,10 @@
     "husky": "^4.2.5",
     "lint-staged": "^10.2.7",
     "prettier": "2.0.5"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
