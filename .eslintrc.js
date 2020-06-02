@@ -17,7 +17,7 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: "module",
   },
-  plugins: ["react"],
+  plugins: ["prettier", "react"],
   rules: {
     "react/jsx-one-expression-per-line": 0,
     "react/react-in-jsx-scope": 0,
