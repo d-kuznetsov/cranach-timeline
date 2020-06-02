@@ -4,7 +4,8 @@ module.exports = {
     es6: true,
     node: true,
   },
-  extends: ["airbnb", "airbnb/hooks", "plugin:prettier/recommended"],
+  extends: ["plugin:prettier/recommended", "plugin:react/recommended"],
+  //extends: ["airbnb", "airbnb/hooks", "plugin:prettier/recommended"],
   globals: {
     Atomics: "readonly",
     SharedArrayBuffer: "readonly",
@@ -16,6 +17,7 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: "module",
   },
+  plugins: ["react"],
   rules: {
     "react/jsx-one-expression-per-line": 0,
     "react/react-in-jsx-scope": 0,
