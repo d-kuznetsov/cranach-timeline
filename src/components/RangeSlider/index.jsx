@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Slider from "@material-ui/core/Slider";
 import { setPeriod } from "../../redux/actions";
+import { PERIOD_MIN_VALUE, PERIOD_MAX_VALUE } from "../../constants";
 
 export default function RangeSlider() {
   const initialRange = useSelector((state) => state.period);
@@ -17,8 +18,8 @@ export default function RangeSlider() {
   return (
     <Slider
       value={range}
-      min={1500}
-      max={1630}
+      min={PERIOD_MIN_VALUE}
+      max={PERIOD_MAX_VALUE}
       onChange={handleRangeChange}
       onChangeCommitted={handleRangeChangeCommitted}
       valueLabelDisplay="on"
