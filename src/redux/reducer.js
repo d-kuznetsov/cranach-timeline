@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { CURRENT_LINK } from "./actions";
+import { CURRENT_LINK, PERIOD } from "./actions";
 
 const initialLink = "";
 const link = (state = initialLink, action) => {
@@ -11,6 +11,17 @@ const link = (state = initialLink, action) => {
   }
 };
 
+const initialPeriod = [1500, 1630];
+const period = (state = initialPeriod, action) => {
+  switch (action.type) {
+    case PERIOD:
+      return action.period;
+    default:
+      return state;
+  }
+};
+
 export default combineReducers({
   link,
+  period,
 });
