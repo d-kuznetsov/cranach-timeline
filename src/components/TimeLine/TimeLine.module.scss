@@ -1,0 +1,29 @@
+.displayArea {
+  width: 100%;
+  min-height: 200px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.year {
+  flex-grow: 1;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column-reverse;
+  position: relative;
+  background-color: rgba($color: #ddd, $alpha: 0.5);
+
+  &:nth-child(2n) {
+    background-color: rgba($color: #eee, $alpha: 0.5);
+  }
+}
+
+.item {
+  border-right: 1px dashed;
+  background-color: green;
+  position: absolute;
+  z-index: 2;
+  font-size: 10px;
+  height: 16px;
+  cursor: pointer;
+}
