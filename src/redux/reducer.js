@@ -1,27 +1,69 @@
-import { combineReducers } from "redux";
-import { CURRENT_LINK, PERIOD } from "./actions";
+import { CURRENT_LINK, PERIOD, ARTWORKS, CATEGORY } from "./actions";
+import { CATEGORIES } from "../constants";
 
-const initialLink = "";
-const link = (state = initialLink, action) => {
+function updateArtworks(artworks, period, categories) {
+  const [periodStart, periodEnd] = period;
+  return artworks.filter((item) => {
+    return categories[item.category].displayed && item.start > periodStart && item.end < periodEnd;
+  });
+}
+
+function updateCategories(categories, id, displayed) {
+  const category = {
+    ...categories[id],
+    displayed,
+  };
+  return {
+    ...categories,
+    [id]: category,
+  };
+}
+
+const initialCategories = {};
+Object.keys(CATEGORIES).forEach((id) => {
+  initialCategories[id] = {
+    ...CATEGORIES[id],
+    displayed: true,
+  };
+});
+
+const initialState = {
+  link: "",
+  period: [1500, 1630],
+  categories: initialCategories,
+  artworks: [],
+  artworksToView: [],
+};
+export default function reducer(state = initialState, action) {
   switch (action.type) {
     case CURRENT_LINK:
-      return action.link;
-    default:
-      return state;
-  }
-};
-
-const initialPeriod = [1500, 1630];
-const period = (state = initialPeriod, action) => {
-  switch (action.type) {
+      return {
+        ...state,
+        link: action.link,
+      };
     case PERIOD:
-      return action.period;
+      return {
+        ...state,
+        period: action.period,
+        artworksToView: updateArtworks(state.artworks, action.period, state.categories),
+      };
+    case ARTWORKS:
+      return {
+        ...state,
+        artworks: action.artworks,
+        artworksToView: updateArtworks(action.artworks, state.period, state.categories),
+      };
+    case CATEGORY:
+      return {
+        ...state,
+        categories: updateCategories(state.categories, action.id, action.displayed),
+        artworksToView: updateArtworks(
+          state.artworks,
+          state.period,
+          updateCategories(state.categories, action.id, action.displayed)
+        ),
+      };
     default:
       return state;
   }
-};
-
-export default combineReducers({
-  link,
-  period,
-});
+}
