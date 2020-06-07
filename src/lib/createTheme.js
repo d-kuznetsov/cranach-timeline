@@ -13,3 +13,14 @@ export default function createTheme() {
   });
   return theme;
 }
+
+export function createThemeByMainColor(color) {
+  const theme = createMuiTheme({
+    palette: {
+      primary: {
+        main: color,
+      },
+    },
+  });
+  return theme;
+}
