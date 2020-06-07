@@ -7,7 +7,7 @@ export default [
     imgXS: "XS/01.png",
     start: 1500,
     end: 1503,
-    categogy: 1,
+    category: 1,
   },
   {
     id: 2,
@@ -17,7 +17,7 @@ export default [
     imgXS: "XS/02.png",
     start: 1503,
     end: 1505,
-    categogy: 2,
+    category: 2,
   },
   {
     id: 3,
@@ -27,7 +27,7 @@ export default [
     imgXS: "XS/03.png",
     start: 1505,
     end: 1505,
-    categogy: 3,
+    category: 3,
   },
   {
     id: 4,
@@ -37,7 +37,7 @@ export default [
     imgXS: "XS/04.png",
     start: 1506,
     end: 1510,
-    categogy: 4,
+    category: 4,
   },
   {
     id: 5,
@@ -47,7 +47,7 @@ export default [
     imgXS: "XS/05.png",
     start: 1507,
     end: 1507,
-    categogy: 1,
+    category: 1,
   },
   {
     id: 6,
@@ -57,7 +57,7 @@ export default [
     imgXS: "XS/06.png",
     start: 1510,
     end: 1515,
-    categogy: 2,
+    category: 2,
   },
   {
     id: 7,
@@ -67,7 +67,7 @@ export default [
     imgXS: "XS/07.png",
     start: 1545,
     end: 1545,
-    categogy: 3,
+    category: 3,
   },
   {
     id: 8,
@@ -77,7 +77,7 @@ export default [
     imgXS: "XS/08.png",
     start: 1545,
     end: 1560,
-    categogy: 4,
+    category: 4,
   },
   {
     id: 9,
@@ -87,7 +87,7 @@ export default [
     imgXS: "XS/09.png",
     start: 1555,
     end: 1570,
-    categogy: 1,
+    category: 1,
   },
   {
     id: 10,
@@ -97,7 +97,7 @@ export default [
     imgXS: "XS/10.png",
     start: 1565,
     end: 1570,
-    categogy: 2,
+    category: 2,
   },
   {
     id: 11,
@@ -107,7 +107,7 @@ export default [
     imgXS: "XS/11.png",
     start: 1580,
     end: 1590,
-    categogy: 3,
+    category: 3,
   },
   {
     id: 12,
@@ -117,7 +117,7 @@ export default [
     imgXS: "XS/12.png",
     start: 1590,
     end: 1600,
-    categogy: 4,
+    category: 4,
   },
   {
     id: 13,
@@ -127,7 +127,7 @@ export default [
     imgXS: "XS/13.png",
     start: 1600,
     end: 1629,
-    categogy: 1,
+    category: 1,
   },
   {
     id: 14,
@@ -137,7 +137,7 @@ export default [
     imgXS: "XS/14.png",
     start: 1620,
     end: 1625,
-    categogy: 2,
+    category: 2,
   },
   {
     id: 15,
@@ -147,6 +147,6 @@ export default [
     imgXS: "XS/15.png",
     start: 1630,
     end: 1630,
-    categogy: 3,
+    category: 3,
   },
 ];
