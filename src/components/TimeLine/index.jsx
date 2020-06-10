@@ -74,18 +74,25 @@ export function PresentationalComponent({ period, items }) {
           <div key={year} className={styles.year}>
             {!itemsByYear[year]
               ? null
-              : itemsByYear[year].map(({ start, end, offsetFactor, periodLength, category }) => (
-                  <Tooltip key={offsetFactor} title={`${start}-${end}`}>
-                    <div
-                      className={styles.item}
-                      style={{
-                        bottom: `${OFFSET * offsetFactor}px`,
-                        width: `${100 * periodLength}%`,
-                        backgroundColor: CATEGORIES[category].mainColor,
-                      }}
-                    ></div>
-                  </Tooltip>
-                ))}
+              : itemsByYear[year].map(
+                  ({ offsetFactor, periodLength, category, imgL, description }) => (
+                    <Tooltip
+                      key={offsetFactor}
+                      enterDelay={1000}
+                      enterNextDelay={1000}
+                      title={<img src={imgL} alt={description} />}
+                    >
+                      <div
+                        className={styles.item}
+                        style={{
+                          bottom: `${OFFSET * offsetFactor}px`,
+                          width: `${100 * periodLength}%`,
+                          backgroundColor: CATEGORIES[category].mainColor,
+                        }}
+                      ></div>
+                    </Tooltip>
+                  )
+                )}
           </div>
         ))}
       </div>
