@@ -1,10 +1,14 @@
 import { CURRENT_LINK, PERIOD, ARTWORKS, CATEGORY } from "./actions";
-import { CATEGORIES } from "../constants";
+import { CATEGORIES, PERIOD_MIN_VALUE, PERIOD_MAX_VALUE } from "../constants";
 
 function updateArtworks(artworks, period, categories) {
   const [periodStart, periodEnd] = period;
   return artworks.filter((item) => {
-    return categories[item.category].displayed && item.start > periodStart && item.end < periodEnd;
+    return (
+      categories[item.categoryId].displayed &&
+      item.dating.begin > periodStart &&
+      item.dating.end < periodEnd
+    );
   });
 }
 
@@ -29,7 +33,7 @@ Object.keys(CATEGORIES).forEach((id) => {
 
 const initialState = {
   link: "",
-  period: [1500, 1630],
+  period: [PERIOD_MIN_VALUE, PERIOD_MAX_VALUE],
   categories: initialCategories,
   artworks: [],
   artworksToView: [],

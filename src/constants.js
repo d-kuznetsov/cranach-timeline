@@ -1,9 +1,20 @@
 import { createThemeByMainColor } from "./lib/createTheme";
 
-export const PERIOD_MIN_VALUE = 1500;
-export const PERIOD_MAX_VALUE = 1630;
+export const PERIOD_MIN_VALUE = 1472;
+export const PERIOD_MAX_VALUE = 1586;
 
 export const CATEGORIES = {
+  1: {
+    id: 1,
+    label: "real",
+    mainColor: "#EBCF3B",
+  },
+  2: {
+    id: 2,
+    label: "virtual",
+    mainColor: "#0CEB6F",
+  },
+  /*
   1: {
     id: "painting",
     label: "Gemälde",
@@ -24,6 +35,7 @@ export const CATEGORIES = {
     label: "Archivalien",
     mainColor: "#DE793A",
   },
+  */
 };
 
 export const THEMES_BY_CATEGORY = {};

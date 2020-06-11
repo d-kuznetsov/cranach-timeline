@@ -4,15 +4,15 @@ import Tooltip from "@material-ui/core/Tooltip";
 import styles from "./TimeLine.module.scss";
 import { CATEGORIES } from "../../constants";
 
-const OFFSET = 20;
+const OFFSET = 10;
 
 function getItemsByYear(items) {
   const itemsByYear = {};
   items.forEach((item) => {
-    if (!itemsByYear[item.start]) {
-      itemsByYear[item.start] = [];
+    if (!itemsByYear[item.dating.begin]) {
+      itemsByYear[item.dating.begin] = [];
     }
-    itemsByYear[item.start].push(item);
+    itemsByYear[item.dating.begin].push(item);
   });
   return itemsByYear;
 }
@@ -32,28 +32,28 @@ function withAdditionalProps(yearList, items) {
   yearList.forEach((year) => (matrix[year] = new Array(items.length).fill(false)));
   const modifiedItems = items.map((item) => {
     let offsetFactor = 0;
-    let year = item.start;
+    let year = item.dating.begin;
     while (true) {
       if (matrix[year][offsetFactor]) {
         offsetFactor++;
-        year = item.start;
+        year = item.dating.begin;
       } else {
         year++;
       }
-      if (year > item.end) {
+      if (year > item.dating.end) {
         if (offsetFactor > maxOffsetFactor) {
           maxOffsetFactor = offsetFactor;
         }
         break;
       }
     }
-    for (let year = item.start; year <= item.end; year++) {
+    for (let year = item.dating.begin; year <= item.dating.end; year++) {
       matrix[year][offsetFactor] = true;
     }
     return {
       ...item,
       offsetFactor,
-      periodLength: item.end - item.start + 1,
+      periodLength: item.dating.end - item.dating.begin + 1,
     };
   });
 
@@ -63,7 +63,7 @@ function withAdditionalProps(yearList, items) {
   };
 }
 
-export function PresentationalComponent({ period, items }) {
+export function TimelineComponent({ period, items }) {
   const yearList = getYearList(period);
   const { modifiedItems, maxOffsetFactor } = withAdditionalProps(yearList, items);
   const itemsByYear = getItemsByYear(modifiedItems);
@@ -71,23 +71,28 @@ export function PresentationalComponent({ period, items }) {
     <div className={styles.container}>
       <div className={styles.displayArea} style={{ height: OFFSET * (maxOffsetFactor + 1) }}>
         {yearList.map((year) => (
-          <div key={year} className={styles.year}>
+          <div key={year} data-year={year} className={styles.year}>
             {!itemsByYear[year]
               ? null
               : itemsByYear[year].map(
-                  ({ offsetFactor, periodLength, category, imgL, description }) => (
+                  ({ offsetFactor, periodLength, categoryId, images, dating }) => (
                     <Tooltip
                       key={offsetFactor}
                       enterDelay={1000}
                       enterNextDelay={1000}
-                      title={<img src={imgL} alt={description} />}
+                      title={
+                        <div>
+                          <img src={images.sizes.xs.src} alt={"d"} />
+                          <div>{`${dating.begin}-${dating.end}`}</div>
+                        </div>
+                      }
                     >
                       <div
                         className={styles.item}
                         style={{
                           bottom: `${OFFSET * offsetFactor}px`,
                           width: `${100 * periodLength}%`,
-                          backgroundColor: CATEGORIES[category].mainColor,
+                          backgroundColor: CATEGORIES[categoryId].mainColor,
                         }}
                       ></div>
                     </Tooltip>
@@ -100,7 +105,7 @@ export function PresentationalComponent({ period, items }) {
   );
 }
 
-PresentationalComponent.propTypes = {
+TimelineComponent.propTypes = {
   period: PropTypes.array,
   items: PropTypes.array,
 };
@@ -113,5 +118,5 @@ export default function TimeLine() {
       artworksToView,
     };
   });
-  return <PresentationalComponent period={period} items={artworksToView} />;
+  return <TimelineComponent period={period} items={artworksToView} />;
 }

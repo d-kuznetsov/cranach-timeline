@@ -1,4 +1,6 @@
 import Router from "next/router";
+import axios from "axios";
+
 export const CURRENT_LINK = "CURRENT_LINK";
 export const PERIOD = "PERIOD";
 export const ARTWORKS = "ARTWORKS";
@@ -31,11 +33,10 @@ export function setCategoryDisplay(id, displayed) {
   };
 }
 
-import { getAll } from "../dataSource";
 export function loadArtworks() {
   return (dispatch) => {
-    setTimeout(() => {
-      dispatch(setArtworks(getAll()));
-    }, 1000);
+    axios.get("/api/data").then((res) => {
+      dispatch(setArtworks(res.data));
+    });
   };
 }
