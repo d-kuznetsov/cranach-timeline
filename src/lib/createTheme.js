@@ -4,10 +4,10 @@ export default function createTheme() {
   const theme = createMuiTheme({
     palette: {
       primary: {
-        main: "#ffa10d",
+        main: "#EA3222",
       },
       secondary: {
-        main: "#00ffee",
+        main: "#08172A",
       },
     },
   });
