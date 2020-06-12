@@ -36,7 +36,7 @@ export function RangeSliderComponent({ initialRange, minValue, maxValue, onChang
       max={maxValue}
       onChange={handleRangeChange}
       onChangeCommitted={onChange}
-      valueLabelDisplay="on"
+      valueLabelDisplay="auto"
     />
   );
 }

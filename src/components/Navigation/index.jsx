@@ -33,6 +33,7 @@ export function NavigationComponent({ items, link, onChange }) {
             label={label}
             value={link}
             icon={<IconComponent />}
+            showLabel={true}
           ></BottomNavigationAction>
         );
       })}

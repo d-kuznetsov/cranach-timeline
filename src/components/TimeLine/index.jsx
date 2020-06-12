@@ -73,6 +73,7 @@ export function TimelineComponent({ period, items }) {
   const yearList = getYearList(period);
   const { modifiedItems, maxOffsetFactor } = withAdditionalProps(yearList, items);
   const itemsByYear = getItemsByYear(modifiedItems);
+  console.log(itemsByYear);
   return (
     <div className={styles.container}>
       <div className={styles.displayArea} style={{ height: OFFSET * (maxOffsetFactor + 1) }}>
@@ -80,8 +81,9 @@ export function TimelineComponent({ period, items }) {
           <div key={year} data-year={year} className={styles.year}>
             {!itemsByYear[year]
               ? null
-              : itemsByYear[year].map(
-                  ({ offsetFactor, periodLength, categoryId, images, dating }) => (
+              : itemsByYear[year]
+                  .filter((item) => item.periodLength)
+                  .map(({ offsetFactor, periodLength, categoryId, images, dating }) => (
                     <Tooltip
                       key={offsetFactor}
                       enterDelay={1000}
@@ -94,16 +96,17 @@ export function TimelineComponent({ period, items }) {
                       }
                     >
                       <div
+                        data-key={offsetFactor}
                         className={styles.item}
                         style={{
+                          marginLeft: "1px",
                           bottom: `${OFFSET * offsetFactor}px`,
-                          width: `${100 * periodLength}%`,
+                          width: `calc(${100 * periodLength}% - 2px)`,
                           backgroundColor: CATEGORIES[categoryId].mainColor,
                         }}
                       ></div>
                     </Tooltip>
-                  )
-                )}
+                  ))}
           </div>
         ))}
       </div>
