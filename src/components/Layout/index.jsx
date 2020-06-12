@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import styles from "./Layout.module.scss";
-import Navigation from "../Navigation";
+import { NavigationContainer as Navigation } from "../Navigation";
 import { ThemeProvider } from "@material-ui/styles";
 import createTheme from "../../lib/createTheme";
 

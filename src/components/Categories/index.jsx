@@ -1,19 +1,24 @@
 import { useSelector, useDispatch } from "react-redux";
 import { setCategoryDisplay } from "../../redux/actions";
+
+import PropTypes from "prop-types";
 import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
 import { ThemeProvider } from "@material-ui/core/styles";
 import { THEMES_BY_CATEGORY } from "../../constants";
 
-export default function Cat() {
+export function CategoryContainer() {
   const categories = useSelector((state) => state.categories);
   const dispatch = useDispatch();
-  const handleChange = (event) => {
+  const handleCategoryChange = (event) => {
     const { name, checked } = event.target;
     dispatch(setCategoryDisplay(name, checked));
   };
-  console.log(categories);
+  return <CategoryComponent categories={categories} onChange={handleCategoryChange} />;
+}
+
+export function CategoryComponent({ categories, onChange }) {
   return (
     <FormGroup row>
       {Object.keys(categories).map((id) => {
@@ -25,7 +30,7 @@ export default function Cat() {
                 <Switch
                   color="primary"
                   checked={categories[id].displayed}
-                  onChange={handleChange}
+                  onChange={onChange}
                   name={id}
                 />
               }
@@ -36,3 +41,8 @@ export default function Cat() {
     </FormGroup>
   );
 }
+
+CategoryComponent.propTypes = {
+  categories: PropTypes.object,
+  onChange: PropTypes.func,
+};

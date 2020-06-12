@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
-import PropTypes from "prop-types";
 import { setCurrentLink } from "../../redux/actions";
 
+import PropTypes from "prop-types";
 import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 import HomeIcon from "@material-ui/icons/Home";
@@ -14,13 +14,19 @@ const navItems = [
   { label: "About", IconComponent: InfoIcon, link: "/about" },
 ];
 
-export function PresentationalComponent({ link, onChange }) {
+export function NavigationContainer() {
+  const link = useSelector((state) => state.link);
+  const dispatch = useDispatch();
   const handleLinkChange = (e, link) => {
-    onChange(link);
+    dispatch(setCurrentLink(link));
   };
+  return <NavigationComponent items={navItems} link={link} onChange={handleLinkChange} />;
+}
+
+export function NavigationComponent({ items, link, onChange }) {
   return (
-    <BottomNavigation value={link} onChange={handleLinkChange}>
-      {navItems.map(({ label, link, IconComponent }) => {
+    <BottomNavigation value={link} onChange={onChange}>
+      {items.map(({ label, link, IconComponent }) => {
         return (
           <BottomNavigationAction
             key={label}
@@ -34,16 +40,8 @@ export function PresentationalComponent({ link, onChange }) {
   );
 }
 
-PresentationalComponent.propTypes = {
+NavigationComponent.propTypes = {
+  items: PropTypes.array,
   link: PropTypes.string,
   onChange: PropTypes.func,
 };
-
-export default function Navigation() {
-  const link = useSelector((state) => state.link);
-  const dispatch = useDispatch();
-  const handleLinkChange = (link) => {
-    dispatch(setCurrentLink(link));
-  };
-  return <PresentationalComponent link={link} onChange={handleLinkChange} />;
-}

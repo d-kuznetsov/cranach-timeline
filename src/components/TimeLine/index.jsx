@@ -1,8 +1,14 @@
-import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
+
+import PropTypes from "prop-types";
 import Tooltip from "@material-ui/core/Tooltip";
 import styles from "./TimeLine.module.scss";
 import { CATEGORIES } from "../../constants";
+
+export function TimelineContainer() {
+  const { period, artworksToView } = useSelector((state) => state);
+  return <TimelineComponent period={period} items={artworksToView} />;
+}
 
 const OFFSET = 10;
 
@@ -109,14 +115,3 @@ TimelineComponent.propTypes = {
   period: PropTypes.array,
   items: PropTypes.array,
 };
-
-export default function TimeLine() {
-  const { period, artworksToView } = useSelector((state) => {
-    const { period, artworksToView } = state;
-    return {
-      period,
-      artworksToView,
-    };
-  });
-  return <TimelineComponent period={period} items={artworksToView} />;
-}

@@ -1,7 +1,7 @@
 import Layout from "../components/Layout";
-import RangeSlider from "../components/RangeSlider";
-import TimeLine from "../components/TimeLine";
-import Cat from "../components/Categories";
+import { RangeSliderContainer as RangeSlider } from "../components/RangeSlider";
+import { TimelineContainer as Timeline } from "../components/TimeLine";
+import { CategoryContainer as Categories } from "../components/Categories";
 import { loadArtworks } from "../redux/actions";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
@@ -15,8 +15,8 @@ export default function Home() {
   return (
     <Layout>
       <div>
-        <Cat />
-        <TimeLine />
+        <Categories />
+        <Timeline />
         <RangeSlider />
       </div>
     </Layout>

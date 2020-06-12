@@ -1,28 +1,49 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import Slider from "@material-ui/core/Slider";
 import { setPeriod } from "../../redux/actions";
 import { PERIOD_MIN_VALUE, PERIOD_MAX_VALUE } from "../../constants";
 
-export default function RangeSlider() {
+import PropTypes from "prop-types";
+import Slider from "@material-ui/core/Slider";
+
+export function RangeSliderContainer() {
   const initialRange = useSelector((state) => state.period);
   const dispatch = useDispatch();
+  const handleRangeChange = (e, range) => {
+    dispatch(setPeriod(range));
+  };
+
+  return (
+    <RangeSliderComponent
+      initialRange={initialRange}
+      minValue={PERIOD_MIN_VALUE}
+      maxValue={PERIOD_MAX_VALUE}
+      onChange={handleRangeChange}
+    />
+  );
+}
+
+export function RangeSliderComponent({ initialRange, minValue, maxValue, onChange }) {
   const [range, setRange] = useState(initialRange);
   const handleRangeChange = (e, range) => {
     setRange(range);
-  };
-  const handleRangeChangeCommitted = (e, range) => {
-    dispatch(setPeriod(range));
   };
 
   return (
     <Slider
       value={range}
-      min={PERIOD_MIN_VALUE}
-      max={PERIOD_MAX_VALUE}
+      min={minValue}
+      max={maxValue}
       onChange={handleRangeChange}
-      onChangeCommitted={handleRangeChangeCommitted}
+      onChangeCommitted={onChange}
       valueLabelDisplay="on"
     />
   );
 }
+
+RangeSliderComponent.propTypes = {
+  initialRange: PropTypes.array,
+  minValue: PropTypes.number,
+  maxValue: PropTypes.number,
+  onChange: PropTypes.func,
+};
