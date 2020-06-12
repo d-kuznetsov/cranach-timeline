@@ -11,6 +11,7 @@ async function extractData(url, categoryId, filenameToSave) {
   const rawData = await res.json();
   const items = rawData.items
     .filter(({ images }) => images)
+    .sort((a, b) => a.dating.begin - b.dating.begin)
     .map((item) => {
       const {
         langCode,
