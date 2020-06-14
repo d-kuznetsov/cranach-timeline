@@ -6,9 +6,6 @@ export default function createTheme() {
       primary: {
         main: "#EA3222",
       },
-      secondary: {
-        main: "#08172A",
-      },
     },
   });
   return theme;
