@@ -1,0 +1,29 @@
+@use '../../styles/constants' as constants;
+
+$categories-height: 38px;
+$slider-height: 55px;
+$view-height: calc(100% - 38px - 55px);
+
+.container {
+  height: 100%;
+}
+
+.categories {
+  position: sticky;
+  top: constants.$header-height;
+  z-index: 5;
+  height: $categories-height;
+  background-color: white;
+}
+
+.view {
+  height: $view-height;
+}
+
+.slider {
+  position: sticky;
+  bottom: 0px;
+  z-index: 5;
+  height: $slider-height;
+  background-color: white;
+}
