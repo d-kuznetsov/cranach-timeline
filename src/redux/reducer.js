@@ -1,4 +1,4 @@
-import { CURRENT_LINK, PERIOD, ARTWORKS, CATEGORY } from "./actions";
+import { CURRENT_LINK, PERIOD, ARTWORKS, CATEGORY, LINE_HEIGHT } from "./actions";
 import { CATEGORIES, PERIOD_MIN_VALUE, PERIOD_MAX_VALUE } from "../constants";
 
 function updateArtworks(artworks, period, categories) {
@@ -37,6 +37,7 @@ export const initialState = {
   categories: initialCategories,
   artworks: [],
   artworksToView: [],
+  lineHeight: 8,
 };
 export default function reducer(state = initialState, action) {
   switch (action.type) {
@@ -66,6 +67,11 @@ export default function reducer(state = initialState, action) {
           state.period,
           updateCategories(state.categories, action.id, action.displayed)
         ),
+      };
+    case LINE_HEIGHT:
+      return {
+        ...state,
+        lineHeight: action.lineHeight,
       };
     default:
       return state;

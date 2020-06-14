@@ -8,12 +8,21 @@ $view-height: calc(100% - 38px - 55px);
   height: 100%;
 }
 
-.categories {
+.header {
   position: sticky;
   top: constants.$header-height;
   z-index: 5;
+  display: flex;
   height: $categories-height;
   background-color: white;
+}
+
+.categoriesWrapper {
+  flex: 5;
+}
+
+.lineHeightSliderWrapper {
+  flex: 1;
 }
 
 .view {

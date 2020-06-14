@@ -5,6 +5,7 @@ export const CURRENT_LINK = "CURRENT_LINK";
 export const PERIOD = "PERIOD";
 export const ARTWORKS = "ARTWORKS";
 export const CATEGORY = "CATEGORY";
+export const LINE_HEIGHT = "LINE_HEIGHT";
 
 export function setCurrentLink(link) {
   return (dispatch) => {
@@ -39,4 +40,8 @@ export function loadArtworks() {
       dispatch(setArtworks(res.data));
     });
   };
+}
+
+export function setLineHeight(lineHeight) {
+  return { type: LINE_HEIGHT, lineHeight };
 }

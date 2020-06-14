@@ -6,6 +6,7 @@ import Layout from "../../components/Layout";
 import { CategoryContainer as Categories } from "../../components/Categories";
 import { TimelineContainer as TimelineView } from "../../components/TimeLine";
 import { RangeSliderContainer as RangeSlider } from "../../components/RangeSlider";
+import { LineHeightSliderContainer as LineHeightSlider } from "../../components/LineHeightSlider";
 import styles from "./Timeline.module.scss";
 
 export default function Timeline() {
@@ -17,8 +18,13 @@ export default function Timeline() {
   return (
     <Layout>
       <div className={styles.container}>
-        <section className={styles.categories}>
-          <Categories />
+        <section className={styles.header}>
+          <section className={styles.categoriesWrapper}>
+            <Categories />
+          </section>
+          <section className={styles.lineHeightSliderWrapper}>
+            <LineHeightSlider />
+          </section>
         </section>
         <section className={styles.view}>
           <TimelineView />

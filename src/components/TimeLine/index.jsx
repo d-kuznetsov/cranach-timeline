@@ -6,8 +6,8 @@ import styles from "./TimeLine.module.scss";
 import { CATEGORIES } from "../../constants";
 
 export function TimelineContainer() {
-  const { period, artworksToView } = useSelector((state) => state);
-  return <TimelineComponent period={period} items={artworksToView} />;
+  const { period, artworksToView, lineHeight } = useSelector((state) => state);
+  return <TimelineComponent period={period} items={artworksToView} lineHeight={lineHeight} />;
 }
 
 function getItemsByYear(items) {
