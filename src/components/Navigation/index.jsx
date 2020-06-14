@@ -10,7 +10,7 @@ import InfoIcon from "@material-ui/icons/Info";
 
 const navItems = [
   { label: "Home", IconComponent: HomeIcon, link: "/" },
-  { label: "Contact", IconComponent: ContactMailIcon, link: "/contact" },
+  // { label: "Contact", IconComponent: ContactMailIcon, link: "/contact" },
   { label: "About", IconComponent: InfoIcon, link: "/about" },
 ];
 
