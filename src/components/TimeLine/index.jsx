@@ -75,41 +75,39 @@ export function TimelineComponent({ period, items }) {
   const itemsByYear = getItemsByYear(modifiedItems);
   console.log(itemsByYear);
   return (
-    <div className={styles.container}>
-      <div className={styles.displayArea} style={{ height: OFFSET * (maxOffsetFactor + 1) }}>
-        {yearList.map((year) => (
-          <div key={year} data-year={year} className={styles.year}>
-            {!itemsByYear[year]
-              ? null
-              : itemsByYear[year]
-                  .filter((item) => item.periodLength)
-                  .map(({ offsetFactor, periodLength, categoryId, images, dating }) => (
-                    <Tooltip
-                      key={offsetFactor}
-                      enterDelay={1000}
-                      enterNextDelay={1000}
-                      title={
-                        <div>
-                          <img src={images.sizes.xs.src} alt={"d"} />
-                          <div>{`${dating.begin}-${dating.end}`}</div>
-                        </div>
-                      }
-                    >
-                      <div
-                        data-key={offsetFactor}
-                        className={styles.item}
-                        style={{
-                          marginLeft: "1px",
-                          bottom: `${OFFSET * offsetFactor}px`,
-                          width: `calc(${100 * periodLength}% - 2px)`,
-                          backgroundColor: CATEGORIES[categoryId].mainColor,
-                        }}
-                      ></div>
-                    </Tooltip>
-                  ))}
-          </div>
-        ))}
-      </div>
+    <div className={styles.container} style={{ height: OFFSET * (maxOffsetFactor + 1) }}>
+      {yearList.map((year) => (
+        <div key={year} data-year={year} className={styles.year}>
+          {!itemsByYear[year]
+            ? null
+            : itemsByYear[year]
+                .filter((item) => item.periodLength)
+                .map(({ offsetFactor, periodLength, categoryId, images, dating }) => (
+                  <Tooltip
+                    key={offsetFactor}
+                    enterDelay={1000}
+                    enterNextDelay={1000}
+                    title={
+                      <div>
+                        <img src={images.sizes.xs.src} alt={"d"} />
+                        <div>{`${dating.begin}-${dating.end}`}</div>
+                      </div>
+                    }
+                  >
+                    <div
+                      data-key={offsetFactor}
+                      className={styles.item}
+                      style={{
+                        marginLeft: "1px",
+                        top: `${OFFSET * offsetFactor}px`,
+                        width: `calc(${100 * periodLength}% - 2px)`,
+                        backgroundColor: CATEGORIES[categoryId].mainColor,
+                      }}
+                    ></div>
+                  </Tooltip>
+                ))}
+        </div>
+      ))}
     </div>
   );
 }
