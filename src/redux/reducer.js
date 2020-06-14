@@ -1,5 +1,5 @@
 import { CURRENT_LINK, PERIOD, ARTWORKS, CATEGORY, LINE_HEIGHT } from "./actions";
-import { CATEGORIES, PERIOD_MIN_VALUE, PERIOD_MAX_VALUE } from "../constants";
+import { CATEGORIES } from "../constants";
 
 function updateArtworks(artworks, period, categories) {
   const [periodStart, periodEnd] = period;
@@ -33,7 +33,7 @@ Object.keys(CATEGORIES).forEach((id) => {
 
 export const initialState = {
   link: "",
-  period: [PERIOD_MIN_VALUE, PERIOD_MAX_VALUE],
+  period: [1480, 1580],
   categories: initialCategories,
   artworks: [],
   artworksToView: [],
