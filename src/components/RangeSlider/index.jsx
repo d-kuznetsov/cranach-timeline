@@ -1,10 +1,18 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setPeriod } from "../../redux/actions";
-import { PERIOD_MIN_VALUE, PERIOD_MAX_VALUE } from "../../constants";
+import { PERIOD_MIN_VALUE, PERIOD_MAX_VALUE, IMPORTANT_DATES } from "../../constants";
 
 import PropTypes from "prop-types";
 import Slider from "@material-ui/core/Slider";
+import styles from "./RangeSlider.module.scss";
+
+const marks = IMPORTANT_DATES.map((year) => {
+  return {
+    value: year,
+    label: year,
+  };
+});
 
 export function RangeSliderContainer() {
   const initialRange = useSelector((state) => state.period);
@@ -19,11 +27,12 @@ export function RangeSliderContainer() {
       minValue={PERIOD_MIN_VALUE}
       maxValue={PERIOD_MAX_VALUE}
       onChange={handleRangeChange}
+      marks={marks}
     />
   );
 }
 
-export function RangeSliderComponent({ initialRange, minValue, maxValue, onChange }) {
+export function RangeSliderComponent({ initialRange, minValue, maxValue, onChange, marks }) {
   const [range, setRange] = useState(initialRange);
   const handleRangeChange = (e, range) => {
     setRange(range);
@@ -36,6 +45,7 @@ export function RangeSliderComponent({ initialRange, minValue, maxValue, onChang
       max={maxValue}
       onChange={handleRangeChange}
       onChangeCommitted={onChange}
+      marks={marks}
       valueLabelDisplay="auto"
     />
   );
@@ -46,4 +56,5 @@ RangeSliderComponent.propTypes = {
   minValue: PropTypes.number,
   maxValue: PropTypes.number,
   onChange: PropTypes.func,
+  marks: PropTypes.array,
 };
