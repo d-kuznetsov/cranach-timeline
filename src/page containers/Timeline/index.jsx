@@ -7,6 +7,7 @@ import { CategoryContainer as Categories } from "../../components/Categories";
 import { TimelineContainer as TimelineView } from "../../components/TimeLine";
 import { RangeSliderContainer as RangeSlider } from "../../components/RangeSlider";
 import { LineHeightSliderContainer as LineHeightSlider } from "../../components/LineHeightSlider";
+import LineWeightIcon from "@material-ui/icons/LineWeight";
 import styles from "./Timeline.module.scss";
 
 export default function Timeline() {
@@ -23,6 +24,7 @@ export default function Timeline() {
             <Categories />
           </section>
           <section className={styles.lineHeightSliderWrapper}>
+            <LineWeightIcon color="secondary" />
             <LineHeightSlider />
           </section>
         </section>
