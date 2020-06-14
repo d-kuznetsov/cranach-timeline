@@ -4,8 +4,8 @@ import { Provider } from "react-redux";
 import { createReduxStore } from "../redux/store";
 import "../styles/base.scss";
 
-export default function App({ Component, pageProps }) {
-  const [store] = useState(createReduxStore());
+export default function App({ Component, pageProps, router }) {
+  const [store] = useState(createReduxStore({ link: router.pathname }));
   return (
     <Provider store={store}>
       <Component {...pageProps} />
@@ -16,4 +16,5 @@ export default function App({ Component, pageProps }) {
 App.propTypes = {
   Component: PropTypes.elementType,
   pageProps: PropTypes.object,
+  router: PropTypes.object,
 };

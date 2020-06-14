@@ -1,7 +1,11 @@
 import { createStore, applyMiddleware } from "redux";
 import thunkMiddleware from "redux-thunk";
-import reducer from "./reducer";
+import reducer, { initialState } from "./reducer";
 
-export function createReduxStore() {
-  return createStore(reducer, applyMiddleware(thunkMiddleware));
+export function createReduxStore(stateToMerge) {
+  return createStore(
+    reducer,
+    { ...initialState, ...stateToMerge },
+    applyMiddleware(thunkMiddleware)
+  );
 }

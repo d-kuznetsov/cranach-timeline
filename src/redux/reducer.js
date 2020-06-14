@@ -31,7 +31,7 @@ Object.keys(CATEGORIES).forEach((id) => {
   };
 });
 
-const initialState = {
+export const initialState = {
   link: "",
   period: [PERIOD_MIN_VALUE, PERIOD_MAX_VALUE],
   categories: initialCategories,
