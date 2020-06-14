@@ -10,8 +10,6 @@ export function TimelineContainer() {
   return <TimelineComponent period={period} items={artworksToView} />;
 }
 
-const OFFSET = 10;
-
 function getItemsByYear(items) {
   const itemsByYear = {};
   items.forEach((item) => {
@@ -69,13 +67,13 @@ function withAdditionalProps(yearList, items) {
   };
 }
 
-export function TimelineComponent({ period, items }) {
+export function TimelineComponent({ period, items, lineHeight = 16 }) {
   const yearList = getYearList(period);
   const { modifiedItems, maxOffsetFactor } = withAdditionalProps(yearList, items);
   const itemsByYear = getItemsByYear(modifiedItems);
-  console.log(itemsByYear);
+  const offset = lineHeight * 1.25;
   return (
-    <div className={styles.container} style={{ height: OFFSET * (maxOffsetFactor + 1) }}>
+    <div className={styles.container} style={{ height: offset * (maxOffsetFactor + 1) }}>
       {yearList.map((year) => (
         <div key={year} data-year={year} className={styles.year}>
           {!itemsByYear[year]
@@ -99,8 +97,9 @@ export function TimelineComponent({ period, items }) {
                       className={styles.item}
                       style={{
                         marginLeft: "1px",
-                        top: `${OFFSET * offsetFactor}px`,
+                        top: `${offset * offsetFactor}px`,
                         width: `calc(${100 * periodLength}% - 2px)`,
+                        height: `${lineHeight}px`,
                         backgroundColor: CATEGORIES[categoryId].mainColor,
                       }}
                     ></div>
@@ -115,4 +114,5 @@ export function TimelineComponent({ period, items }) {
 TimelineComponent.propTypes = {
   period: PropTypes.array,
   items: PropTypes.array,
+  lineHeight: PropTypes.number,
 };
