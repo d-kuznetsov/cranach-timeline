@@ -2,7 +2,7 @@
 
 $categories-height: 38px;
 $slider-height: 55px;
-$view-height: calc(100% - 38px - 55px);
+$view-height: calc(100% - 38px - 55px + 1px);
 
 .container {
   height: 100%;
@@ -23,6 +23,7 @@ $view-height: calc(100% - 38px - 55px);
 
 .lineHeightSliderWrapper {
   flex: 1;
+  display: flex;
 }
 
 .view {
