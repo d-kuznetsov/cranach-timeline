@@ -19,7 +19,7 @@ export default function Layout({ children }) {
           <section className={styles.mainContent}>{children}</section>
         </main>
         <footer className={styles.footer}>
-          <section className={styles.footerContent}>f</section>
+          <section className={styles.footerContent}></section>
         </footer>
       </div>
     </ThemeProvider>
