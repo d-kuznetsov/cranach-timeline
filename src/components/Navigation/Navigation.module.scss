@@ -1,0 +1,9 @@
+@use '../../styles/constants' as constants;
+
+.container {
+  background-color: constants.$color-dark !important;
+}
+
+.container .navigationAction {
+  color: #ddd;
+}

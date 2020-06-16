@@ -7,6 +7,7 @@ import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 import HomeIcon from "@material-ui/icons/Home";
 import ContactMailIcon from "@material-ui/icons/ContactMail";
 import InfoIcon from "@material-ui/icons/Info";
+import styles from "./Navigation.module.scss";
 
 const navItems = [
   { label: "Home", IconComponent: HomeIcon, link: "/" },
@@ -25,10 +26,11 @@ export function NavigationContainer() {
 
 export function NavigationComponent({ items, link, onChange }) {
   return (
-    <BottomNavigation value={link} onChange={onChange}>
+    <BottomNavigation className={styles.container} value={link} onChange={onChange}>
       {items.map(({ label, link, IconComponent }) => {
         return (
           <BottomNavigationAction
+            className={styles.navigationAction}
             key={label}
             label={label}
             value={link}

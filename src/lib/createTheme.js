@@ -4,7 +4,7 @@ export default function createTheme() {
   const theme = createMuiTheme({
     palette: {
       primary: {
-        main: "#EA3222",
+        main: "#FAC725",
       },
     },
   });
