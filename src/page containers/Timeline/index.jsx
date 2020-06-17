@@ -24,7 +24,6 @@ export default function Timeline() {
             <Categories />
           </section>
           <section className={styles.lineHeightSliderWrapper}>
-            <LineWeightIcon color="secondary" />
             <LineHeightSlider />
           </section>
         </section>

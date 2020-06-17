@@ -20,8 +20,8 @@ export function LineHeightSliderComponent({ defaultValue, onChange }) {
       defaultValue={defaultValue}
       min={MIN_VALUE}
       max={MAX_VALUE}
+      step={0.1}
       valueLabelDisplay="off"
-      marks
       onChangeCommitted={onChange}
     />
   );
