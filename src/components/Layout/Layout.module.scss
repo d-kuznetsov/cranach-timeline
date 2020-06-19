@@ -23,6 +23,7 @@ $content-width: 90%;
 
 .main {
   flex: 1;
+  min-height: 0px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -39,4 +40,7 @@ $content-width: 90%;
   flex: 1;
   width: $content-width;
   background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  min-height: 0px;
 }
