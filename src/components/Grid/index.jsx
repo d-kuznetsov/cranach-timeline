@@ -15,31 +15,29 @@ export function GridContainer() {
 export function GridComponent({ items, columnNumber, space }) {
   const rowCount = Math.ceil(items.length / columnNumber);
   return (
-    <div style={{ height: "600px" }}>
-      <AutoSizer>
-        {({ height, width }) => {
-          const gridCellHeight = Math.round(width / columnNumber);
-          const itemHeight = gridCellHeight + space;
-          return (
-            <List
-              itemData={{
-                items,
-                space,
-                gridCellHeight,
-                columnNumber,
-              }}
-              height={height}
-              itemCount={rowCount}
-              itemSize={itemHeight}
-              width={width}
-              onItemsRendered={({ visibleStartIndex }) => 1}
-            >
-              {Row}
-            </List>
-          );
-        }}
-      </AutoSizer>
-    </div>
+    <AutoSizer>
+      {({ height, width }) => {
+        const gridCellHeight = Math.round(width / columnNumber);
+        const itemHeight = gridCellHeight + space;
+        return (
+          <List
+            itemData={{
+              items,
+              space,
+              gridCellHeight,
+              columnNumber,
+            }}
+            height={height}
+            itemCount={rowCount}
+            itemSize={itemHeight}
+            width={width}
+            onItemsRendered={({ visibleStartIndex }) => 1}
+          >
+            {Row}
+          </List>
+        );
+      }}
+    </AutoSizer>
   );
 }
 
