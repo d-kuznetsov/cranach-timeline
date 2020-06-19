@@ -5,14 +5,17 @@ import PropTypes from "prop-types";
 import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 import HomeIcon from "@material-ui/icons/Home";
+import TimelineIcon from "@material-ui/icons/Timeline";
+import GridOnIcon from "@material-ui/icons/GridOn";
 import ContactMailIcon from "@material-ui/icons/ContactMail";
 import InfoIcon from "@material-ui/icons/Info";
 import styles from "./Navigation.module.scss";
 
 const navItems = [
   { label: "Home", IconComponent: HomeIcon, link: "/" },
-  // { label: "Contact", IconComponent: ContactMailIcon, link: "/contact" },
-  { label: "About", IconComponent: InfoIcon, link: "/about" },
+  { label: "Timeline", IconComponent: TimelineIcon, link: "/timeline" },
+  { label: "Grid", IconComponent: GridOnIcon, link: "/grid" },
+  { label: "Contact", IconComponent: ContactMailIcon, link: "/contact" },
 ];
 
 export function NavigationContainer() {

@@ -32,7 +32,7 @@ Object.keys(CATEGORIES).forEach((id) => {
 });
 
 export const initialState = {
-  link: "",
+  link: "/",
   period: [1480, 1580],
   categories: initialCategories,
   artworks: [],
