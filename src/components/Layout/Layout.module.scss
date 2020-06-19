@@ -5,15 +5,12 @@ $content-width: 90%;
 .container {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  height: 100vh;
   color: constants.$color-primary-main;
 }
 
 .header {
-  position: sticky;
-  top: 0px;
-  z-index: 10;
-  flex: 0 0 constants.$header-height;
+  flex: 0 0 56px;
   display: flex;
   justify-content: center;
   background-color: constants.$color-dark;
@@ -27,27 +24,19 @@ $content-width: 90%;
 .main {
   flex: 1;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
-.leftSidbar {
-  width: 5%;
+.toolbar {
+  flex: 0;
+  width: $content-width;
+  margin: 5px 0px;
+  background-color: #fff;
 }
 
 .mainContent {
+  flex: 1;
   width: $content-width;
-}
-
-.rightSidbar {
-  width: 5%;
-}
-
-.footer {
-  flex: 0;
-  display: flex;
-  justify-content: center;
-}
-
-.footerContent {
-  width: $content-width;
+  background-color: #fff;
 }
