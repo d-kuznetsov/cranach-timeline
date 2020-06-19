@@ -1,5 +1,5 @@
-import Layout from "../components/Layout";
+import styles from "../styles/pages/ContactPage.module.scss";
 
-export default function Home() {
-  return <Layout />;
+export default function ContactPage() {
+  return <div>Contact</div>;
 }

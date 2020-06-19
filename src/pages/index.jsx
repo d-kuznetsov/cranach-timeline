@@ -1,5 +1,5 @@
-import Timeline from "../page containers/Timeline";
+import styles from "../styles/pages/HomePage.module.scss";
 
-export default function Home() {
-  return <Timeline />;
+export default function HomePage() {
+  return <div>Home</div>;
 }
