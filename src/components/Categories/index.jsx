@@ -2,13 +2,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { setCategoryDisplay } from "../../redux/actions";
 
 import PropTypes from "prop-types";
-import FormGroup from "@material-ui/core/FormGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Switch from "@material-ui/core/Switch";
 import { ThemeProvider } from "@material-ui/core/styles";
-import { THEMES_BY_CATEGORY } from "../../constants";
-
+import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
+import styles from "./Categories.module.scss";
+
+import { THEMES_BY_CATEGORY } from "../../constants";
 
 export function CategoryContainer() {
   const categories = useSelector((state) => state.categories);
@@ -22,7 +21,7 @@ export function CategoryContainer() {
 
 export function CategoryComponent({ categories, onChange }) {
   return (
-    <FormGroup row>
+    <div className={styles.container}>
       {Object.keys(categories).map((id) => {
         return (
           <ThemeProvider key={id} theme={THEMES_BY_CATEGORY[id]}>
@@ -40,7 +39,7 @@ export function CategoryComponent({ categories, onChange }) {
           </ThemeProvider>
         );
       })}
-    </FormGroup>
+    </div>
   );
 }
 
