@@ -1,4 +1,19 @@
 .timelineContainer {
   height: 100%;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.expansionPanel {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.categories {
+  flex: 2;
+}
+
+.lineHeightSlider {
+  flex: 1;
 }
