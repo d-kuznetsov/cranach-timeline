@@ -1,0 +1,31 @@
+.container {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  color: #c1c1c1;
+}
+
+.categories {
+  display: flex;
+  flex: 2;
+}
+
+.category {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  padding: 0px 5px;
+}
+
+.categoryColor {
+  width: 20px;
+  height: 20px;
+}
+
+.categoryLabel {
+  margin-left: 5px;
+}
+
+.period {
+  flex: 1;
+}
