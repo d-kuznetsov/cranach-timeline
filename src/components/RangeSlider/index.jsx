@@ -39,15 +39,17 @@ export function RangeSliderComponent({ initialRange, minValue, maxValue, onChang
   };
 
   return (
-    <Slider
-      value={range}
-      min={minValue}
-      max={maxValue}
-      onChange={handleRangeChange}
-      onChangeCommitted={onChange}
-      marks={marks}
-      valueLabelDisplay="auto"
-    />
+    <div className={styles.container}>
+      <Slider
+        value={range}
+        min={minValue}
+        max={maxValue}
+        onChange={handleRangeChange}
+        onChangeCommitted={onChange}
+        marks={marks}
+        valueLabelDisplay="auto"
+      />
+    </div>
   );
 }
 
