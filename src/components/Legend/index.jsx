@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 
 import TextField from "@material-ui/core/TextField";
 import PropTypes from "prop-types";
+import Typography from "@material-ui/core/Typography";
 import styles from "./Legend.module.scss";
 
 export function LegendContainer() {
@@ -20,13 +21,15 @@ export function LegendComponent({ categories, period }) {
           return (
             <div key={id} className={styles.category}>
               <div className={styles.categoryColor} style={{ backgroundColor: mainColor }}></div>
-              <div className={styles.categoryLabel}>{label}</div>
+              <Typography>{label}</Typography>
             </div>
           );
         })}
       </section>
       <section className={styles.period}>
-        {start} - {end}
+        <Typography>
+          {start} - {end}
+        </Typography>
       </section>
     </div>
   );
