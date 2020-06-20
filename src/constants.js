@@ -8,12 +8,12 @@ export const CATEGORIES = {
   1: {
     id: 1,
     label: "real",
-    mainColor: "#4285F4",
+    mainColor: "#E3C817",
   },
   2: {
     id: 2,
     label: "virtual",
-    mainColor: "#34A853",
+    mainColor: "#E39F17",
   },
   /*
   1: {
