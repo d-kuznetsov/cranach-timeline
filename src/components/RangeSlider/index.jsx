@@ -5,6 +5,7 @@ import { PERIOD_MIN_VALUE, PERIOD_MAX_VALUE, IMPORTANT_DATES } from "../../const
 
 import PropTypes from "prop-types";
 import Slider from "@material-ui/core/Slider";
+import Typography from "@material-ui/core/Typography";
 import styles from "./RangeSlider.module.scss";
 
 const marks = IMPORTANT_DATES.map((year) => {
@@ -40,6 +41,9 @@ export function RangeSliderComponent({ initialRange, minValue, maxValue, onChang
 
   return (
     <div className={styles.container}>
+      <Typography id="range-slider" gutterBottom>
+        Date range
+      </Typography>
       <Slider
         value={range}
         min={minValue}
@@ -48,6 +52,7 @@ export function RangeSliderComponent({ initialRange, minValue, maxValue, onChang
         onChangeCommitted={onChange}
         marks={marks}
         valueLabelDisplay="auto"
+        aria-labelledby="range-slider"
       />
     </div>
   );
