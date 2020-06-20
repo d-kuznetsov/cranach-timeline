@@ -8,6 +8,8 @@ import Switch from "@material-ui/core/Switch";
 import { ThemeProvider } from "@material-ui/core/styles";
 import { THEMES_BY_CATEGORY } from "../../constants";
 
+import Checkbox from "@material-ui/core/Checkbox";
+
 export function CategoryContainer() {
   const categories = useSelector((state) => state.categories);
   const dispatch = useDispatch();
@@ -27,7 +29,7 @@ export function CategoryComponent({ categories, onChange }) {
             <FormControlLabel
               label={categories[id].label}
               control={
-                <Switch
+                <Checkbox
                   color="primary"
                   checked={categories[id].displayed}
                   onChange={onChange}
