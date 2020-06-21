@@ -16,7 +16,7 @@ export function getImageSrc({ images }, size = "s") {
 export function getPeriod({ dating }) {
   const { dated, begin, end } = dating;
   if (begin && end && begin < end) {
-    return `${begin} - ${end}`;
+    return `${begin}-${end}`;
   }
   return dated;
 }
