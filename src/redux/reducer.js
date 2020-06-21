@@ -1,4 +1,4 @@
-import { CURRENT_LINK, PERIOD, ARTWORKS, CATEGORY, LINE_HEIGHT } from "./actions";
+import { CURRENT_LINK, PERIOD, ARTWORKS, CATEGORY, LINE_HEIGHT, ARTWORK_TO_VIEW } from "./actions";
 import { CATEGORIES } from "../constants";
 
 function updateArtworks(artworks, period, categories) {
@@ -38,6 +38,8 @@ export const initialState = {
   artworks: [],
   artworksToView: [],
   lineHeight: 8,
+  openViewer: false,
+  artworkToView: null,
 };
 export default function reducer(state = initialState, action) {
   switch (action.type) {
@@ -72,6 +74,12 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         lineHeight: action.lineHeight,
+      };
+    case ARTWORK_TO_VIEW:
+      return {
+        ...state,
+        artworkToView: action.artwork,
+        openViewer: !!action.artwork,
       };
     default:
       return state;
