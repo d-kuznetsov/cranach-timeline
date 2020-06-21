@@ -1,8 +1,6 @@
 import Layout from "../components/Layout";
 import { RangeSliderContainer as RangeSlider } from "../components/RangeSlider";
-import ExpansionPanel from "../components/ExpansionPanel";
-import { CategoryContainer as Categories } from "../components/Categories";
-import { LineHeightSliderContainer as LineHeightSlider } from "../components/LineHeightSlider";
+import PopupFilter from "../components/PopupFilter";
 import { LegendContainer as Legend } from "../components/Legend";
 import { TimelineContainer as Timeline } from "../components/TimeLine";
 import { ViewContainer as Viewer } from "../components/Viewer";
@@ -12,17 +10,15 @@ export default function TimelinePage() {
   return (
     <Layout
       toolbar={
-        <div>
-          <ExpansionPanel summary={<RangeSlider />}>
-            <section className={styles.expansionPanel}>
-              <section className={styles.categories}>
-                <Categories />
-              </section>
-              <section className={styles.lineHeightSlider}>
-                <LineHeightSlider />
-              </section>
+        <div className={styles.toolbar}>
+          <div className={styles.filters}>
+            <section className={styles.rangeSlider}>
+              <RangeSlider />
             </section>
-          </ExpansionPanel>
+            <section className={styles.popupFilter}>
+              <PopupFilter />
+            </section>
+          </div>
           <Legend />
         </div>
       }

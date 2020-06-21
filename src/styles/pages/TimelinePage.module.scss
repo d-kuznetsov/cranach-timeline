@@ -4,16 +4,16 @@
   overflow-x: hidden;
 }
 
-.expansionPanel {
-  width: 100%;
+.filters {
   display: flex;
   align-items: center;
+  background-color: white;
 }
 
-.categories {
-  flex: 2;
-}
-
-.lineHeightSlider {
+.rangeSlider {
   flex: 1;
+}
+
+.popupFilter {
+  flex: 0;
 }
