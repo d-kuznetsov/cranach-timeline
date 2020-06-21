@@ -1,6 +1,5 @@
 import { useSelector } from "react-redux";
 
-import TextField from "@material-ui/core/TextField";
 import PropTypes from "prop-types";
 import Typography from "@material-ui/core/Typography";
 import styles from "./Legend.module.scss";
@@ -12,7 +11,6 @@ export function LegendContainer() {
 
 export function LegendComponent({ categories, period }) {
   const [start, end] = period;
-  console.log(categories);
   return (
     <div className={styles.container}>
       <section className={styles.categories}>
@@ -39,16 +37,3 @@ LegendComponent.propTypes = {
   categories: PropTypes.object,
   period: PropTypes.array,
 };
-
-/*
-      <TextField
-        label="start"
-        variant="outlined"
-        size="small"
-        type="number"
-        defaultValue={2000}
-        margin="none"
-        inputProps={{ max: 2000, maxLength: 4 }}
-      />
-      <TextField label="end" variant="outlined" size="small" type="number" defaultValue={2020} />
-*/
