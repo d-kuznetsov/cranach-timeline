@@ -1,6 +1,8 @@
 import Layout from "../components/Layout";
 import { RangeSliderContainer as RangeSlider } from "../components/RangeSlider";
 import PopupFilter from "../components/PopupFilter";
+import { LineHeightSliderContainer as LineHeightSlider } from "../components/LineHeightSlider";
+import { CategoryContainer as Categories } from "../components/Categories";
 import { LegendContainer as Legend } from "../components/Legend";
 import { TimelineContainer as Timeline } from "../components/TimeLine";
 import { ViewContainer as Viewer } from "../components/Viewer";
@@ -16,7 +18,10 @@ export default function TimelinePage() {
               <RangeSlider />
             </section>
             <section className={styles.popupFilter}>
-              <PopupFilter />
+              <PopupFilter>
+                <LineHeightSlider />
+                <Categories />
+              </PopupFilter>
             </section>
           </div>
           <Legend />
