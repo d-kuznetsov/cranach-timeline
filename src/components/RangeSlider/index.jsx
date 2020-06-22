@@ -15,7 +15,7 @@ const marks = IMPORTANT_DATES.map((year) => {
   };
 });
 
-export function RangeSliderContainer() {
+export function RangeSliderContainer({ base = false }) {
   const initialRange = useSelector((state) => state.period);
   const dispatch = useDispatch();
   const handleRangeChange = (e, range) => {
@@ -29,28 +29,32 @@ export function RangeSliderContainer() {
       maxValue={PERIOD_MAX_VALUE}
       onChange={handleRangeChange}
       marks={marks}
+      base={base}
     />
   );
 }
 
-export function RangeSliderComponent({ initialRange, minValue, maxValue, onChange, marks }) {
+RangeSliderContainer.propTypes = {
+  base: PropTypes.bool,
+};
+
+export function RangeSliderComponent(props) {
+  const { initialRange, minValue, maxValue, onChange, marks, base } = props;
   const [range, setRange] = useState(initialRange);
   const handleRangeChange = (e, range) => {
     setRange(range);
   };
 
   return (
-    <div className={styles.container}>
-      {/*<Typography id="range-slider">Date range</Typography>*/}
+    <div className={`${styles.container} ${base ? styles.container__base : ""}`}>
       <Slider
         value={range}
         min={minValue}
         max={maxValue}
         onChange={handleRangeChange}
         onChangeCommitted={onChange}
-        marks={marks}
+        marks={base ? false : marks}
         valueLabelDisplay="auto"
-        aria-labelledby="range-slider"
       />
     </div>
   );
@@ -62,4 +66,5 @@ RangeSliderComponent.propTypes = {
   maxValue: PropTypes.number,
   onChange: PropTypes.func,
   marks: PropTypes.array,
+  base: PropTypes.bool,
 };
