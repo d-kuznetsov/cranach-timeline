@@ -21,7 +21,9 @@ export function SearchFieldContainer() {
 export function SearchFieldComponent({ initialText, onInputCompleted, delay = 2000 }) {
   const input = useRef(null);
   const handleInput = () => {
-    onInputCompleted(input.current.value);
+    if (input && input.current) {
+      onInputCompleted(input.current.value || "");
+    }
   };
   return (
     <div className={styles.container}>
