@@ -1,4 +1,5 @@
 import Layout from "../components/Layout";
+import { SearchFieldContainer as SearchField } from "../components/SearchField";
 import PopupFilter from "../components/PopupFilter";
 import { RangeSliderContainer as RangeSlider } from "../components/RangeSlider";
 import { LegendContainer as Legend } from "../components/Legend";
@@ -11,8 +12,9 @@ export default function GridPage() {
       toolbar={
         <div className={styles.toolbar}>
           <div className={styles.filters}>
-            <section className={styles.rangeSlider}>
-              <RangeSlider />
+            <section className={styles.empty} />
+            <section className={styles.searchField}>
+              <SearchField />
             </section>
             <section className={styles.popupFilter}>
               <PopupFilter />
