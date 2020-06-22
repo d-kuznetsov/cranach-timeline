@@ -41,7 +41,7 @@ export function RangeSliderComponent({ initialRange, minValue, maxValue, onChang
 
   return (
     <div className={styles.container}>
-      <Typography id="range-slider">Date range</Typography>
+      {/*<Typography id="range-slider">Date range</Typography>*/}
       <Slider
         value={range}
         min={minValue}
