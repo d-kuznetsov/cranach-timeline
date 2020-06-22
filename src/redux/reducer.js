@@ -1,13 +1,22 @@
-import { CURRENT_LINK, PERIOD, ARTWORKS, CATEGORY, LINE_HEIGHT, ARTWORK_TO_VIEW } from "./actions";
+import {
+  CURRENT_LINK,
+  PERIOD,
+  ARTWORKS,
+  CATEGORY,
+  LINE_HEIGHT,
+  ARTWORK_TO_VIEW,
+  TEXT_TO_SEARCH,
+} from "./actions";
 import { CATEGORIES } from "../constants";
 
-function updateArtworks(artworks, period, categories) {
+function updateArtworks(artworks, period, categories, textToSearch = "") {
   const [periodStart, periodEnd] = period;
   return artworks.filter((item) => {
     return (
       categories[item.categoryId].displayed &&
       item.dating.begin > periodStart &&
-      item.dating.end < periodEnd
+      item.dating.end < periodEnd &&
+      hasTextToSearch(item, textToSearch)
     );
   });
 }
@@ -21,6 +30,11 @@ function updateCategories(categories, id, displayed) {
     ...categories,
     [id]: category,
   };
+}
+
+function hasTextToSearch(item, text) {
+  // ToDo
+  return JSON.stringify(item).toLowerCase().search(text.toLowerCase()) >= 0;
 }
 
 const initialCategories = {};
@@ -40,10 +54,20 @@ export const initialState = {
   lineHeight: 8,
   openViewer: false,
   artworkToView: null,
+  textToSearch: "",
 };
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case CURRENT_LINK:
+      // ToDo
+      if (action.link === "/timeline" && state.textToSearch) {
+        return {
+          ...state,
+          link: action.link,
+          textToSearch: "",
+          artworksToView: updateArtworks(state.artworks, state.period, state.categories, ""),
+        };
+      }
       return {
         ...state,
         link: action.link,
@@ -52,13 +76,23 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         period: action.period,
-        artworksToView: updateArtworks(state.artworks, action.period, state.categories),
+        artworksToView: updateArtworks(
+          state.artworks,
+          action.period,
+          state.categories,
+          state.textToSearch
+        ),
       };
     case ARTWORKS:
       return {
         ...state,
         artworks: action.artworks,
-        artworksToView: updateArtworks(action.artworks, state.period, state.categories),
+        artworksToView: updateArtworks(
+          action.artworks,
+          state.period,
+          state.categories,
+          state.textToSearch
+        ),
       };
     case CATEGORY:
       return {
@@ -67,7 +101,8 @@ export default function reducer(state = initialState, action) {
         artworksToView: updateArtworks(
           state.artworks,
           state.period,
-          updateCategories(state.categories, action.id, action.displayed)
+          updateCategories(state.categories, action.id, action.displayed),
+          state.textToSearch
         ),
       };
     case LINE_HEIGHT:
@@ -80,6 +115,12 @@ export default function reducer(state = initialState, action) {
         ...state,
         artworkToView: action.artwork,
         openViewer: !!action.artwork,
+      };
+    case TEXT_TO_SEARCH:
+      return {
+        ...state,
+        textToSearch: action.text,
+        artworksToView: updateArtworks(state.artworks, state.period, state.categories, action.text),
       };
     default:
       return state;

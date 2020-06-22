@@ -7,6 +7,7 @@ export const ARTWORKS = "ARTWORKS";
 export const CATEGORY = "CATEGORY";
 export const LINE_HEIGHT = "LINE_HEIGHT";
 export const ARTWORK_TO_VIEW = "ARTWORK_TO_VIEW";
+export const TEXT_TO_SEARCH = "TEXT_TO_SEARCH";
 
 export function setCurrentLink(link) {
   return (dispatch) => {
@@ -51,5 +52,12 @@ export function setArtworkToView(artwork) {
   return {
     type: ARTWORK_TO_VIEW,
     artwork,
+  };
+}
+
+export function setTextToSearch(text) {
+  return {
+    type: TEXT_TO_SEARCH,
+    text,
   };
 }
