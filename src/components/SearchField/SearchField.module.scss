@@ -5,7 +5,6 @@
   background-color: rgba($color: #eee, $alpha: 0.5);
   border-radius: 10px;
   box-shadow: 1px 1px 1px #ccc;
-
-  margin-left: 12px;
-  width: 50%;
+  flex: 1;
+  max-width: 500px;
 }
