@@ -1,4 +1,5 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { setArtworkToView } from "../../redux/actions";
 
 import PropTypes from "prop-types";
 import { memo } from "react";
@@ -9,20 +10,33 @@ import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
 import GridListTileBar from "@material-ui/core/GridListTileBar";
 import { getArtworkTitle, getImageSrc, getInvolvedPersons } from "../../lib/extractArtworkData";
+import styles from "./Grid.module.scss";
 
 export function GridContainer() {
   const { artworksToView } = useSelector((state) => state);
-  return <GridComponent items={artworksToView} columnNumber={4} space={8} />;
+  const dispatch = useDispatch();
+  const handleItemClick = (artwork) => {
+    dispatch(setArtworkToView(artwork));
+  };
+  return (
+    <GridComponent
+      items={artworksToView}
+      columnNumber={4}
+      space={8}
+      onItemClick={handleItemClick}
+    />
+  );
 }
 
-const createItemData = memoize((items, space, gridCellHeight, columnNumber) => ({
+const createItemData = memoize((items, space, gridCellHeight, columnNumber, onItemClick) => ({
   items,
   space,
   gridCellHeight,
   columnNumber,
+  onItemClick,
 }));
 
-export function GridComponent({ items, columnNumber, space }) {
+export function GridComponent({ items, columnNumber, space, onItemClick }) {
   const rowCount = Math.ceil(items.length / columnNumber);
   return (
     <AutoSizer>
@@ -31,7 +45,7 @@ export function GridComponent({ items, columnNumber, space }) {
         const itemHeight = gridCellHeight + space;
         return (
           <List
-            itemData={createItemData(items, space, gridCellHeight, columnNumber)}
+            itemData={createItemData(items, space, gridCellHeight, columnNumber, onItemClick)}
             height={height}
             itemCount={rowCount}
             itemSize={itemHeight}
@@ -50,19 +64,23 @@ GridComponent.propTypes = {
   items: PropTypes.array,
   columnNumber: PropTypes.number,
   space: PropTypes.number,
+  onItemClick: PropTypes.func,
 };
 
 const Row = memo(({ index: i, data, style }) => {
-  const { items, space, gridCellHeight, columnNumber } = data;
+  const { items, space, gridCellHeight, columnNumber, onItemClick } = data;
   const columns = [];
   for (let j = i * columnNumber; j < i * columnNumber + columnNumber; j++) {
     items[j] &&
       columns.push(
-        <GridListTile key={items[j].objectId}>
+        <GridListTile key={items[j].objectId} className={styles.itemImage}>
           <img
+            className={styles.itemImage}
             src={getImageSrc(items[j])}
             alt={getArtworkTitle(items[j])}
-            onClick={console.log("aaa")}
+            onClick={() => {
+              onItemClick(items[j]);
+            }}
           />
           <GridListTileBar
             title={getArtworkTitle(items[j])}
@@ -88,5 +106,6 @@ Row.propTypes = {
     space: PropTypes.number,
     gridCellHeight: PropTypes.number,
     columnNumber: PropTypes.number,
+    onItemClick: PropTypes.func,
   }),
 };
