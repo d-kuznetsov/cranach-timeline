@@ -7,7 +7,8 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import Button from "@material-ui/core/Button";
+import IconButton from "@material-ui/core/IconButton";
+import CloseIcon from "@material-ui/icons/Close";
 import {
   getArtworkTitle,
   getInvolvedPersons,
@@ -16,31 +17,39 @@ import {
 } from "../../lib/extractArtworkData";
 import styles from "./Viewer.module.scss";
 
-export function ViewContainer() {
+export function ViewContainer(props) {
   const { openViewer, artworkToView } = useSelector((state) => state);
   const dispatch = useDispatch();
   const handleClose = () => {
     dispatch(setArtworkToView(null));
   };
-  return <ViewComponent open={openViewer} data={artworkToView} onClose={handleClose} />;
+  return <ViewComponent {...props} open={openViewer} data={artworkToView} onClose={handleClose} />;
 }
 
-export function ViewComponent({ open, data, onClose }) {
+function getDialogTitle(data, fullScreen) {
+  const title = getArtworkTitle(data);
+  const period = getPeriod(data);
+  const persons = getInvolvedPersons(data);
+  return `${title} ${period} ${fullScreen ? persons : ""}`;
+}
+
+export function ViewComponent(props) {
+  const { open, data, onClose, imageSize = "s", fullScreen = false } = props;
   return (
-    <Dialog open={open} maxWidth="lg" onClose={onClose}>
-      <DialogTitle>{data && getArtworkTitle(data)}</DialogTitle>
+    <Dialog open={open} maxWidth="lg" onClose={onClose} fullScreen={fullScreen}>
+      <DialogTitle>{data && getDialogTitle(data, fullScreen)}</DialogTitle>
       <DialogContent>
         {data && (
           <div className={styles.imageWrapper}>
-            <img src={getImageSrc(data)} alt={getArtworkTitle(data)} />
+            <img src={getImageSrc(data, imageSize)} alt={getArtworkTitle(data)} />
           </div>
         )}
-        <DialogContentText>
-          {data && `${getInvolvedPersons(data)}, ${getPeriod(data)}`}
-        </DialogContentText>
+        <DialogContentText></DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose}>Close</Button>
+        <IconButton onClick={onClose}>
+          <CloseIcon fontSize="large" />
+        </IconButton>
       </DialogActions>
     </Dialog>
   );
@@ -50,4 +59,6 @@ ViewComponent.propTypes = {
   open: PropTypes.bool,
   data: PropTypes.object,
   onClose: PropTypes.func,
+  imageSize: PropTypes.string,
+  fullScreen: PropTypes.bool,
 };

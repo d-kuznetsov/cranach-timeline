@@ -33,7 +33,7 @@ export default function GridPage() {
       }
     >
       <Grid />
-      <Viewer />
+      <Viewer fullScreen imageSize="m" />
     </Layout>
   );
 }
