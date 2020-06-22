@@ -15,7 +15,7 @@ const marks = IMPORTANT_DATES.map((year) => {
   };
 });
 
-export function RangeSliderContainer({ base = false }) {
+export function RangeSliderContainer(props) {
   const initialRange = useSelector((state) => state.period);
   const dispatch = useDispatch();
   const handleRangeChange = (e, range) => {
@@ -24,22 +24,18 @@ export function RangeSliderContainer({ base = false }) {
 
   return (
     <RangeSliderComponent
+      {...props}
       initialRange={initialRange}
       minValue={PERIOD_MIN_VALUE}
       maxValue={PERIOD_MAX_VALUE}
       onChange={handleRangeChange}
       marks={marks}
-      base={base}
     />
   );
 }
 
-RangeSliderContainer.propTypes = {
-  base: PropTypes.bool,
-};
-
 export function RangeSliderComponent(props) {
-  const { initialRange, minValue, maxValue, onChange, marks, base } = props;
+  const { initialRange, minValue, maxValue, onChange, marks, base = false } = props;
   const [range, setRange] = useState(initialRange);
   const handleRangeChange = (e, range) => {
     setRange(range);
