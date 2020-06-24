@@ -17,7 +17,7 @@ export default function PopupFilter({ children }) {
   return (
     <React.Fragment>
       <IconButton onClick={openFilterPanel}>
-        <FilterListIcon fontSize="large" />
+        <FilterListIcon fontSize="large" color="secondary" />
       </IconButton>
       <Popover
         open={open}

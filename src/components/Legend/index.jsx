@@ -25,13 +25,13 @@ export function LegendComponent({ categories, period, searchText, itemNumber }) 
       <section className={styles.results}>{itemNumber} results for</section>
       <section className={styles.filters}>
         <section className={styles.period}>
-          <DateRangeIcon color="action" className={styles.periodIcon} />
+          <DateRangeIcon color="secondary" className={styles.periodIcon} />
           <div className={styles.periodContent}>
             {start}-{end}
           </div>
         </section>
         <section className={styles.categories}>
-          <CategoryIcon color="action" className={styles.categoriesIcon} />
+          <CategoryIcon color="secondary" className={styles.categoriesIcon} />
           <div className={styles.categoriesContent}>
             {Object.keys(categories).map((key) => {
               const { id, mainColor, label, displayed } = categories[key];
@@ -52,7 +52,7 @@ export function LegendComponent({ categories, period, searchText, itemNumber }) 
         </section>
         {searchText && (
           <section className={styles.search}>
-            <SearchIcon color="action" className={styles.searchIcon} />
+            <SearchIcon color="secondary" className={styles.searchIcon} />
             <div className={styles.searchContent}>{searchText}</div>
           </section>
         )}

@@ -28,7 +28,7 @@ export function SearchFieldComponent({ initialText, onInputCompleted, delay = 20
   return (
     <div className={styles.container}>
       <IconButton size="small">
-        <SearchIcon />
+        <SearchIcon color="secondary" />
       </IconButton>
       <InputBase
         placeholder="Search..."
