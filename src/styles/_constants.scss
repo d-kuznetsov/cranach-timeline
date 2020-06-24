@@ -1,13 +1,20 @@
-$color-primary-light: #e8a600;
-$color-primary-main: #ffa10d;
-$color-primary-dark: #e87100;
-$color-secondary-light: #0cbce8;
-$color-secondary-main: #00ffee;
-$color-secondary-dark: #0ce89b;
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1024px;
+
+$color-primary: #fac725;
+$color-secondary-light: #f5f5f5;
+$color-secondary-main: #dbdbdb;
+$color-secondary-dark: #a8a8a8;
+$color-background-light: #ffffff;
+$color-background-dark: #222222;
+
 $color-success: #28a745;
 $color-info: #17a2b8;
 $color-warning: #ffc107;
 
-$color-dark: #222;
-
-$header-height: 56px;
+%ellipsis {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
