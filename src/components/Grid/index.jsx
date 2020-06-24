@@ -21,8 +21,8 @@ export function GridContainer() {
   return (
     <GridComponent
       items={artworksToView}
-      columnNumber={4}
-      space={8}
+      itemWidth={300}
+      space={12}
       onItemClick={handleItemClick}
     />
   );
@@ -36,11 +36,12 @@ const createItemData = memoize((items, space, gridCellHeight, columnNumber, onIt
   onItemClick,
 }));
 
-export function GridComponent({ items, columnNumber, space, onItemClick }) {
-  const rowCount = Math.ceil(items.length / columnNumber);
+export function GridComponent({ items, itemWidth, space, onItemClick }) {
   return (
     <AutoSizer>
       {({ height, width }) => {
+        const columnNumber = Math.ceil(width / itemWidth);
+        const rowCount = Math.ceil(items.length / columnNumber);
         const gridCellHeight = Math.round(width / columnNumber);
         const itemHeight = gridCellHeight + space;
         return (
@@ -62,7 +63,7 @@ export function GridComponent({ items, columnNumber, space, onItemClick }) {
 
 GridComponent.propTypes = {
   items: PropTypes.array,
-  columnNumber: PropTypes.number,
+  itemWidth: PropTypes.number,
   space: PropTypes.number,
   onItemClick: PropTypes.func,
 };
