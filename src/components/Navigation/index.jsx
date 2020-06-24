@@ -29,11 +29,18 @@ export function NavigationContainer() {
 
 export function NavigationComponent({ items, link, onChange }) {
   return (
-    <BottomNavigation className={styles.container} value={link} onChange={onChange}>
+    <BottomNavigation
+      classes={{ root: styles["navigation-root"] }}
+      value={link}
+      onChange={onChange}
+    >
       {items.map(({ label, link, IconComponent }) => {
         return (
           <BottomNavigationAction
-            className={styles.navigationAction}
+            classes={{
+              wrapper: styles["action-wrapper"],
+              selected: styles["action-selected"],
+            }}
             key={label}
             label={label}
             value={link}
