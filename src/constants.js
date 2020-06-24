@@ -4,6 +4,11 @@ export const PERIOD_MIN_VALUE = 1472;
 export const PERIOD_MAX_VALUE = 1586;
 export const IMPORTANT_DATES = [1472, 1500, 1586, 1553];
 
+export const PALETTE = {
+  primary: "#FAC725",
+  secondary: "#A8A8A8",
+};
+
 export const CATEGORIES = {
   1: {
     id: 1,
