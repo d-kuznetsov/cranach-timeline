@@ -5,7 +5,7 @@ $content-width: 90%;
 .container {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: calc(100vh - 1px);
 }
 
 .header {
