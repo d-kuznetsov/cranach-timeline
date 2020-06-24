@@ -1,34 +1,97 @@
+%ellipsis {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+%filter-item {
+  display: flex;
+  align-items: center;
+  border: 1px solid grey;
+  padding: 0px 4px;
+  border-radius: 4px;
+  margin-left: 4px;
+  box-shadow: 1px 1px #ccc;
+}
+
+%item-content {
+  border-left: 1px solid grey;
+  margin-left: 4px;
+  padding: 0px 4px;
+}
+
 .container {
   display: flex;
   align-items: center;
   border-radius: 4px 4px 0px 0px;
   background-color: white;
-  padding: 4px;
+  padding: 6px 12px;
+  max-width: 100%;
+}
+
+.results {
+  flex: 0;
+  white-space: nowrap;
+  margin-right: 4px;
+}
+
+.filters {
+  flex: 1;
+  min-width: 0px;
+  display: flex;
+  align-items: center;
+}
+
+.period {
+  flex-shrink: 0;
+  @extend %filter-item;
+}
+
+.periodContent {
+  @extend %item-content;
+  white-space: nowrap;
 }
 
 .categories {
+  flex-shrink: 0;
+  @extend %filter-item;
+}
+
+.categoriesContent {
+  @extend %item-content;
   display: flex;
-  flex: 2;
 }
 
 .category {
   display: flex;
   align-items: center;
-  margin-right: 5px;
+  flex: 1;
+  padding: 0px 2px;
+  &:nth-child(n + 2) {
+    margin-left: 4px;
+  }
 }
 
 .categoryColor {
   $size: 18px;
   width: $size;
   height: $size;
-  border-radius: 2px;
-  margin: 0px 12px;
+  border-radius: 4px;
 }
 
 .categoryLabel {
-  margin-left: 5px;
+  margin-left: 4px;
 }
 
-.period {
-  flex: 1;
+.search {
+  flex-shrink: 1;
+  min-width: 0px;
+  @extend %filter-item;
+}
+
+.searchContent {
+  @extend %item-content;
+  min-width: 0px;
+  @extend %ellipsis;
 }
