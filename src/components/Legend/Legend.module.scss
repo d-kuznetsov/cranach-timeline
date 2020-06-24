@@ -29,6 +29,7 @@
   flex: 0;
   white-space: nowrap;
   margin-right: 4px;
+  display: none;
 }
 
 .filters {
@@ -77,6 +78,7 @@
 
 .categoryLabel {
   margin-left: 4px;
+  display: none;
 }
 
 .search {
@@ -89,4 +91,13 @@
   @extend %item-content;
   min-width: 0px;
   @extend %ellipsis;
+}
+
+@media (min-width: $breakpoint-tablet) {
+  .results {
+    display: block;
+  }
+  .categoryLabel {
+    display: block;
+  }
 }
