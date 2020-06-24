@@ -40,7 +40,7 @@ export function GridComponent({ items, itemWidth, space, onItemClick }) {
   return (
     <AutoSizer>
       {({ height, width }) => {
-        const columnNumber = Math.ceil(width / itemWidth);
+        const columnNumber = Math.ceil(width / (itemWidth + space));
         const rowCount = Math.ceil(items.length / columnNumber);
         const gridCellHeight = Math.round(width / columnNumber);
         const itemHeight = gridCellHeight + space;
