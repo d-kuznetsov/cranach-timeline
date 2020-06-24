@@ -29,7 +29,11 @@ export function ViewComponent(props) {
   const { open, data, onClose, imageSize = "s", fullScreen = false } = props;
   return (
     <Dialog open={open} maxWidth="lg" onClose={onClose} fullScreen={fullScreen}>
-      <DialogTitle>{data && getDialogTitle(data, fullScreen)}</DialogTitle>
+      <DialogActions>
+        <IconButton onClick={onClose}>
+          <CloseIcon fontSize="large" />
+        </IconButton>
+      </DialogActions>
       <DialogContent>
         {data && (
           <div className={styles.imageWrapper}>
@@ -37,11 +41,7 @@ export function ViewComponent(props) {
           </div>
         )}
       </DialogContent>
-      <DialogActions>
-        <IconButton onClick={onClose}>
-          <CloseIcon fontSize="large" />
-        </IconButton>
-      </DialogActions>
+      <DialogTitle>{data && getDialogTitle(data, fullScreen)}</DialogTitle>
     </Dialog>
   );
 }
