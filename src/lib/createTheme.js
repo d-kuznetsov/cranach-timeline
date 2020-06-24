@@ -1,10 +1,14 @@
 import { createMuiTheme } from "@material-ui/core/styles";
+import { PALETTE } from "../constants";
 
 export default function createTheme() {
   const theme = createMuiTheme({
     palette: {
       primary: {
-        main: "#FAC725",
+        main: PALETTE.primary,
+      },
+      secondary: {
+        main: PALETTE.secondary,
       },
     },
   });
