@@ -44,7 +44,7 @@ $content-width-desktop: 90%;
   flex-direction: column;
   width: $content-width-smartphon;
   max-width: $content-max-width;
-  background-color: $color-secondary-light;
+  background-color: $color-background-light;
 }
 
 @media (min-width: $breakpoint-tablet) {
