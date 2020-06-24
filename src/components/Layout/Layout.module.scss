@@ -1,6 +1,9 @@
-@use "../../styles/constants" as constants;
+@use "../../styles/constants" as *;
 
-$content-width: 90%;
+$content-max-width: 1500px;
+$content-width-smartphon: 100%;
+$content-width-tablet: 95%;
+$content-width-desktop: 90%;
 
 .container {
   display: flex;
@@ -12,12 +15,12 @@ $content-width: 90%;
   flex: 0 0 56px;
   display: flex;
   justify-content: center;
-  background-color: constants.$color-dark;
-  border-bottom: 1px solid #eee;
+  background-color: #222222;
 }
 
 .headerContent {
-  width: $content-width;
+  width: $content-width-smartphon;
+  max-width: $content-max-width;
 }
 
 .main {
@@ -30,14 +33,40 @@ $content-width: 90%;
 
 .toolbar {
   flex: 0;
-  width: $content-width;
+  width: $content-width-smartphon;
+  max-width: $content-max-width;
 }
 
 .mainContent {
   flex: 1;
-  width: $content-width;
-  background-color: #fff;
   display: flex;
-  flex-direction: column;
   min-height: 0px;
+  flex-direction: column;
+  width: $content-width-smartphon;
+  max-width: $content-max-width;
+  background-color: $color-secondary-light;
+}
+
+@media (min-width: $breakpoint-tablet) {
+  .headerContent {
+    width: $content-width-tablet;
+  }
+  .toolbar {
+    width: $content-width-tablet;
+  }
+  .mainContent {
+    width: $content-width-tablet;
+  }
+}
+
+@media (min-width: $breakpoint-desktop) {
+  .headerContent {
+    width: $content-width-desktop;
+  }
+  .toolbar {
+    width: $content-width-desktop;
+  }
+  .mainContent {
+    width: $content-width-desktop;
+  }
 }

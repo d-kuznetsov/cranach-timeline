@@ -1,9 +1,13 @@
-@use '../../styles/constants' as constants;
+@use '../../styles/constants' as *;
 
-.container {
-  background-color: constants.$color-dark !important;
+div.navigation-root {
+  background-color: $color-background-dark;
 }
 
-.container .navigationAction {
-  color: #ddd;
+.action-wrapper {
+  color: $color-secondary-light;
+}
+
+.action-selected .action-wrapper {
+  color: $color-primary;
 }
