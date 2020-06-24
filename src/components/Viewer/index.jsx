@@ -31,7 +31,7 @@ export function ViewComponent(props) {
     <Dialog open={open} maxWidth="lg" onClose={onClose} fullScreen={fullScreen}>
       <DialogActions>
         <IconButton onClick={onClose}>
-          <CloseIcon fontSize="large" />
+          <CloseIcon />
         </IconButton>
       </DialogActions>
       <DialogContent>
