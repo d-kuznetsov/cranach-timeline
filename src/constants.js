@@ -9,6 +9,10 @@ export const PALETTE = {
   secondary: "#A8A8A8",
 };
 
+export const GRID_IMAGE_WIDTH = 200;
+export const GRID_IMAGE_HEIGHT = 250;
+export const GRID_SPACE = 12;
+
 export const CATEGORIES = {
   1: {
     id: 1,

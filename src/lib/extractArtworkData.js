@@ -20,3 +20,12 @@ export function getPeriod({ dating }) {
   }
   return dated;
 }
+
+export function getDimensions(data, size = "s") {
+  return data.images.sizes[size].dimensions;
+}
+
+export function isLandscape(data) {
+  const { height, width } = data.images.sizes.xs.dimensions;
+  return width > height;
+}

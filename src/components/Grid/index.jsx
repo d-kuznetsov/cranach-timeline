@@ -1,15 +1,19 @@
 import { useSelector, useDispatch } from "react-redux";
 import { setArtworkToView } from "../../redux/actions";
+import { GRID_IMAGE_HEIGHT, GRID_IMAGE_WIDTH, GRID_SPACE } from "../../constants";
 
 import PropTypes from "prop-types";
 import { memo } from "react";
 import memoize from "memoize-one";
 import AutoSizer from "react-virtualized-auto-sizer";
 import { FixedSizeList as List, areEqual } from "react-window";
-import GridList from "@material-ui/core/GridList";
-import GridListTile from "@material-ui/core/GridListTile";
-import GridListTileBar from "@material-ui/core/GridListTileBar";
-import { getArtworkTitle, getImageSrc, getInvolvedPersons } from "../../lib/extractArtworkData";
+import {
+  getArtworkTitle,
+  getImageSrc,
+  getInvolvedPersons,
+  getDimensions,
+  isLandscape,
+} from "../../lib/extractArtworkData";
 import styles from "./Grid.module.scss";
 
 export function GridContainer() {
@@ -21,36 +25,46 @@ export function GridContainer() {
   return (
     <GridComponent
       items={artworksToView}
-      itemWidth={300}
-      space={12}
+      imageWidth={GRID_IMAGE_HEIGHT}
+      imageHeight={GRID_IMAGE_WIDTH}
+      space={GRID_SPACE}
       onItemClick={handleItemClick}
     />
   );
 }
 
-const createItemData = memoize((items, space, gridCellHeight, columnNumber, onItemClick) => ({
-  items,
-  space,
-  gridCellHeight,
-  columnNumber,
-  onItemClick,
-}));
+const createItemData = memoize(
+  (items, space, imageHeight, imageWidth, columnCount, onItemClick) => ({
+    items,
+    space,
+    imageHeight,
+    imageWidth,
+    columnCount,
+    onItemClick,
+  })
+);
 
-export function GridComponent({ items, itemWidth, space, onItemClick }) {
+export function GridComponent({ items, imageWidth, imageHeight, space, onItemClick }) {
   return (
     <AutoSizer>
       {({ height, width }) => {
-        const columnNumber = Math.ceil(width / (itemWidth + space));
-        const rowCount = Math.ceil(items.length / columnNumber);
-        const gridCellHeight = Math.round(width / columnNumber);
-        const itemHeight = gridCellHeight + space;
+        const columnCount = Math.floor(width / (imageWidth + space));
+        const rowCount = Math.ceil(items.length / columnCount);
+        const tileHeight = imageHeight + space;
         return (
           <List
-            itemData={createItemData(items, space, gridCellHeight, columnNumber, onItemClick)}
             height={height}
-            itemCount={rowCount}
-            itemSize={itemHeight}
             width={width}
+            itemCount={rowCount}
+            itemSize={tileHeight}
+            itemData={createItemData(
+              items,
+              space,
+              imageHeight,
+              imageWidth,
+              columnCount,
+              onItemClick
+            )}
             onItemsRendered={({ visibleStartIndex }) => 1}
           >
             {Row}
@@ -63,38 +77,61 @@ export function GridComponent({ items, itemWidth, space, onItemClick }) {
 
 GridComponent.propTypes = {
   items: PropTypes.array,
-  itemWidth: PropTypes.number,
+  imageWidth: PropTypes.number,
+  imageHeight: PropTypes.number,
   space: PropTypes.number,
   onItemClick: PropTypes.func,
 };
 
 const Row = memo(({ index: i, data, style }) => {
-  const { items, space, gridCellHeight, columnNumber, onItemClick } = data;
+  const { items, space, imageHeight, imageWidth, columnCount, onItemClick } = data;
+  const tileWidth = imageWidth + space;
   const columns = [];
-  for (let j = i * columnNumber; j < i * columnNumber + columnNumber; j++) {
+  let size;
+  for (let j = i * columnCount; j < i * columnCount + columnCount; j++) {
     items[j] &&
       columns.push(
-        <GridListTile key={items[j].objectId} className={styles.itemImage}>
-          <img
-            className={styles.itemImage}
-            src={getImageSrc(items[j])}
-            alt={getArtworkTitle(items[j])}
-            onClick={() => {
-              onItemClick(items[j]);
+        <div
+          key={items[j].objectId}
+          style={{ flexBasis: `${tileWidth}px` }}
+          className={styles.tile}
+        >
+          <div
+            style={{
+              width: `${imageWidth}px`,
+              height: `${imageHeight}px`,
             }}
-          />
-          <GridListTileBar
-            title={getArtworkTitle(items[j])}
-            subtitle={getInvolvedPersons(items[j])}
-          />
-        </GridListTile>
+            className={styles["tile-imageWrapper"]}
+          >
+            {(size = isLandscape(items[j]) ? "s" : "xs") && (
+              <img
+                src={getImageSrc(items[j], size)}
+                alt={getArtworkTitle(items[j])}
+                height={getDimensions(items[j], size).height}
+                width={getDimensions(items[j], size).width}
+                onClick={() => {
+                  onItemClick(items[j]);
+                }}
+              />
+            )}
+            <div className={styles.tileHover}></div>
+            <div className={styles.tileBar}>
+              <div className={styles.titleWrap}>
+                <div className={styles.imageTitle} title={getArtworkTitle(items[j])}>
+                  {getArtworkTitle(items[j])}
+                </div>
+                <div className={styles.imageSubtitle} title={getInvolvedPersons(items[j])}>
+                  {getInvolvedPersons(items[j])}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       );
   }
   return (
-    <div style={{ ...style, height: `${gridCellHeight + space}px`, padding: `0 ${space}px` }}>
-      <GridList cellHeight={gridCellHeight} cols={columnNumber} spacing={space}>
-        {columns}
-      </GridList>
+    <div style={{ ...style }} className={styles.row}>
+      {columns}
     </div>
   );
 }, areEqual);
@@ -105,8 +142,9 @@ Row.propTypes = {
   data: PropTypes.shape({
     items: PropTypes.array,
     space: PropTypes.number,
-    gridCellHeight: PropTypes.number,
-    columnNumber: PropTypes.number,
+    imageHeight: PropTypes.number,
+    imageWidth: PropTypes.number,
+    columnCount: PropTypes.number,
     onItemClick: PropTypes.func,
   }),
 };
