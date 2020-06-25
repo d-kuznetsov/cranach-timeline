@@ -1,4 +1,32 @@
+@use "../../styles/constants" as *;
+
+.actions {
+  flex: 0 0 auto;
+  display: flex;
+  padding: 8px;
+  align-items: center;
+}
+
+.sizeButtonWrap {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  margin-left: 30px;
+}
+
+.sizeLabel__selected {
+  color: $color-primary;
+}
+
 .imageWrapper {
   display: flex;
   justify-content: center;
+  align-items: center;
+}
+
+.description {
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 12px 24px;
+  text-align: center;
 }
