@@ -1,6 +1,12 @@
 import { useSelector, useDispatch } from "react-redux";
 import { setArtworkToView } from "../../redux/actions";
-import { GRID_IMAGE_HEIGHT, GRID_IMAGE_WIDTH, GRID_SPACE } from "../../constants";
+import {
+  GRID_IMAGE_HEIGHT,
+  GRID_IMAGE_WIDTH,
+  GRID_SPACE,
+  GRI_MIN_COLUMN_COUNT,
+  GRID_MIN_SPACE,
+} from "../../constants";
 
 import PropTypes from "prop-types";
 import { memo } from "react";
@@ -25,8 +31,8 @@ export function GridContainer() {
   return (
     <GridComponent
       items={artworksToView}
-      imageWidth={GRID_IMAGE_HEIGHT}
-      imageHeight={GRID_IMAGE_WIDTH}
+      imageWidth={GRID_IMAGE_WIDTH}
+      imageHeight={GRID_IMAGE_HEIGHT}
       space={GRID_SPACE}
       onItemClick={handleItemClick}
     />
@@ -48,6 +54,12 @@ export function GridComponent({ items, imageWidth, imageHeight, space, onItemCli
   return (
     <AutoSizer>
       {({ height, width }) => {
+        if (width <= (imageWidth + space) * GRI_MIN_COLUMN_COUNT) {
+          space = GRID_MIN_SPACE;
+          imageWidth = width / GRI_MIN_COLUMN_COUNT - space * 3;
+          imageHeight = imageWidth * 1.25;
+        }
+
         const columnCount = Math.floor(width / (imageWidth + space));
         const rowCount = Math.ceil(items.length / columnCount);
         const tileHeight = imageHeight + space;

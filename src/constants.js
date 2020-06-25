@@ -12,6 +12,8 @@ export const PALETTE = {
 export const GRID_IMAGE_WIDTH = 200;
 export const GRID_IMAGE_HEIGHT = 250;
 export const GRID_SPACE = 12;
+export const GRI_MIN_COLUMN_COUNT = 2;
+export const GRID_MIN_SPACE = 6;
 
 export const CATEGORIES = {
   1: {
