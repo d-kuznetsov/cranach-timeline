@@ -18,11 +18,12 @@ export function SearchFieldContainer() {
   return <SearchFieldComponent initialText={initialText} onInputCompleted={handleInputCompleted} />;
 }
 
-export function SearchFieldComponent({ initialText, onInputCompleted, delay = 2000 }) {
+export function SearchFieldComponent({ initialText, onInputCompleted, delay = 500 }) {
   const input = useRef(null);
   const handleInput = () => {
     if (input && input.current) {
-      onInputCompleted(input.current.value || "");
+      const { value } = input.current;
+      onInputCompleted(value.length > 3 ? value : "");
     }
   };
   return (
