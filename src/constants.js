@@ -2,7 +2,7 @@ import { createThemeByMainColor } from "./lib/createTheme";
 
 export const PERIOD_MIN_VALUE = 1472;
 export const PERIOD_MAX_VALUE = 1586;
-export const IMPORTANT_DATES = [1472, 1500, 1586, 1553];
+export const IMPORTANT_DATES = [1472, 1495, 1518, 1541, 1564, 1586];
 
 export const PALETTE = {
   primary: "#FAC725",
