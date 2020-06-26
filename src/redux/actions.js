@@ -11,7 +11,6 @@ export const TEXT_TO_SEARCH = "TEXT_TO_SEARCH";
 
 export function setCurrentLink(link) {
   return (dispatch) => {
-    dispatch({ type: CURRENT_LINK, link: "" });
     Router.push(link);
     dispatch({ type: CURRENT_LINK, link });
   };
