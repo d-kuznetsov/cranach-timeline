@@ -1,3 +1,5 @@
+import React from "react";
+import Head from "next/head";
 import Layout from "../components/Layout";
 import { SearchFieldContainer as SearchField } from "../components/SearchField";
 import PopupFilter from "../components/PopupFilter";
@@ -11,29 +13,35 @@ import styles from "../styles/pages/GridPage.module.scss";
 
 export default function GridPage() {
   return (
-    <Layout
-      toolbar={
-        <div className={styles.toolbar}>
-          <div className={styles.filters}>
-            <section className={styles.empty} />
-            <section className={styles.searchField}>
-              <SearchField />
-            </section>
-            <section className={styles.popupFilter}>
-              <PopupFilter>
-                <Typography>Date range</Typography>
-                <RangeSlider base={true} />
-                <Typography>Categories</Typography>
-                <Categories />
-              </PopupFilter>
-            </section>
+    <React.Fragment>
+      <Head>
+        <title>Grid</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <Layout
+        toolbar={
+          <div className={styles.toolbar}>
+            <div className={styles.filters}>
+              <section className={styles.empty} />
+              <section className={styles.searchField}>
+                <SearchField />
+              </section>
+              <section className={styles.popupFilter}>
+                <PopupFilter>
+                  <Typography>Date range</Typography>
+                  <RangeSlider base={true} />
+                  <Typography>Categories</Typography>
+                  <Categories />
+                </PopupFilter>
+              </section>
+            </div>
+            <Legend />
           </div>
-          <Legend />
-        </div>
-      }
-    >
-      <Grid />
-      <Viewer fullScreen imageSize="m" />
-    </Layout>
+        }
+      >
+        <Grid />
+        <Viewer fullScreen imageSize="m" />
+      </Layout>
+    </React.Fragment>
   );
 }

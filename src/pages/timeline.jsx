@@ -1,3 +1,5 @@
+import React from "react";
+import Head from "next/head";
 import Layout from "../components/Layout";
 import { RangeSliderContainer as RangeSlider } from "../components/RangeSlider";
 import PopupFilter from "../components/PopupFilter";
@@ -11,30 +13,36 @@ import styles from "../styles/pages/TimelinePage.module.scss";
 
 export default function TimelinePage() {
   return (
-    <Layout
-      toolbar={
-        <div className={styles.toolbar}>
-          <div className={styles.filters}>
-            <section className={styles.rangeSlider}>
-              <RangeSlider />
-            </section>
-            <section className={styles.popupFilter}>
-              <PopupFilter>
-                <Typography>Line height</Typography>
-                <LineHeightSlider />
-                <Typography>Categories</Typography>
-                <Categories />
-              </PopupFilter>
-            </section>
+    <React.Fragment>
+      <Head>
+        <title>Timeline</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <Layout
+        toolbar={
+          <div className={styles.toolbar}>
+            <div className={styles.filters}>
+              <section className={styles.rangeSlider}>
+                <RangeSlider />
+              </section>
+              <section className={styles.popupFilter}>
+                <PopupFilter>
+                  <Typography>Line height</Typography>
+                  <LineHeightSlider />
+                  <Typography>Categories</Typography>
+                  <Categories />
+                </PopupFilter>
+              </section>
+            </div>
+            <Legend />
           </div>
-          <Legend />
+        }
+      >
+        <div className={styles.timelineContainer}>
+          <Timeline />
+          <Viewer />
         </div>
-      }
-    >
-      <div className={styles.timelineContainer}>
-        <Timeline />
-        <Viewer />
-      </div>
-    </Layout>
+      </Layout>
+    </React.Fragment>
   );
 }
