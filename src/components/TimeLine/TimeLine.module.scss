@@ -24,4 +24,8 @@
   z-index: 2;
   height: 8px;
   cursor: pointer;
+
+  &:hover {
+    background-color: $color-success !important;
+  }
 }
