@@ -1,0 +1,34 @@
+@use "../../styles/constants" as *;
+
+.container {
+  display: flex;
+  border-radius: 12px;
+  background-color: $color-secondary-light;
+  border: 1px solid $color-secondary-dark;
+  min-width: 0px;
+}
+
+.avatarWrap {
+  flex: 0;
+  height: 100px;
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 50%;
+  margin: 12px;
+}
+
+.avatar {
+  height: 100%;
+  width: 100%;
+}
+
+.textInfo {
+  flex: 1;
+  min-width: 0px;
+  padding: 12px;
+  background-color: $color-background-light;
+  border-radius: 0px 12px 12px 0px;
+}
