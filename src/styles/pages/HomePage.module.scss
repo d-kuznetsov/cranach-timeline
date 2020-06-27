@@ -1,0 +1,70 @@
+@use "../constants" as *;
+
+$space-medium: 12px;
+$space-long: 20px;
+
+.pictureWrap {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  height: 300px;
+  border-radius: 0px 0px 4px 4px;
+  background-image: url("../../../public/cranach-header-bg.jpg");
+  background-repeat: repeat-x;
+  background-color: #72a17f;
+  margin-bottom: 4px;
+}
+
+.container {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.mainContent {
+  flex: 1;
+  padding: $space-medium;
+  background-color: $color-background-light;
+  border-radius: 4px 4px 0px 0px;
+}
+
+.tabDescription {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: $space-medium;
+  column-gap: $space-medium;
+}
+
+.footer {
+  background-color: $color-secondary-main;
+  padding: 4px;
+  border-radius: 0px 0px 4px 4px;
+}
+
+@media (min-width: 500px) {
+  .pictureWrap {
+    display: flex;
+  }
+}
+
+@media (min-width: $breakpoint-tablet) {
+  .pictureWrap {
+    display: flex;
+  }
+  .tabDescription {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media (min-width: $breakpoint-desktop) {
+  .mainContent {
+    padding: $space-long;
+  }
+  .tabDescription {
+    row-gap: $space-long;
+    column-gap: $space-long;
+  }
+}
