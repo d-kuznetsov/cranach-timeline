@@ -8,7 +8,11 @@ $content-width-desktop: 90%;
 .container {
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 1px);
+  min-height: calc(100vh - 1px);
+
+  &__limitedHeight {
+    height: calc(100vh - 1px);
+  }
 }
 
 .header {
@@ -16,6 +20,11 @@ $content-width-desktop: 90%;
   display: flex;
   justify-content: center;
   background-color: #222222;
+
+  &__sticky {
+    position: sticky;
+    top: 0px;
+  }
 }
 
 .headerContent {
@@ -44,7 +53,10 @@ $content-width-desktop: 90%;
   flex-direction: column;
   width: $content-width-smartphon;
   max-width: $content-max-width;
-  background-color: $color-background-light;
+
+  &__background {
+    background-color: $color-background-light;
+  }
 }
 
 @media (min-width: $breakpoint-tablet) {

@@ -9,7 +9,7 @@ import { ThemeProvider } from "@material-ui/styles";
 import createTheme from "../../lib/createTheme";
 
 const theme = createTheme();
-export default function Layout({ children, toolbar }) {
+export default function Layout({ children, toolbar, heightLimit = true }) {
   const artworks = useSelector((state) => state.artworks);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -18,15 +18,19 @@ export default function Layout({ children, toolbar }) {
 
   return (
     <ThemeProvider theme={theme}>
-      <div className={styles.container}>
-        <header className={styles.header}>
+      <div className={`${styles.container} ${heightLimit ? styles.container__limitedHeight : ""}`}>
+        <header className={`${styles.header} ${heightLimit ? "" : styles.header__sticky}`}>
           <section className={styles.headerContent}>
             <Navigation />
           </section>
         </header>
         <main className={styles.main}>
           {toolbar && <section className={styles.toolbar}>{toolbar}</section>}
-          <section className={styles.mainContent}>{children}</section>
+          <section
+            className={`${styles.mainContent} ${heightLimit ? styles.mainContent__background : ""}`}
+          >
+            {children}
+          </section>
         </main>
       </div>
     </ThemeProvider>
@@ -36,4 +40,5 @@ export default function Layout({ children, toolbar }) {
 Layout.propTypes = {
   children: PropTypes.element,
   toolbar: PropTypes.element,
+  heightLimit: PropTypes.bool,
 };
