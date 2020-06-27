@@ -18,16 +18,18 @@ export default function Layout({ children, toolbar, heightLimit = true }) {
 
   return (
     <ThemeProvider theme={theme}>
-      <div className={`${styles.container} ${heightLimit ? styles.container__limitedHeight : ""}`}>
-        <header className={`${styles.header} ${heightLimit ? "" : styles.header__sticky}`}>
+      <div className={styles.container}>
+        <header className={styles.header}>
           <section className={styles.headerContent}>
             <Navigation />
           </section>
         </header>
-        <main className={styles.main}>
+        <main className={`${styles.main} ${heightLimit ? styles.main__heightLimit : ""}`}>
           {toolbar && <section className={styles.toolbar}>{toolbar}</section>}
           <section
-            className={`${styles.mainContent} ${heightLimit ? styles.mainContent__background : ""}`}
+            className={`${styles.mainContent} ${
+              heightLimit ? styles.mainContent__heightLimit : ""
+            }`}
           >
             {children}
           </section>
