@@ -1,0 +1,48 @@
+@use "../constants" as *;
+
+$space-medium: 12px;
+$space-long: 20px;
+
+.container {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.mainContent {
+  flex: 1;
+  padding: $space-medium;
+  background-color: $color-background-light;
+  border-radius: 4px 4px 0px 0px;
+}
+
+.profiles {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: $space-medium;
+  column-gap: $space-medium;
+}
+
+.footer {
+  background-color: $color-secondary-main;
+  padding: 4px;
+  border-radius: 0px 0px 4px 4px;
+}
+
+@media (min-width: $breakpoint-tablet) {
+  .profiles {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: $breakpoint-desktop) {
+  .mainContent {
+    padding: $space-long;
+  }
+  .profiles {
+    row-gap: $space-long;
+    column-gap: $space-long;
+  }
+}
