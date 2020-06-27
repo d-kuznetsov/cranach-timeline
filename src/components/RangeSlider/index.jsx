@@ -5,7 +5,6 @@ import { PERIOD_MIN_VALUE, PERIOD_MAX_VALUE, IMPORTANT_DATES } from "../../const
 
 import PropTypes from "prop-types";
 import Slider from "@material-ui/core/Slider";
-import Typography from "@material-ui/core/Typography";
 import styles from "./RangeSlider.module.scss";
 
 const marks = IMPORTANT_DATES.map((year) => {
