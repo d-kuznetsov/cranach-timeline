@@ -40,7 +40,7 @@ export default function GridPage() {
         }
       >
         <Grid />
-        <Viewer fullScreen imageSize="m" />
+        <Viewer fullScreen imageSize="s" />
       </Layout>
     </React.Fragment>
   );
