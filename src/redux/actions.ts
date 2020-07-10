@@ -36,9 +36,10 @@ export function setCategoryDisplay(id: number, displayed: boolean): Action {
   };
 }
 
+const sourceUrl: string | undefined = process.env.NEXT_PUBLIC_SOURCE_URL;
 export function loadArtworks(): AsyncAction {
   return (dispatch) => {
-    axios.get("/api/data").then((res) => {
+    axios.get(sourceUrl as string).then((res) => {
       dispatch(setArtworks(res.data));
     });
   };
