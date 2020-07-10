@@ -48,7 +48,7 @@ export function setLineHeight(lineHeight: number): Action {
   return { type: LINE_HEIGHT, lineHeight };
 }
 
-export function setArtworkToView(artwork: Artwork): Action {
+export function setArtworkToView(artwork: Artwork | null): Action {
   return {
     type: ARTWORK_TO_VIEW,
     artwork,

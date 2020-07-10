@@ -4,12 +4,12 @@ import { setArtworkToView } from "../../redux/actions";
 import styles from "./TimeLine.module.scss";
 import { getArtworkTitle, getPeriod } from "../../lib/extractArtworkData";
 import { CATEGORIES } from "../../constants";
-import { Artwork } from "../../redux/types";
+import { RootState, Artwork } from "../../redux/types";
 
 export function TimelineContainer() {
-  const { period, artworksToView, lineHeight } = useSelector((state) => state);
+  const { period, artworksToView, lineHeight } = useSelector((state: RootState) => state);
   const dispatch = useDispatch();
-  const handleLineClick = (artwork) => {
+  const handleLineClick = (artwork: Artwork) => {
     dispatch(setArtworkToView(artwork));
   };
   return (
@@ -29,7 +29,7 @@ interface ArtworkLine extends Artwork {
 
 interface Props {
   period: [number, number];
-  items: Array<ArtworkLine>;
+  items: Array<Artwork>;
   lineHeight: number;
   onLineClick: (value: ArtworkLine) => void;
 }
@@ -93,7 +93,7 @@ function ArtworkLine({ artworkData, offset, lineHeight, onClick }: ArtworkLinePr
 }
 
 function getItemsByYear(items: Array<ArtworkLine>): { [year: number]: Array<ArtworkLine> } {
-  const itemsByYear = {};
+  const itemsByYear: { [year: number]: Array<ArtworkLine> } = {};
   items.forEach((item) => {
     if (!itemsByYear[item.dating.begin]) {
       itemsByYear[item.dating.begin] = [];
@@ -113,10 +113,10 @@ function getYearList(period: [number, number]): number[] {
 }
 
 function withAdditionalProps(
-  yearList,
+  yearList: number[],
   items: Array<Artwork>
 ): { modifiedItems: Array<ArtworkLine>; maxOffsetFactor: number } {
-  let matrix = {};
+  let matrix: { [year: number]: boolean[] } = {};
   let maxOffsetFactor = 0;
   yearList.forEach((year) => (matrix[year] = new Array(items.length).fill(false)));
   const modifiedItems = items.map((item) => {

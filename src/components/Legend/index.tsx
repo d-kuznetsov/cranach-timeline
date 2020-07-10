@@ -4,9 +4,12 @@ import DateRangeIcon from "@material-ui/icons/DateRange";
 import CategoryIcon from "@material-ui/icons/Category";
 import SearchIcon from "@material-ui/icons/Search";
 import styles from "./Legend.module.scss";
+import { RootState, Categories, Period } from "../../redux/types";
 
 export function LegendContainer() {
-  const { categories, period, textToSearch, artworksToView } = useSelector((state) => state);
+  const { categories, period, textToSearch, artworksToView } = useSelector(
+    (state: RootState) => state
+  );
   return (
     <LegendComponent
       categories={categories}
@@ -18,13 +21,8 @@ export function LegendContainer() {
 }
 
 interface Props {
-  categories: {
-    id: number;
-    mainColor: string;
-    label: string;
-    displayed: boolean;
-  };
-  period: [number, number];
+  categories: Categories;
+  period: Period;
   searchText: string;
   itemNumber: number;
 }
@@ -45,7 +43,7 @@ export function LegendComponent({ categories, period, searchText, itemNumber }: 
           <CategoryIcon color="secondary" className={styles.categoriesIcon} />
           <div className={styles.categoriesContent}>
             {Object.keys(categories).map((key) => {
-              const { id, mainColor, label, displayed } = categories[key];
+              const { id, mainColor, label, displayed } = categories[+key];
               if (!displayed) {
                 return null;
               }

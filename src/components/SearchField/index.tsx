@@ -7,11 +7,12 @@ import SearchIcon from "@material-ui/icons/Search";
 import InputBase from "@material-ui/core/InputBase";
 import debounce from "lodash.debounce";
 import styles from "./SearchField.module.scss";
+import { RootState } from "../../redux/types";
 
 export function SearchFieldContainer() {
-  const initialText = useSelector((state) => state.textToSearch);
+  const initialText = useSelector((state: RootState) => state.textToSearch);
   const dispatch = useDispatch();
-  const handleInputCompleted = (text) => {
+  const handleInputCompleted = (text: string) => {
     dispatch(setTextToSearch(text));
   };
   return <SearchFieldComponent initialText={initialText} onInputCompleted={handleInputCompleted} />;
@@ -27,6 +28,7 @@ export function SearchFieldComponent({ initialText, onInputCompleted, delay = 50
   const input = useRef(null);
   const handleInput = () => {
     if (input && input.current) {
+      // @ts-ignore
       const { value } = input.current;
       onInputCompleted(value.length > 3 ? value : "");
     }

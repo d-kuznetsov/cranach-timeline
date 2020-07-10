@@ -6,6 +6,7 @@ import styles from "./Layout.module.scss";
 import { NavigationContainer as Navigation } from "../Navigation";
 import { ThemeProvider } from "@material-ui/styles";
 import createTheme from "../../lib/createTheme";
+import { RootState } from "../../redux/types";
 
 const theme = createTheme();
 
@@ -16,7 +17,7 @@ interface Props {
 }
 
 export default function Layout({ children, toolbar, heightLimit = true }: Props) {
-  const artworks = useSelector((state) => state.artworks);
+  const artworks = useSelector((state: RootState) => state.artworks);
   const dispatch = useDispatch();
   useEffect(() => {
     !artworks.length && dispatch(loadArtworks());

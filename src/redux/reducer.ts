@@ -8,9 +8,14 @@ import {
   TEXT_TO_SEARCH,
 } from "./actions";
 import { CATEGORIES } from "../constants";
-import { RootState, Artwork, Categories, Action } from "./types";
+import { RootState, Artwork, Categories, Period, Action } from "./types";
 
-function updateArtworks(artworks, period, categories, textToSearch = ""): Array<Artwork> {
+function updateArtworks(
+  artworks: Array<Artwork>,
+  period: Period,
+  categories: Categories,
+  textToSearch: string = ""
+): Array<Artwork> {
   const [periodStart, periodEnd] = period;
   return artworks.filter((item) => {
     return (
@@ -22,7 +27,7 @@ function updateArtworks(artworks, period, categories, textToSearch = ""): Array<
   });
 }
 
-function updateCategories(categories, id, displayed): Categories {
+function updateCategories(categories: Categories, id: number, displayed: boolean): Categories {
   const category = {
     ...categories[id],
     displayed,
@@ -33,15 +38,15 @@ function updateCategories(categories, id, displayed): Categories {
   };
 }
 
-function hasTextToSearch(item, text) {
+function hasTextToSearch(item: Artwork, text: string) {
   // ToDo
   return JSON.stringify(item).toLowerCase().search(text.toLowerCase()) >= 0;
 }
 
 const initialCategories: Categories = {};
 Object.keys(CATEGORIES).forEach((id) => {
-  initialCategories[id] = {
-    ...CATEGORIES[id],
+  initialCategories[+id] = {
+    ...CATEGORIES[+id],
     displayed: true,
   };
 });

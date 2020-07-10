@@ -14,23 +14,30 @@ import {
   getImageSrc,
   getPeriod,
 } from "../../lib/extractArtworkData";
-import { Artwork, ImageSize } from "../../redux/types";
+import { RootState, Artwork, ImageSize } from "../../redux/types";
 import styles from "./Viewer.module.scss";
 
 const IMAGE_SIZES: Array<ImageSize> = ["s", "m", "l", "xl"];
 
-export function ViewContainer(props) {
-  const { openViewer, artworkToView } = useSelector((state) => state);
+export function ViewContainer(props: Partial<Props>) {
+  const { openViewer, artworkToView } = useSelector((state: RootState) => state);
   const dispatch = useDispatch();
   const handleClose = () => {
     dispatch(setArtworkToView(null));
   };
-  return <ViewComponent {...props} open={openViewer} data={artworkToView} onClose={handleClose} />;
+  return (
+    <ViewComponent
+      {...(props as Props)}
+      open={openViewer}
+      data={artworkToView}
+      onClose={handleClose}
+    />
+  );
 }
 
 interface Props {
   open: boolean;
-  data: Artwork;
+  data: Artwork | null;
   imageSize: ImageSize;
   fullScreen: boolean;
   onClose: () => void;

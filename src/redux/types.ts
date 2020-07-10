@@ -40,6 +40,7 @@ export interface Categories {
     id: number;
     label: string;
     mainColor: string;
+    displayed?: boolean;
   };
 }
 
@@ -49,7 +50,7 @@ export interface RootState {
   categories: Categories;
   artworks: Array<Artwork>;
   artworksToView: Array<Artwork>;
-  artworkToView: Artwork;
+  artworkToView: Artwork | null;
   lineHeight: number;
   openViewer: boolean;
   textToSearch: string;

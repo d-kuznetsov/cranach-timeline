@@ -12,8 +12,8 @@ import {
   getDimensions,
   isLandscape,
 } from "../../lib/extractArtworkData";
-import { Artwork } from "../../redux/types";
 import styles from "./Grid.module.scss";
+import { RootState, Artwork, ImageSize } from "../../redux/types";
 
 const GRID_IMAGE_WIDTH = 200;
 const GRID_IMAGE_HEIGHT = 250;
@@ -22,9 +22,9 @@ const GRI_MIN_COLUMN_COUNT = 2;
 const GRID_MIN_SPACE = 6;
 
 export function GridContainer() {
-  const { artworksToView } = useSelector((state) => state);
+  const { artworksToView } = useSelector((state: RootState) => state);
   const dispatch = useDispatch();
-  const handleItemClick = (artwork) => {
+  const handleItemClick = (artwork: Artwork) => {
     dispatch(setArtworkToView(artwork));
   };
   return (
@@ -103,10 +103,10 @@ interface RowProps {
 }
 
 const Row = memo(({ index: i, data, style }: RowProps) => {
-  const { items, space, imageHeight, imageWidth, columnCount, onItemClick } = data;
+  const { items, space, imageHeight, imageWidth, columnCount = 0, onItemClick } = data;
   const tileWidth = imageWidth + space;
   const columns = [];
-  let size;
+  let size: ImageSize;
   for (let j = i * columnCount; j < i * columnCount + columnCount; j++) {
     items[j] &&
       columns.push(

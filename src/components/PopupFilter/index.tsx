@@ -11,7 +11,8 @@ interface Props {
 export default function PopupFilter({ children }: Props) {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = !!anchorEl;
-  const openFilterPanel = (e) => {
+  const openFilterPanel = (e: React.MouseEvent<HTMLButtonElement>) => {
+    // @ts-ignore
     setAnchorEl(e.currentTarget);
   };
   const closeFilterPanel = () => {

@@ -10,6 +10,7 @@ import ContactMailIcon from "@material-ui/icons/ContactMail";
 import styles from "./Navigation.module.scss";
 import { OverridableComponent } from "@material-ui/core/OverridableComponent";
 import { SvgIconTypeMap } from "@material-ui/core";
+import { RootState } from "../../redux/types";
 
 interface navAction {
   label: string;
@@ -25,9 +26,9 @@ const navItems: Array<navAction> = [
 ];
 
 export function NavigationContainer() {
-  const link = useSelector((state) => state.link);
+  const link = useSelector((state: RootState) => state.link);
   const dispatch = useDispatch();
-  const handleLinkChange = (e: React.ChangeEvent<{}>, link) => {
+  const handleLinkChange = (e: React.ChangeEvent<{}>, link: string) => {
     dispatch(setCurrentLink(link));
   };
   return <NavigationComponent items={navItems} link={link} onChange={handleLinkChange} />;

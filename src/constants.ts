@@ -1,4 +1,12 @@
-export const CATEGORIES = {
+import { Categories } from "./redux/types";
+
+interface Category {
+  id: number;
+  label: string;
+  mainColor: string;
+}
+
+export const CATEGORIES: { [key: number]: Category } = {
   1: {
     id: 1,
     label: "real",
