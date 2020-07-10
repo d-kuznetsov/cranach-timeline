@@ -1,7 +1,10 @@
-import { createMuiTheme } from "@material-ui/core/styles";
-import { PALETTE } from "../constants";
+import { createMuiTheme, Theme } from "@material-ui/core/styles";
+const PALETTE = {
+  primary: "#FAC725",
+  secondary: "#A8A8A8",
+};
 
-export default function createTheme() {
+export default function createTheme(): Theme {
   const theme = createMuiTheme({
     palette: {
       primary: {
@@ -15,7 +18,7 @@ export default function createTheme() {
   return theme;
 }
 
-export function createThemeByMainColor(color) {
+export function createThemeByMainColor(color: string): Theme {
   const theme = createMuiTheme({
     palette: {
       primary: {

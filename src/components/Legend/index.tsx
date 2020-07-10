@@ -1,6 +1,5 @@
 import { useSelector } from "react-redux";
 
-import PropTypes from "prop-types";
 import DateRangeIcon from "@material-ui/icons/DateRange";
 import CategoryIcon from "@material-ui/icons/Category";
 import SearchIcon from "@material-ui/icons/Search";
@@ -18,7 +17,19 @@ export function LegendContainer() {
   );
 }
 
-export function LegendComponent({ categories, period, searchText, itemNumber }) {
+interface Props {
+  categories: {
+    id: number;
+    mainColor: string;
+    label: string;
+    displayed: boolean;
+  };
+  period: [number, number];
+  searchText: string;
+  itemNumber: number;
+}
+
+export function LegendComponent({ categories, period, searchText, itemNumber }: Props) {
   const [start, end] = period;
   return (
     <div className={styles.container}>
@@ -60,10 +71,3 @@ export function LegendComponent({ categories, period, searchText, itemNumber }) 
     </div>
   );
 }
-
-LegendComponent.propTypes = {
-  categories: PropTypes.object,
-  period: PropTypes.array,
-  searchText: PropTypes.string,
-  itemNumber: PropTypes.number,
-};

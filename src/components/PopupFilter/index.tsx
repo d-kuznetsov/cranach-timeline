@@ -1,11 +1,14 @@
-import PropTypes from "prop-types";
 import React, { useState } from "react";
 import IconButton from "@material-ui/core/IconButton";
 import FilterListIcon from "@material-ui/icons/FilterList";
 import Popover from "@material-ui/core/Popover";
 import styles from "./PopupFilter.module.scss";
 
-export default function PopupFilter({ children }) {
+interface Props {
+  children: React.ReactNode;
+}
+
+export default function PopupFilter({ children }: Props) {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = !!anchorEl;
   const openFilterPanel = (e) => {
@@ -44,7 +47,3 @@ export default function PopupFilter({ children }) {
     </React.Fragment>
   );
 }
-
-PopupFilter.propTypes = {
-  children: PropTypes.element,
-};

@@ -1,7 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { setArtworkToView } from "../../redux/actions";
 
-import PropTypes from "prop-types";
 import { useState } from "react";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
@@ -15,9 +14,10 @@ import {
   getImageSrc,
   getPeriod,
 } from "../../lib/extractArtworkData";
+import { Artwork, ImageSize } from "../../redux/types";
 import styles from "./Viewer.module.scss";
 
-const IMAGE_SIZES = ["s", "m", "l", "xl"];
+const IMAGE_SIZES: Array<ImageSize> = ["s", "m", "l", "xl"];
 
 export function ViewContainer(props) {
   const { openViewer, artworkToView } = useSelector((state) => state);
@@ -28,7 +28,15 @@ export function ViewContainer(props) {
   return <ViewComponent {...props} open={openViewer} data={artworkToView} onClose={handleClose} />;
 }
 
-export function ViewComponent(props) {
+interface Props {
+  open: boolean;
+  data: Artwork;
+  imageSize: ImageSize;
+  fullScreen: boolean;
+  onClose: () => void;
+}
+
+export function ViewComponent(props: Props) {
   const { open, data, imageSize: initialImageSize = "s", fullScreen = false, onClose } = props;
   const [imageSize, setSize] = useState(initialImageSize);
   return (
@@ -63,15 +71,7 @@ export function ViewComponent(props) {
   );
 }
 
-ViewComponent.propTypes = {
-  open: PropTypes.bool,
-  data: PropTypes.object,
-  imageSize: PropTypes.string,
-  fullScreen: PropTypes.bool,
-  onClose: PropTypes.func,
-};
-
-function getDialogTitle(data, fullScreen) {
+function getDialogTitle(data: Artwork, fullScreen: boolean): string {
   const title = getArtworkTitle(data);
   const period = getPeriod(data);
   const persons = getInvolvedPersons(data);

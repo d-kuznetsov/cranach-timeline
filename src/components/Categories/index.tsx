@@ -1,25 +1,38 @@
 import { useSelector, useDispatch } from "react-redux";
 import { setCategoryDisplay } from "../../redux/actions";
 
-import PropTypes from "prop-types";
-import { ThemeProvider } from "@material-ui/core/styles";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import styles from "./Categories.module.scss";
+import { ThemeProvider } from "@material-ui/core/styles";
+import { createThemeByMainColor } from "../../lib/createTheme";
+import { CATEGORIES } from "../../constants";
 
-import { THEMES_BY_CATEGORY } from "../../constants";
+const THEMES_BY_CATEGORY = {};
+Object.keys(CATEGORIES).forEach((key) => {
+  THEMES_BY_CATEGORY[key] = createThemeByMainColor(CATEGORIES[key].mainColor);
+});
 
 export function CategoryContainer() {
   const categories = useSelector((state) => state.categories);
   const dispatch = useDispatch();
-  const handleCategoryChange = (event) => {
-    const { name, checked } = event.target;
+  const handleCategoryChange = (e) => {
+    const { name, checked } = e.target;
     dispatch(setCategoryDisplay(name, checked));
   };
   return <CategoryComponent categories={categories} onChange={handleCategoryChange} />;
 }
 
-export function CategoryComponent({ categories, onChange }) {
+interface Props {
+  categories: {
+    id: number;
+    label: string;
+    displayed: boolean;
+  };
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+export function CategoryComponent({ categories, onChange }: Props) {
   return (
     <div className={styles.container}>
       {Object.keys(categories).map((id) => {
@@ -42,8 +55,3 @@ export function CategoryComponent({ categories, onChange }) {
     </div>
   );
 }
-
-CategoryComponent.propTypes = {
-  categories: PropTypes.object,
-  onChange: PropTypes.func,
-};
