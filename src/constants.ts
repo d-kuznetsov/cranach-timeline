@@ -7,12 +7,12 @@ interface Category {
 }
 
 export const CATEGORIES: { [key: number]: Category } = {
-  1: {
+  0: {
     id: 0,
     label: "real",
     mainColor: "#E3C817",
   },
-  2: {
+  1: {
     id: 1,
     label: "virtual",
     mainColor: "#E39F17",
