@@ -8,8 +8,14 @@ import {
   TEXT_TO_SEARCH,
 } from "./actions";
 import { CATEGORIES } from "../constants";
+import { RootState, Artwork, Categories, Period, Action } from "./types";
 
-function updateArtworks(artworks, period, categories, textToSearch = "") {
+function updateArtworks(
+  artworks: Array<Artwork>,
+  period: Period,
+  categories: Categories,
+  textToSearch: string = ""
+): Array<Artwork> {
   const [periodStart, periodEnd] = period;
   return artworks.filter((item) => {
     return (
@@ -21,7 +27,7 @@ function updateArtworks(artworks, period, categories, textToSearch = "") {
   });
 }
 
-function updateCategories(categories, id, displayed) {
+function updateCategories(categories: Categories, id: number, displayed: boolean): Categories {
   const category = {
     ...categories[id],
     displayed,
@@ -32,20 +38,20 @@ function updateCategories(categories, id, displayed) {
   };
 }
 
-function hasTextToSearch(item, text) {
+function hasTextToSearch(item: Artwork, text: string) {
   // ToDo
   return JSON.stringify(item).toLowerCase().search(text.toLowerCase()) >= 0;
 }
 
-const initialCategories = {};
+const initialCategories: Categories = {};
 Object.keys(CATEGORIES).forEach((id) => {
-  initialCategories[id] = {
-    ...CATEGORIES[id],
+  initialCategories[+id] = {
+    ...CATEGORIES[+id],
     displayed: true,
   };
 });
 
-export const initialState = {
+export const initialState: RootState = {
   link: "/",
   period: [1480, 1580],
   categories: initialCategories,
@@ -56,7 +62,7 @@ export const initialState = {
   artworkToView: null,
   textToSearch: "",
 };
-export default function reducer(state = initialState, action) {
+export default function reducer(state: RootState = initialState, action: Action): RootState {
   switch (action.type) {
     case CURRENT_LINK:
       // ToDo

@@ -1,24 +1,30 @@
 import { useSelector, useDispatch } from "react-redux";
 import { setLineHeight } from "../../redux/actions";
 
-import PropTypes from "prop-types";
 import { useState } from "react";
 import Slider from "@material-ui/core/Slider";
+import { RootState } from "../../redux/types";
 
 const MIN_VALUE = 4;
 const MAX_VALUE = 16;
 
 export function LineHeightSliderContainer() {
-  const lineHeight = useSelector((state) => state.lineHeight);
+  const lineHeight = useSelector((state: RootState) => state.lineHeight);
   const dispatch = useDispatch();
-  const handleLineHeightChange = (e, lineHeight) => dispatch(setLineHeight(lineHeight));
+  const handleLineHeightChange = (e: React.ChangeEvent<{}>, lineHeight: number) =>
+    dispatch(setLineHeight(lineHeight));
   return <LineHeightSliderComponent defaultValue={lineHeight} onChange={handleLineHeightChange} />;
 }
 
-export function LineHeightSliderComponent({ defaultValue, onChange }) {
+interface Props {
+  defaultValue: number;
+  onChange: (e: React.ChangeEvent<{}>, height: any) => void;
+}
+
+export function LineHeightSliderComponent({ defaultValue, onChange }: Props) {
   const [value, setValue] = useState(defaultValue);
-  const handleValueChange = (e, newValue) => {
-    setValue(newValue);
+  const handleValueChange = (e: React.ChangeEvent<{}>, newValue: any) => {
+    setValue(+newValue);
   };
   return (
     <Slider
@@ -32,8 +38,3 @@ export function LineHeightSliderComponent({ defaultValue, onChange }) {
     />
   );
 }
-
-LineHeightSliderComponent.propTypes = {
-  defaultValue: PropTypes.number,
-  onChange: PropTypes.func,
-};

@@ -1,13 +1,15 @@
 import { useSelector } from "react-redux";
 
-import PropTypes from "prop-types";
 import DateRangeIcon from "@material-ui/icons/DateRange";
 import CategoryIcon from "@material-ui/icons/Category";
 import SearchIcon from "@material-ui/icons/Search";
 import styles from "./Legend.module.scss";
+import { RootState, Categories, Period } from "../../redux/types";
 
 export function LegendContainer() {
-  const { categories, period, textToSearch, artworksToView } = useSelector((state) => state);
+  const { categories, period, textToSearch, artworksToView } = useSelector(
+    (state: RootState) => state
+  );
   return (
     <LegendComponent
       categories={categories}
@@ -18,7 +20,14 @@ export function LegendContainer() {
   );
 }
 
-export function LegendComponent({ categories, period, searchText, itemNumber }) {
+interface Props {
+  categories: Categories;
+  period: Period;
+  searchText: string;
+  itemNumber: number;
+}
+
+export function LegendComponent({ categories, period, searchText, itemNumber }: Props) {
   const [start, end] = period;
   return (
     <div className={styles.container}>
@@ -34,7 +43,7 @@ export function LegendComponent({ categories, period, searchText, itemNumber }) 
           <CategoryIcon color="secondary" className={styles.categoriesIcon} />
           <div className={styles.categoriesContent}>
             {Object.keys(categories).map((key) => {
-              const { id, mainColor, label, displayed } = categories[key];
+              const { id, mainColor, label, displayed } = categories[+key];
               if (!displayed) {
                 return null;
               }
@@ -60,10 +69,3 @@ export function LegendComponent({ categories, period, searchText, itemNumber }) 
     </div>
   );
 }
-
-LegendComponent.propTypes = {
-  categories: PropTypes.object,
-  period: PropTypes.array,
-  searchText: PropTypes.string,
-  itemNumber: PropTypes.number,
-};

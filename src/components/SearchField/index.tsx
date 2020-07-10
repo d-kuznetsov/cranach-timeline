@@ -1,27 +1,34 @@
 import { useSelector, useDispatch } from "react-redux";
 import { setTextToSearch } from "../../redux/actions";
 
-import PropTypes from "prop-types";
 import { useRef } from "react";
 import IconButton from "@material-ui/core/IconButton";
 import SearchIcon from "@material-ui/icons/Search";
 import InputBase from "@material-ui/core/InputBase";
 import debounce from "lodash.debounce";
 import styles from "./SearchField.module.scss";
+import { RootState } from "../../redux/types";
 
 export function SearchFieldContainer() {
-  const initialText = useSelector((state) => state.textToSearch);
+  const initialText = useSelector((state: RootState) => state.textToSearch);
   const dispatch = useDispatch();
-  const handleInputCompleted = (text) => {
+  const handleInputCompleted = (text: string) => {
     dispatch(setTextToSearch(text));
   };
   return <SearchFieldComponent initialText={initialText} onInputCompleted={handleInputCompleted} />;
 }
 
-export function SearchFieldComponent({ initialText, onInputCompleted, delay = 500 }) {
+interface Props {
+  initialText: string;
+  delay?: number;
+  onInputCompleted: (value: string) => void;
+}
+
+export function SearchFieldComponent({ initialText, onInputCompleted, delay = 500 }: Props) {
   const input = useRef(null);
   const handleInput = () => {
     if (input && input.current) {
+      // @ts-ignore
       const { value } = input.current;
       onInputCompleted(value.length > 3 ? value : "");
     }
@@ -34,8 +41,6 @@ export function SearchFieldComponent({ initialText, onInputCompleted, delay = 50
       <InputBase
         placeholder="Search..."
         defaultValue={initialText}
-        variant="outlined"
-        size="small"
         fullWidth={true}
         inputRef={input}
         onChange={debounce(handleInput, delay)}
@@ -43,9 +48,3 @@ export function SearchFieldComponent({ initialText, onInputCompleted, delay = 50
     </div>
   );
 }
-
-SearchFieldComponent.propTypes = {
-  initialText: PropTypes.string,
-  onInputCompleted: PropTypes.func,
-  delay: PropTypes.number,
-};

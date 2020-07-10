@@ -1,10 +1,17 @@
-import PropTypes from "prop-types";
 import Typography from "@material-ui/core/Typography";
 import styles from "./Profile.module.scss";
 
 const DEFAULT_AVATAR = "/empty-photo.jpg";
 
-export default function Profile(props) {
+interface Props {
+  name: string;
+  occupation?: string;
+  phone?: string;
+  email?: string;
+  avatar?: string;
+}
+
+export default function Profile(props: Props) {
   const { name, occupation, phone, email, avatar = DEFAULT_AVATAR } = props;
 
   return (
@@ -31,11 +38,3 @@ export default function Profile(props) {
     </div>
   );
 }
-
-Profile.propTypes = {
-  name: PropTypes.string,
-  occupation: PropTypes.string,
-  phone: PropTypes.string,
-  email: PropTypes.string,
-  avatar: PropTypes.string,
-};

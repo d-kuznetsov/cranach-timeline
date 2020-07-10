@@ -2,15 +2,22 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { loadArtworks } from "../../redux/actions";
 
-import PropTypes from "prop-types";
 import styles from "./Layout.module.scss";
 import { NavigationContainer as Navigation } from "../Navigation";
 import { ThemeProvider } from "@material-ui/styles";
 import createTheme from "../../lib/createTheme";
+import { RootState } from "../../redux/types";
 
 const theme = createTheme();
-export default function Layout({ children, toolbar, heightLimit = true }) {
-  const artworks = useSelector((state) => state.artworks);
+
+interface Props {
+  children: React.ReactNode;
+  toolbar?: React.ReactNode;
+  heightLimit?: boolean;
+}
+
+export default function Layout({ children, toolbar, heightLimit = true }: Props) {
+  const artworks = useSelector((state: RootState) => state.artworks);
   const dispatch = useDispatch();
   useEffect(() => {
     !artworks.length && dispatch(loadArtworks());
@@ -38,9 +45,3 @@ export default function Layout({ children, toolbar, heightLimit = true }) {
     </ThemeProvider>
   );
 }
-
-Layout.propTypes = {
-  children: PropTypes.element,
-  toolbar: PropTypes.element,
-  heightLimit: PropTypes.bool,
-};

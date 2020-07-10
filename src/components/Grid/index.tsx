@@ -1,14 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { setArtworkToView } from "../../redux/actions";
-import {
-  GRID_IMAGE_HEIGHT,
-  GRID_IMAGE_WIDTH,
-  GRID_SPACE,
-  GRI_MIN_COLUMN_COUNT,
-  GRID_MIN_SPACE,
-} from "../../constants";
 
-import PropTypes from "prop-types";
 import { memo } from "react";
 import memoize from "memoize-one";
 import AutoSizer from "react-virtualized-auto-sizer";
@@ -21,11 +13,18 @@ import {
   isLandscape,
 } from "../../lib/extractArtworkData";
 import styles from "./Grid.module.scss";
+import { RootState, Artwork, ImageSize } from "../../redux/types";
+
+const GRID_IMAGE_WIDTH = 200;
+const GRID_IMAGE_HEIGHT = 250;
+const GRID_SPACE = 12;
+const GRI_MIN_COLUMN_COUNT = 2;
+const GRID_MIN_SPACE = 6;
 
 export function GridContainer() {
-  const { artworksToView } = useSelector((state) => state);
+  const { artworksToView } = useSelector((state: RootState) => state);
   const dispatch = useDispatch();
-  const handleItemClick = (artwork) => {
+  const handleItemClick = (artwork: Artwork) => {
     dispatch(setArtworkToView(artwork));
   };
   return (
@@ -50,7 +49,17 @@ const createItemData = memoize(
   })
 );
 
-export function GridComponent({ items, imageWidth, imageHeight, space, onItemClick }) {
+interface GridProps {
+  items: Array<Artwork>;
+  space: number;
+  imageHeight: number;
+  imageWidth: number;
+  onItemClick: (item: Artwork) => void;
+  columnCount?: number;
+}
+
+export function GridComponent(props: GridProps) {
+  let { items, imageWidth, imageHeight, space, onItemClick } = props;
   return (
     <AutoSizer>
       {({ height, width }) => {
@@ -87,19 +96,17 @@ export function GridComponent({ items, imageWidth, imageHeight, space, onItemCli
   );
 }
 
-GridComponent.propTypes = {
-  items: PropTypes.array,
-  imageWidth: PropTypes.number,
-  imageHeight: PropTypes.number,
-  space: PropTypes.number,
-  onItemClick: PropTypes.func,
-};
+interface RowProps {
+  index: number;
+  style: React.CSSProperties;
+  data: GridProps;
+}
 
-const Row = memo(({ index: i, data, style }) => {
-  const { items, space, imageHeight, imageWidth, columnCount, onItemClick } = data;
+const Row = memo(({ index: i, data, style }: RowProps) => {
+  const { items, space, imageHeight, imageWidth, columnCount = 0, onItemClick } = data;
   const tileWidth = imageWidth + space;
   const columns = [];
-  let size;
+  let size: ImageSize;
   for (let j = i * columnCount; j < i * columnCount + columnCount; j++) {
     items[j] &&
       columns.push(
@@ -147,16 +154,3 @@ const Row = memo(({ index: i, data, style }) => {
     </div>
   );
 }, areEqual);
-
-Row.propTypes = {
-  index: PropTypes.number,
-  style: PropTypes.object,
-  data: PropTypes.shape({
-    items: PropTypes.array,
-    space: PropTypes.number,
-    imageHeight: PropTypes.number,
-    imageWidth: PropTypes.number,
-    columnCount: PropTypes.number,
-    onItemClick: PropTypes.func,
-  }),
-};

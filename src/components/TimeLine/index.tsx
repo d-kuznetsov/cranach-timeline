@@ -1,15 +1,15 @@
 import { useSelector, useDispatch } from "react-redux";
 import { setArtworkToView } from "../../redux/actions";
 
-import PropTypes from "prop-types";
 import styles from "./TimeLine.module.scss";
 import { getArtworkTitle, getPeriod } from "../../lib/extractArtworkData";
 import { CATEGORIES } from "../../constants";
+import { RootState, Artwork } from "../../redux/types";
 
 export function TimelineContainer() {
-  const { period, artworksToView, lineHeight } = useSelector((state) => state);
+  const { period, artworksToView, lineHeight } = useSelector((state: RootState) => state);
   const dispatch = useDispatch();
-  const handleLineClick = (artwork) => {
+  const handleLineClick = (artwork: Artwork) => {
     dispatch(setArtworkToView(artwork));
   };
   return (
@@ -22,7 +22,19 @@ export function TimelineContainer() {
   );
 }
 
-export function TimelineComponent({ period, items, lineHeight = 16, onLineClick }) {
+interface ArtworkLine extends Artwork {
+  offsetFactor: number;
+  periodLength: number;
+}
+
+interface Props {
+  period: [number, number];
+  items: Array<Artwork>;
+  lineHeight: number;
+  onLineClick: (value: ArtworkLine) => void;
+}
+
+export function TimelineComponent({ period, items, lineHeight = 16, onLineClick }: Props) {
   const yearList = getYearList(period);
   const { modifiedItems, maxOffsetFactor } = withAdditionalProps(yearList, items);
   const itemsByYear = getItemsByYear(modifiedItems);
@@ -52,14 +64,14 @@ export function TimelineComponent({ period, items, lineHeight = 16, onLineClick 
   );
 }
 
-TimelineComponent.propTypes = {
-  period: PropTypes.array,
-  items: PropTypes.array,
-  lineHeight: PropTypes.number,
-  onLineClick: PropTypes.func,
-};
+interface ArtworkLineProps {
+  offset: number;
+  lineHeight: number;
+  artworkData: ArtworkLine;
+  onClick: (artwork: ArtworkLine) => void;
+}
 
-function ArtworkLine({ artworkData, offset, lineHeight, onClick }) {
+function ArtworkLine({ artworkData, offset, lineHeight, onClick }: ArtworkLineProps) {
   const { offsetFactor, periodLength, categoryId } = artworkData;
   const handleClick = () => {
     onClick(artworkData);
@@ -80,15 +92,8 @@ function ArtworkLine({ artworkData, offset, lineHeight, onClick }) {
   );
 }
 
-ArtworkLine.propTypes = {
-  offset: PropTypes.number,
-  lineHeight: PropTypes.number,
-  artworkData: PropTypes.object,
-  onClick: PropTypes.func,
-};
-
-function getItemsByYear(items) {
-  const itemsByYear = {};
+function getItemsByYear(items: Array<ArtworkLine>): { [year: number]: Array<ArtworkLine> } {
+  const itemsByYear: { [year: number]: Array<ArtworkLine> } = {};
   items.forEach((item) => {
     if (!itemsByYear[item.dating.begin]) {
       itemsByYear[item.dating.begin] = [];
@@ -98,7 +103,7 @@ function getItemsByYear(items) {
   return itemsByYear;
 }
 
-function getYearList(period) {
+function getYearList(period: [number, number]): number[] {
   const list = [];
   const [start, end] = period;
   for (let year = start; year <= end; year++) {
@@ -107,8 +112,11 @@ function getYearList(period) {
   return list;
 }
 
-function withAdditionalProps(yearList, items) {
-  let matrix = {};
+function withAdditionalProps(
+  yearList: number[],
+  items: Array<Artwork>
+): { modifiedItems: Array<ArtworkLine>; maxOffsetFactor: number } {
+  let matrix: { [year: number]: boolean[] } = {};
   let maxOffsetFactor = 0;
   yearList.forEach((year) => (matrix[year] = new Array(items.length).fill(false)));
   const modifiedItems = items.map((item) => {

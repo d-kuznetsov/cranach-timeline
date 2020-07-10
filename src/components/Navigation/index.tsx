@@ -1,17 +1,24 @@
 import { useSelector, useDispatch } from "react-redux";
 import { setCurrentLink } from "../../redux/actions";
 
-import PropTypes from "prop-types";
 import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 import HomeIcon from "@material-ui/icons/Home";
 import TimelineIcon from "@material-ui/icons/Timeline";
 import GridOnIcon from "@material-ui/icons/GridOn";
 import ContactMailIcon from "@material-ui/icons/ContactMail";
-import InfoIcon from "@material-ui/icons/Info";
 import styles from "./Navigation.module.scss";
+import { OverridableComponent } from "@material-ui/core/OverridableComponent";
+import { SvgIconTypeMap } from "@material-ui/core";
+import { RootState } from "../../redux/types";
 
-const navItems = [
+interface navAction {
+  label: string;
+  link: string;
+  IconComponent: OverridableComponent<SvgIconTypeMap<{}, any>>;
+}
+
+const navItems: Array<navAction> = [
   { label: "Home", IconComponent: HomeIcon, link: "/" },
   { label: "Timeline", IconComponent: TimelineIcon, link: "/timeline" },
   { label: "Grid", IconComponent: GridOnIcon, link: "/grid" },
@@ -19,15 +26,21 @@ const navItems = [
 ];
 
 export function NavigationContainer() {
-  const link = useSelector((state) => state.link);
+  const link = useSelector((state: RootState) => state.link);
   const dispatch = useDispatch();
-  const handleLinkChange = (e, link) => {
+  const handleLinkChange = (e: React.ChangeEvent<{}>, link: string) => {
     dispatch(setCurrentLink(link));
   };
   return <NavigationComponent items={navItems} link={link} onChange={handleLinkChange} />;
 }
 
-export function NavigationComponent({ items, link, onChange }) {
+interface Props {
+  items: Array<navAction>;
+  link: string;
+  onChange: (e: React.ChangeEvent<{}>, value: string) => void;
+}
+
+export function NavigationComponent({ items, link, onChange }: Props) {
   return (
     <BottomNavigation
       classes={{ root: styles["navigation-root"] }}
@@ -52,9 +65,3 @@ export function NavigationComponent({ items, link, onChange }) {
     </BottomNavigation>
   );
 }
-
-NavigationComponent.propTypes = {
-  items: PropTypes.array,
-  link: PropTypes.string,
-  onChange: PropTypes.func,
-};
