@@ -2,7 +2,7 @@ import { mount } from "enzyme";
 import { SearchFieldComponent as SearchField } from "./index";
 
 describe("SearchField", () => {
-  it("a", () => {
+  it("input text should comes to onInputCompleted handler", () => {
     const query = "query";
     const wrapper = mount(
       <SearchField initialText={query} onInputCompleted={() => {}} delay={50} />
