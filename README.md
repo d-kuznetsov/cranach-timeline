@@ -15,3 +15,23 @@ The following technologies are used in the project
 * [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
 * [BEM](http://getbem.com/)
 
+### Project setup
+```
+npm install
+```
+### Start development server
+```
+nmp run dev
+```
+### Builds app for production usage
+```
+npm run build 
+```
+### Start production server
+```
+npm run start
+```
+### Run tests
+```
+npm run test
+```
