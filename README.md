@@ -10,3 +10,8 @@ The following technologies are used in the project
 * [Enzyme](https://enzymejs.github.io/enzyme/)
 * [CSS Modules](https://github.com/css-modules/css-modules) 
 * [Sass](https://sass-lang.com/)
+
+## Code Conventios
+* [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
+* [BEM](http://getbem.com/)
+
