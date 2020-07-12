@@ -35,3 +35,6 @@ npm run start
 ```
 npm run test
 ```
+
+## License
+This application is [MIT](./LICENSE.md) licensed.
