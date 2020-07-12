@@ -1,5 +1,7 @@
 # Project 2 - Development
-The goal of this project is to create a web application based on the prototype from *Project 1*
+The goal of this project is to create a web application based on the prototype from *Project 1*.
+
+You can see the current state of the project [on the website](https://cranach-timeline.dmitry-kuznetsov.vercel.app/).
 
 ## Technology stack
 The following technologies are used in the project
