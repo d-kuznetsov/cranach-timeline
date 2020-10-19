@@ -6,6 +6,7 @@ import PopupFilter from "../components/PopupFilter";
 import { LineHeightSliderContainer as LineHeightSlider } from "../components/LineHeightSlider";
 import { CategoryContainer as Categories } from "../components/Categories";
 import { LegendContainer as Legend } from "../components/Legend";
+import { HeadersByYearContainer as HeadersByYear } from "../components/HeadersByYear";
 import { TimelineContainer as Timeline } from "../components/TimeLine";
 import { ViewContainer as Viewer } from "../components/Viewer";
 import Typography from "@material-ui/core/Typography";
@@ -39,6 +40,7 @@ export default function TimelinePage() {
         }
       >
         <div className={styles.timelineContainer}>
+          <HeadersByYear />
           <Timeline />
           <Viewer />
         </div>
