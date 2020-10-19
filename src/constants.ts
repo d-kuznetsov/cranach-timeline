@@ -18,3 +18,6 @@ export const CATEGORIES: { [key: number]: Category } = {
     mainColor: "#E39F17",
   },
 };
+
+export const PERIOD_MIN_VALUE = 1490;
+export const PERIOD_MAX_VALUE = 1586;
