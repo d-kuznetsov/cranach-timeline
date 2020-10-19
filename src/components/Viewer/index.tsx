@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setArtworkToView } from "../../redux/actions";
 
 import { useState } from "react";
+import { useRouter } from "next/router";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import IconButton from "@material-ui/core/IconButton";
@@ -46,11 +47,21 @@ interface Props {
 export function ViewComponent(props: Props) {
   const { open, data, imageSize: initialImageSize = "s", fullScreen = false, onClose } = props;
   const [imageSize, setSize] = useState(initialImageSize);
+  const router = useRouter();
+  const handleMoroBtnClick = () => {
+    router.push("/artwork/[id]", `/artwork/${data?.objectId}`);
+  };
+
   return (
     <Dialog open={open} maxWidth="lg" onClose={onClose} fullScreen={fullScreen}>
       <section className={styles.actions}>
+        <div className={styles.moreInfoBtnWrap}>
+          <Button color="primary" size="small" onClick={handleMoroBtnClick}>
+            more
+          </Button>
+        </div>
         <div className={styles.sizeButtonWrap}>
-          <ButtonGroup size="small" className={styles.sizeButtons}>
+          <ButtonGroup size="small" className={styles.sizeBtnsWrap}>
             {IMAGE_SIZES.map((size) => {
               return (
                 <Button key={size} onClick={() => setSize(size)}>
@@ -62,9 +73,11 @@ export function ViewComponent(props: Props) {
             })}
           </ButtonGroup>
         </div>
-        <IconButton onClick={onClose} size="small">
-          <CloseIcon />
-        </IconButton>
+        <div className={styles.closeBtnWrap}>
+          <IconButton onClick={onClose} size="small">
+            <CloseIcon />
+          </IconButton>
+        </div>
       </section>
       <DialogContent>
         {data && (
