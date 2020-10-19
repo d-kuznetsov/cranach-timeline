@@ -1,0 +1,22 @@
+@use "../../styles/constants" as *;
+
+.container {
+  display: flex;
+}
+
+.item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  overflow-x: hidden;
+  font-size: 8px;
+  line-height: 8px;
+  color: $color-secondary-dark;
+  background-color: $color-background-light;
+
+  &:nth-child(2n) {
+    background-color: $color-secondary-light;
+  }
+}
