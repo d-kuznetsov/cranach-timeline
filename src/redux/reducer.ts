@@ -7,7 +7,7 @@ import {
   ARTWORK_TO_VIEW,
   TEXT_TO_SEARCH,
 } from "./actions";
-import { CATEGORIES } from "../constants";
+import { CATEGORIES, PERIOD_MIN_VALUE, PERIOD_MAX_VALUE } from "../constants";
 import { RootState, Artwork, Categories, Period, Action } from "./types";
 
 function updateArtworks(
@@ -20,8 +20,8 @@ function updateArtworks(
   return artworks.filter((item) => {
     return (
       categories[item.categoryId].displayed &&
-      item.dating.begin > periodStart &&
-      item.dating.end < periodEnd &&
+      item.dating.begin >= periodStart &&
+      item.dating.end <= periodEnd &&
       hasTextToSearch(item, textToSearch)
     );
   });
@@ -53,7 +53,7 @@ Object.keys(CATEGORIES).forEach((id) => {
 
 export const initialState: RootState = {
   link: "/",
-  period: [1480, 1580],
+  period: [PERIOD_MIN_VALUE, PERIOD_MAX_VALUE],
   categories: initialCategories,
   artworks: [],
   artworksToView: [],
