@@ -25,6 +25,12 @@ export default function ArtworkPage() {
       }
     }
   }, [artworks.length, queryId]);
+  
+  useEffect(() => {
+    return () => {
+      dispatch(setArtworkToView(null));
+    };
+  }, []);
 
   return (
     <React.Fragment>
