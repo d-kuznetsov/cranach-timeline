@@ -31,6 +31,7 @@ export interface Artwork {
       xl: Image;
     };
   };
+  locations: Array<{term: string}>;
 }
 
 export type Period = [number, number];
