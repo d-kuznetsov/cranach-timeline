@@ -6,8 +6,8 @@ import { createReduxStore } from "../redux/store";
 import "../styles/base.scss";
 import "fontsource-roboto";
 
-export default function App({ Component, pageProps, router }: AppProps) {
-  const [store] = useState(createReduxStore({ link: router.pathname }));
+export default function App({ Component, pageProps }: AppProps) {
+  const [store] = useState(createReduxStore());
   return (
     <Provider store={store}>
       <Component {...pageProps} />

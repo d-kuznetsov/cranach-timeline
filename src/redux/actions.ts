@@ -1,21 +1,12 @@
-import Router from "next/router";
 import axios from "axios";
 import { Action, AsyncAction, Period, Artwork } from "./types";
 
-export const CURRENT_LINK = "CURRENT_LINK";
 export const PERIOD = "PERIOD";
 export const ARTWORKS = "ARTWORKS";
 export const CATEGORY = "CATEGORY";
 export const LINE_HEIGHT = "LINE_HEIGHT";
 export const ARTWORK_TO_VIEW = "ARTWORK_TO_VIEW";
 export const TEXT_TO_SEARCH = "TEXT_TO_SEARCH";
-
-export function setCurrentLink(link: string): AsyncAction {
-  return (dispatch) => {
-    Router.push(link);
-    dispatch({ type: CURRENT_LINK, link });
-  };
-}
 
 export function setPeriod(period: Period): Action {
   return {

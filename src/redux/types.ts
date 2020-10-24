@@ -46,7 +46,6 @@ export interface Categories {
 }
 
 export interface RootState {
-  link: string;
   period: Period;
   categories: Categories;
   artworks: Array<Artwork>;

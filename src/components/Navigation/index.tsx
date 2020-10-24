@@ -1,5 +1,4 @@
-import { useSelector, useDispatch } from "react-redux";
-import { setCurrentLink } from "../../redux/actions";
+import { useRouter } from "next/router";
 
 import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
@@ -10,7 +9,6 @@ import ContactMailIcon from "@material-ui/icons/ContactMail";
 import styles from "./Navigation.module.scss";
 import { OverridableComponent } from "@material-ui/core/OverridableComponent";
 import { SvgIconTypeMap } from "@material-ui/core";
-import { RootState } from "../../redux/types";
 
 interface navAction {
   label: string;
@@ -26,12 +24,13 @@ const navItems: Array<navAction> = [
 ];
 
 export function NavigationContainer() {
-  const link = useSelector((state: RootState) => state.link);
-  const dispatch = useDispatch();
+  const router = useRouter();
   const handleLinkChange = (e: React.ChangeEvent<{}>, link: string) => {
-    dispatch(setCurrentLink(link));
+    router.push(link);
   };
-  return <NavigationComponent items={navItems} link={link} onChange={handleLinkChange} />;
+  return (
+    <NavigationComponent items={navItems} link={router.pathname} onChange={handleLinkChange} />
+  );
 }
 
 interface Props {
