@@ -49,7 +49,10 @@ export function ViewComponent(props: Props) {
   const [imageSize, setSize] = useState(initialImageSize);
   const router = useRouter();
   const handleMoroBtnClick = () => {
-    router.push("/artwork/[id]", `/artwork/${data?.objectId}`);
+     router.push({
+      pathname: "/artwork",
+      query: { id: data?.objectId },
+    });
   };
 
   return (
