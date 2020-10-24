@@ -1,5 +1,4 @@
 import {
-  CURRENT_LINK,
   PERIOD,
   ARTWORKS,
   CATEGORY,
@@ -52,7 +51,6 @@ Object.keys(CATEGORIES).forEach((id) => {
 });
 
 export const initialState: RootState = {
-  link: "/",
   period: [PERIOD_MIN_VALUE, PERIOD_MAX_VALUE],
   categories: initialCategories,
   artworks: [],
@@ -64,20 +62,6 @@ export const initialState: RootState = {
 };
 export default function reducer(state: RootState = initialState, action: Action): RootState {
   switch (action.type) {
-    case CURRENT_LINK:
-      // ToDo
-      if (action.link === "/timeline" && state.textToSearch) {
-        return {
-          ...state,
-          link: action.link,
-          textToSearch: "",
-          artworksToView: updateArtworks(state.artworks, state.period, state.categories, ""),
-        };
-      }
-      return {
-        ...state,
-        link: action.link,
-      };
     case PERIOD:
       return {
         ...state,

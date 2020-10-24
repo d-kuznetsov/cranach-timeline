@@ -1,0 +1,42 @@
+@use "../constants" as *;
+
+.container {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.mainContent {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr;
+  background-color: $color-background-light;
+}
+
+.description {
+  padding: 12px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+@media (min-width: $breakpoint-tablet) {
+  .mainContent {
+    grid-template-columns: 1fr 3fr;
+  }
+
+  .description {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.image {
+  max-width: 100%;;
+}
+
+.footer {
+  background-color: $color-secondary-main;
+  padding: 4px;
+  border-radius: 0px 0px 4px 4px;
+}

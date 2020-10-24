@@ -31,6 +31,7 @@ export interface Artwork {
       xl: Image;
     };
   };
+  locations: Array<{term: string}>;
 }
 
 export type Period = [number, number];
@@ -45,7 +46,6 @@ export interface Categories {
 }
 
 export interface RootState {
-  link: string;
   period: Period;
   categories: Categories;
   artworks: Array<Artwork>;
