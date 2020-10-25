@@ -1,12 +1,12 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { loadArtworks } from "../../redux/actions";
+import { RootState } from "../../redux/types";
 
-import styles from "./Layout.module.scss";
-import { NavigationContainer as Navigation } from "../Navigation";
 import { ThemeProvider } from "@material-ui/styles";
 import createTheme from "../../lib/createTheme";
-import { RootState } from "../../redux/types";
+import { NavigationContainer as Navigation } from "../Navigation";
+import styles from "./Layout.module.scss";
 
 const theme = createTheme();
 

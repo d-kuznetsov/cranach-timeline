@@ -1,10 +1,10 @@
 import { useSelector, useDispatch } from "react-redux";
 import { setArtworkToView } from "../../redux/actions";
+import { RootState, Artwork } from "../../redux/types";
 
-import styles from "./TimeLine.module.scss";
 import { getArtworkTitle, getPeriod } from "../../lib/extractArtworkData";
 import { CATEGORIES } from "../../constants";
-import { RootState, Artwork } from "../../redux/types";
+import styles from "./TimeLine.module.scss";
 
 export function TimelineContainer() {
   const { period, artworksToView, lineHeight } = useSelector((state: RootState) => state);

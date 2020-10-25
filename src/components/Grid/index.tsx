@@ -86,7 +86,6 @@ export function GridComponent(props: GridProps) {
               columnCount,
               onItemClick
             )}
-            onItemsRendered={({ visibleStartIndex }) => 1}
           >
             {Row}
           </List>

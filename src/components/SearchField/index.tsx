@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { setTextToSearch } from "../../redux/actions";
+import { RootState } from "../../redux/types";
 
 import { useRef } from "react";
 import IconButton from "@material-ui/core/IconButton";
@@ -7,7 +8,6 @@ import SearchIcon from "@material-ui/icons/Search";
 import InputBase from "@material-ui/core/InputBase";
 import debounce from "lodash.debounce";
 import styles from "./SearchField.module.scss";
-import { RootState } from "../../redux/types";
 
 export function SearchFieldContainer() {
   const initialText = useSelector((state: RootState) => state.textToSearch);

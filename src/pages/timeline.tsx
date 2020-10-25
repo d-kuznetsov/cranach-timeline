@@ -1,3 +1,6 @@
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../redux/types";
+import { setTextToSearch } from "../redux/actions";
 import React, { useEffect } from "react";
 import Head from "next/head";
 import Layout from "../components/Layout";
@@ -11,9 +14,6 @@ import { TimelineContainer as Timeline } from "../components/TimeLine";
 import { ViewContainer as Viewer } from "../components/Viewer";
 import Typography from "@material-ui/core/Typography";
 import styles from "../styles/pages/TimelinePage.module.scss";
-import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "../redux/types";
-import { setTextToSearch } from "../redux/actions";
 
 export default function TimelinePage() {
   const { textToSearch } = useSelector((state: RootState) => state);

@@ -6,9 +6,9 @@ import HomeIcon from "@material-ui/icons/Home";
 import TimelineIcon from "@material-ui/icons/Timeline";
 import GridOnIcon from "@material-ui/icons/GridOn";
 import ContactMailIcon from "@material-ui/icons/ContactMail";
-import styles from "./Navigation.module.scss";
 import { OverridableComponent } from "@material-ui/core/OverridableComponent";
 import { SvgIconTypeMap } from "@material-ui/core";
+import styles from "./Navigation.module.scss";
 
 interface navAction {
   label: string;

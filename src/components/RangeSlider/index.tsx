@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setPeriod } from "../../redux/actions";
+import { RootState, Period } from "../../redux/types";
 
 import Slider, { Mark } from "@material-ui/core/Slider";
-import styles from "./RangeSlider.module.scss";
-import { RootState, Period } from "../../redux/types";
 import { PERIOD_MIN_VALUE, PERIOD_MAX_VALUE } from "../../constants";
+import styles from "./RangeSlider.module.scss";
 
 const IMPORTANT_DATES = [PERIOD_MIN_VALUE, 1514, 1538, 1562, PERIOD_MAX_VALUE];
 const marks: Array<Mark> = IMPORTANT_DATES.map((year) => {

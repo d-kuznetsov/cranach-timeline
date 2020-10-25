@@ -1,12 +1,13 @@
 import { useSelector, useDispatch } from "react-redux";
 import { setLineHeight } from "../../redux/actions";
+import { RootState } from "../../redux/types";
 
 import { useState } from "react";
 import Slider from "@material-ui/core/Slider";
-import { RootState } from "../../redux/types";
 
 const MIN_VALUE = 4;
 const MAX_VALUE = 16;
+const STEP = 0.1;
 
 export function LineHeightSliderContainer() {
   const lineHeight = useSelector((state: RootState) => state.lineHeight);
@@ -31,7 +32,7 @@ export function LineHeightSliderComponent({ defaultValue, onChange }: Props) {
       value={value}
       min={MIN_VALUE}
       max={MAX_VALUE}
-      step={0.1}
+      step={STEP}
       valueLabelDisplay="off"
       onChange={handleValueChange}
       onChangeCommitted={onChange}

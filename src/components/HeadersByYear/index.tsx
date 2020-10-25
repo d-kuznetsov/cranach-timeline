@@ -20,7 +20,11 @@ export function HeadersByYearComponent({ period }: Props) {
   return (
     <div className={styles.container}>
       {list.map((year, i) => {
-        return <div key={year} className={styles.item}>{i % 2 == 0 ? year.toString().slice(2) : ""}</div>;
+        return (
+          <div key={year} className={styles.item}>
+            {i % 2 == 0 ? year.toString().slice(2) : ""}
+          </div>
+        );
       })}
     </div>
   );
