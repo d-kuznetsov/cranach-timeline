@@ -1,7 +1,7 @@
 @use "../../styles/constants" as *;
 
 .container {
-  display: flex;
+  display: none;
 }
 
 .item {
@@ -10,13 +10,37 @@
   align-items: center;
   writing-mode: vertical-rl;
   text-orientation: upright;
-  overflow-x: hidden;
-  font-size: 8px;
-  line-height: 8px;
+  overflow: hidden;
+  font-size: 9px;
+  line-height: 9px;
   color: $color-secondary-dark;
   background-color: $color-background-light;
+  padding: 2px 0px;
 
   &:nth-child(2n) {
     background-color: $color-secondary-light;
+  }
+
+  &.fullItemStr {
+    writing-mode: horizontal-tb;
+    justify-content: center;
+  }
+}
+
+@media (min-width: $breakpoint-tablet) {
+  .container {
+    display: flex;
+  }
+  .item {
+    font-size: 9px;
+  }
+}
+
+@media (min-width: $breakpoint-desktop) {
+  .container {
+    display: flex;
+  }
+  .item {
+    font-size: 10px;
   }
 }
