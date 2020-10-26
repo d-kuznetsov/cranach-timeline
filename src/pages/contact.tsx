@@ -2,6 +2,7 @@ import React from "react";
 import Head from "next/head";
 import Layout from "../components/Layout";
 import Profile from "../components/Profile";
+import Footer from "../components/Footer";
 import Typography from "@material-ui/core/Typography";
 import styles from "../styles/pages/ContactPage.module.scss";
 
@@ -57,11 +58,7 @@ export default function ContactPage() {
               />
             </div>
           </div>
-          <footer className={styles.footer}>
-            <Typography variant="body2" align="center">
-              © Technische Hochschule Köln, 2020
-            </Typography>
-          </footer>
+          <Footer />
         </div>
       </Layout>
     </React.Fragment>
