@@ -54,6 +54,7 @@ export interface RootState {
   lineHeight: number;
   openViewer: boolean;
   textToSearch: string;
+  isLoading: false;
 }
 
 // Actions

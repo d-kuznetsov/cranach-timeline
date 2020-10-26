@@ -7,6 +7,7 @@ export const CATEGORY = "CATEGORY";
 export const LINE_HEIGHT = "LINE_HEIGHT";
 export const ARTWORK_TO_VIEW = "ARTWORK_TO_VIEW";
 export const TEXT_TO_SEARCH = "TEXT_TO_SEARCH";
+export const IS_LOADING = 'IS_LOADING';
 
 export function setPeriod(period: Period): Action {
   return {
@@ -28,10 +29,16 @@ export function setCategoryDisplay(id: number, displayed: boolean): Action {
 }
 
 export function loadArtworks(): AsyncAction {
-  return (dispatch) => {
-    axios.get("api/data").then((res) => {
+  return async (dispatch) => {
+    try {
+      dispatch(setIsLoading(true))
+      const res = await axios.get("api/data");
       dispatch(setArtworks(res.data));
-    });
+    } catch (err) {
+      alert("Error occurred while loading data")
+    } finally {
+      dispatch(setIsLoading(false))
+    }
   };
 }
 
@@ -50,5 +57,12 @@ export function setTextToSearch(text: string): Action {
   return {
     type: TEXT_TO_SEARCH,
     text,
+  };
+}
+
+export function setIsLoading(isLoading: boolean) {
+  return {
+    type: IS_LOADING,
+    isLoading,
   };
 }

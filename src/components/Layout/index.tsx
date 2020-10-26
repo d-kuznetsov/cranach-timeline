@@ -6,6 +6,7 @@ import { RootState } from "../../redux/types";
 import { ThemeProvider } from "@material-ui/styles";
 import createTheme from "../../lib/createTheme";
 import { NavigationContainer as Navigation } from "../Navigation";
+import LoadingIndicator from "../LoadingIndicator";
 import styles from "./Layout.module.scss";
 
 const theme = createTheme();
@@ -17,7 +18,7 @@ interface Props {
 }
 
 export default function Layout({ children, toolbar, heightLimit = true }: Props) {
-  const artworks = useSelector((state: RootState) => state.artworks);
+  const { artworks, isLoading } = useSelector((state: RootState) => state);
   const dispatch = useDispatch();
   useEffect(() => {
     !artworks.length && dispatch(loadArtworks());
@@ -25,6 +26,7 @@ export default function Layout({ children, toolbar, heightLimit = true }: Props)
 
   return (
     <ThemeProvider theme={theme}>
+      {isLoading && <LoadingIndicator />}
       <div className={styles.container}>
         <header className={styles.header}>
           <section className={styles.headerContent}>

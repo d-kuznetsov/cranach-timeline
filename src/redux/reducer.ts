@@ -5,6 +5,7 @@ import {
   LINE_HEIGHT,
   ARTWORK_TO_VIEW,
   TEXT_TO_SEARCH,
+  IS_LOADING,
 } from "./actions";
 import { CATEGORIES, PERIOD_MIN_VALUE, PERIOD_MAX_VALUE } from "../constants";
 import { RootState, Artwork, Categories, Period, Action } from "./types";
@@ -59,6 +60,7 @@ export const initialState: RootState = {
   openViewer: false,
   artworkToView: null,
   textToSearch: "",
+  isLoading: false,
 };
 export default function reducer(state: RootState = initialState, action: Action): RootState {
   switch (action.type) {
@@ -112,6 +114,11 @@ export default function reducer(state: RootState = initialState, action: Action)
         textToSearch: action.text,
         artworksToView: updateArtworks(state.artworks, state.period, state.categories, action.text),
       };
+    case IS_LOADING:
+      return {
+        ...state,
+        isLoading: action.isLoading,
+      }
     default:
       return state;
   }
