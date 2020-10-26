@@ -15,7 +15,7 @@
   line-height: 9px;
   color: $color-secondary-dark;
   background-color: $color-background-light;
-  padding: 2px 0px;
+  cursor: default;
 
   &:nth-child(2n) {
     background-color: $color-secondary-light;
@@ -24,6 +24,7 @@
   &.fullItemStr {
     writing-mode: horizontal-tb;
     justify-content: center;
+    padding: 2px 0px;
   }
 }
 
