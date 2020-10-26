@@ -8,7 +8,8 @@ export function getArtworkTitle({ titles }: Artwork): string {
 }
 
 export function getInvolvedPersons({ involvedPersons }: Artwork): string {
-  return involvedPersons.map((item) => item.name).join(", ");
+  //return involvedPersons.map((item) => item.name).join(", ");
+  return involvedPersons[0]?.name || '';
 }
 
 export function getImageSrc({ images }: Artwork, size: ImageSize = "s"): string {
