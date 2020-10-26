@@ -41,21 +41,23 @@ export default function ArtworkPage() {
       </Head>
       <Layout heightLimit={false}>
         <div className={styles.container}>
-          {artworkToView && (
-            <main className={styles.mainContent}>
-              <div className={styles.description}>
-                <Section title="Title" body={getArtworkTitle(artworkToView)} />
-                <Section title="Author" body={getInvolvedPersons(artworkToView)} />
-                <Section title="Dating" body={artworkToView.dating.dated} />
-                <Section title="Owner" body={artworkToView.owner} />
-                <Section title="Location" body={artworkToView.locations[0]?.term} />
-                <Section title="Description" body="" />
-              </div>
-              <div className={styles.imageWrap}>
-                <img className={styles.image} src={getImageSrc(artworkToView, "m")} alt="" />
-              </div>
-            </main>
-          )}
+          <main className={styles.mainContent}>
+            {artworkToView && (
+              <React.Fragment>
+                <div className={styles.description}>
+                  <Section title="Title" body={getArtworkTitle(artworkToView)} />
+                  <Section title="Author" body={getInvolvedPersons(artworkToView)} />
+                  <Section title="Dating" body={artworkToView.dating.dated} />
+                  <Section title="Owner" body={artworkToView.owner} />
+                  <Section title="Location" body={artworkToView.locations[0]?.term} />
+                  <Section title="Description" body="" />
+                </div>
+                <div className={styles.imageWrap}>
+                  <img className={styles.image} src={getImageSrc(artworkToView, "m")} alt="" />
+                </div>
+              </React.Fragment>
+            )}
+          </main>
           <Footer />
         </div>
       </Layout>
