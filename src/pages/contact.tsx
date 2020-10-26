@@ -32,30 +32,18 @@ export default function ContactPage() {
             </Typography>
             <div className={styles.profiles}>
               <Profile
-                name="Christian Noss"
-                occupation="Project manager"
-                phone="123456789"
-                email="email@example.com"
-                avatar="https://avatars1.githubusercontent.com/u/2807738?s=400&u=9a2598245fb107dd1131ad1cff84069798862457&v=4"
-              />
-              <Profile
-                name="Anonymus"
+                name="Dmitry Kuznetsov"
                 occupation="Developer"
-                phone="123456789"
-                email="email@example.com"
+                email="dmitrii.kuznetcov@smail.th-koeln.de"
+                avatar="https://avatars1.githubusercontent.com/u/57637723?s=460&u=28a67642b34f1440defcdedb2bb49d9e8b56d528&v=4"
               />
               <Profile
-                name="Anonymus"
-                occupation="Designer"
-                phone="123456789"
-                email="email@example.com"
+                name="Sarfaroz Khakimov"
+                occupation="Designer, Developer"
+                email="sarfaroz.khakimov@smail.th-koeln.de"
+                avatar="https://avatars1.githubusercontent.com/u/56966962?s=460&u=240519baff9949f25fd6fceacaa9790152d7a336&v=4"
               />
-              <Profile
-                name="Anonymus"
-                occupation="Random person"
-                phone="123456789"
-                email="email@example.com"
-              />
+              <Profile name="Nazi" occupation="Top Manager" email="nazi@smail.th-koeln.de" />
             </div>
           </div>
           <Footer />
