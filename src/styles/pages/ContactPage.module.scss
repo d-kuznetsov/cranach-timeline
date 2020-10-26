@@ -25,12 +25,6 @@ $space-long: 20px;
   column-gap: $space-medium;
 }
 
-.footer {
-  background-color: $color-secondary-main;
-  padding: 4px;
-  border-radius: 0px 0px 4px 4px;
-}
-
 @media (min-width: $breakpoint-tablet) {
   .profiles {
     grid-template-columns: 1fr 1fr;
