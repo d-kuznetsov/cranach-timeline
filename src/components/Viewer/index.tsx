@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
+import OpenInBrowserIcon from "@material-ui/icons/OpenInBrowser";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import Button from "@material-ui/core/Button";
@@ -58,11 +59,7 @@ export function ViewComponent(props: Props) {
   return (
     <Dialog open={open} maxWidth="lg" onClose={onClose} fullScreen={fullScreen}>
       <section className={styles.actions}>
-        <div className={styles.moreInfoBtnWrap}>
-          <Button color="primary" size="small" onClick={handleMoroBtnClick}>
-            more
-          </Button>
-        </div>
+        <div className={styles.leftButtonsWrap} />
         <div className={styles.sizeButtonWrap}>
           <ButtonGroup size="small" className={styles.sizeBtnsWrap}>
             {IMAGE_SIZES.map((size) => {
@@ -76,7 +73,10 @@ export function ViewComponent(props: Props) {
             })}
           </ButtonGroup>
         </div>
-        <div className={styles.closeBtnWrap}>
+        <div className={styles.rightButtonsWrap}>
+          <IconButton onClick={handleMoroBtnClick} size="small">
+            <OpenInBrowserIcon />
+          </IconButton>
           <IconButton onClick={onClose} size="small">
             <CloseIcon />
           </IconButton>

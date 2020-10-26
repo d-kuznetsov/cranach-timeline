@@ -31,7 +31,7 @@ export default function Profile(props: Props) {
         <Typography variant="body2" component="p" noWrap gutterBottom>
           {phone}
         </Typography>
-        <Typography variant="body2" component="p" noWrap color="textSecondary">
+        <Typography variant="body2" component="p" noWrap>
           {email}
         </Typography>
       </div>

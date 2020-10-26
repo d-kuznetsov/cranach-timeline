@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import { getArtworkTitle, getInvolvedPersons, getImageSrc } from "../lib/extractArtworkData";
 import Head from "next/head";
 import Layout from "../components/Layout";
+import Footer from "../components/Footer";
 import Typography from "@material-ui/core/Typography";
 import styles from "../styles/pages/ArtworkPage.module.scss";
 
@@ -25,7 +26,7 @@ export default function ArtworkPage() {
       }
     }
   }, [artworks.length, queryId]);
-  
+
   useEffect(() => {
     return () => {
       dispatch(setArtworkToView(null));
@@ -40,26 +41,24 @@ export default function ArtworkPage() {
       </Head>
       <Layout heightLimit={false}>
         <div className={styles.container}>
-          {artworkToView && (
-            <main className={styles.mainContent}>
-              <div className={styles.description}>
-                <Section title="Title" body={getArtworkTitle(artworkToView)} />
-                <Section title="Author" body={getInvolvedPersons(artworkToView)} />
-                <Section title="Dating" body={artworkToView.dating.dated} />
-                <Section title="Owner" body={artworkToView.owner} />
-                <Section title="Location" body={artworkToView.locations[0]?.term} />
-                <Section title="Description" body="" />
-              </div>
-              <div className={styles.imageWrap}>
-                <img className={styles.image} src={getImageSrc(artworkToView, "m")} alt="" />
-              </div>
-            </main>
-          )}
-          <footer className={styles.footer}>
-            <Typography variant="body2" align="center">
-              © Technische Hochschule Köln, 2020
-            </Typography>
-          </footer>
+          <main className={styles.mainContent}>
+            {artworkToView && (
+              <React.Fragment>
+                <div className={styles.description}>
+                  <Section title="Title" body={getArtworkTitle(artworkToView)} />
+                  <Section title="Author" body={getInvolvedPersons(artworkToView)} />
+                  <Section title="Dating" body={artworkToView.dating.dated} />
+                  <Section title="Owner" body={artworkToView.owner} />
+                  <Section title="Location" body={artworkToView.locations[0]?.term} />
+                  <Section title="Description" body="" />
+                </div>
+                <div className={styles.imageWrap}>
+                  <img className={styles.image} src={getImageSrc(artworkToView, "m")} alt="" />
+                </div>
+              </React.Fragment>
+            )}
+          </main>
+          <Footer />
         </div>
       </Layout>
     </React.Fragment>
