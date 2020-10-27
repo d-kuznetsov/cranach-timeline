@@ -7,6 +7,10 @@ You can see the current state of the project [on the website](https://cranach-ti
 1. [Board](https://github.com/d-kuznetsov/cranach-timeline/projects/1)
 2. [Timesheet](https://github.com/d-kuznetsov/cranach-timeline/wiki/Timesheet)
 3. [Technology stack](#technology-stack)
+4. [Code Conventios](#code-conventios)
+5. [Setup](#setup)
+6. [Git Workflow](#git-workflow)
+7. [License](#license)
 
 ## Technology stack
 The following technologies are used in the project
@@ -22,24 +26,21 @@ The following technologies are used in the project
 * [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
 * [BEM](http://getbem.com/)
 
-### Project setup
-```
+## Setup
+```bash
+# install the dependencies
 npm install
-```
-### Start development server
-```
+
+# start app in development mode
 nmp run dev
-```
-### Builds app for production usage
-```
-npm run build 
-```
-### Start production server
-```
+
+# build app for production usage
+npm run build
+
+# start production server
 npm run start
-```
-### Run tests
-```
+
+# run tests
 npm run test
 ```
 
