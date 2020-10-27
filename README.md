@@ -3,6 +3,10 @@ The goal of this project is to create a web application based on the prototype f
 
 You can see the current state of the project [on the website](https://cranach-timeline.dmitry-kuznetsov.vercel.app/).
 
+1. [Board](https://github.com/d-kuznetsov/cranach-timeline/projects/1)
+2. [Timesheet](https://github.com/d-kuznetsov/cranach-timeline/wiki/Timesheet)
+3. [Technology stack](#technology-stack)
+
 ## Technology stack
 The following technologies are used in the project
 * [Next.js](https://nextjs.org/)
