@@ -15,8 +15,15 @@ You can see the current state of the project [on the website](https://cranach-ti
 ## Technology stack
 [React](https://reactjs.org/) is a JavaScript library for building user interfaces. React allows you to write code in a **declarative style**, which reduces time costs and also makes the code more predictable. React assumes the use of **reusable components**, which reduces the amount of code and makes the project more structured. To the benefits of the library, you can also have a huge community and many ready-made solutions. An alternative solution could be the **Vue.js**
 
+To build a complete web application with React from scratch, there are many important details you need to consider:
+* Code has to be bundled using a bundler like webpack and transformed using a compiler like Babel.
+* You need to do production optimizations such as code splitting.
+* You might want to statically pre-render some pages for performance and SEO. You might also want to use server-side rendering or client-side rendering.
+* You might have to write some server-side code to connect your React app to your data store.
 
-* [Next.js](https://nextjs.org/)
+[Next.js](https://nextjs.org/) provides a solution to all of the above problems. An alternative solution could be the **Gatsby**
+
+
 * [Redux-thunk](https://github.com/reduxjs/redux-thunk)
 * [Material-UI](https://material-ui.com/)
 * [Jest](https://jestjs.io/)
