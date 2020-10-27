@@ -13,7 +13,9 @@ You can see the current state of the project [on the website](https://cranach-ti
 7. [License](#license)
 
 ## Technology stack
-The following technologies are used in the project
+[React](https://reactjs.org/) is a JavaScript library for building user interfaces. React allows you to write code in a **declarative style**, which reduces time costs and also makes the code more predictable. React assumes the use of **reusable components**, which reduces the amount of code and makes the project more structured. To the benefits of the library, you can also have a huge community and many ready-made solutions. An alternative solution could be the **Vue.js**
+
+
 * [Next.js](https://nextjs.org/)
 * [Redux-thunk](https://github.com/reduxjs/redux-thunk)
 * [Material-UI](https://material-ui.com/)
