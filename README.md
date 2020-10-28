@@ -4,13 +4,14 @@ The goal of this project is to create a web application based on the prototype f
 You can see the current state of the project [on the website](https://cranach-timeline.dmitry-kuznetsov.vercel.app/).
 
 ## Table of contents
-1. [Board](https://github.com/d-kuznetsov/cranach-timeline/projects/1)
+1. [Scrum Board](https://github.com/d-kuznetsov/cranach-timeline/projects/1)
 2. [Timesheet](https://github.com/d-kuznetsov/cranach-timeline/wiki/Timesheet)
 3. [Technology stack](#technology-stack)
-4. [Code Conventios](#code-conventios)
-5. [Setup](#setup)
-6. [Git Workflow](#git-workflow)
-7. [License](#license)
+4. [Code of Conduct](https://github.com/d-kuznetsov/cranach-timeline/blob/dev/.github/CODE_OF_CONDUCT.md)
+5. [Code Conventios](#code-conventios)
+6. [Setup](#setup)
+7. [Git Workflow](#git-workflow)
+8. [License](#license)
 
 ## Technology stack
 [React](https://reactjs.org/) is a JavaScript library for building user interfaces. React allows you to write code in a **declarative style**, which reduces time costs and also makes the code more predictable. React assumes the use of **reusable components**, which reduces the amount of code and makes the project more structured. To the benefits of the library, you can also have a huge community and many ready-made solutions. An alternative solution could be the **Vue.js**
