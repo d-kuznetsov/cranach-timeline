@@ -25,9 +25,8 @@ To build a complete web application with React from scratch, there are many impo
 
 [Redux](https://redux.js.org/) is a predictable state container for JavaScript apps. It helps you write applications that behave consistently, run in different environments (client, server, and native), and are easy to test. On top of that, it provides a great developer experience, such as live code editing combined with a time traveling debugger.
 
-* [Material-UI](https://material-ui.com/)
-* [Jest](https://jestjs.io/)
-* [Enzyme](https://enzymejs.github.io/enzyme/)
+[Material-UI](https://material-ui.com/) is used as the component library. Material-UI provides a wide range of helpful components, like app bars, auto complete, badges, buttons, cards, dialog boxes, icons, menus, sliders and more. Helpfully, Material-UI also offers React themes and templates, so you can have a custom color theme for your app. An alternative solution could be the **React Bootstrap**.
+
 * [CSS Modules](https://github.com/css-modules/css-modules) 
 * [Sass](https://sass-lang.com/)
 
