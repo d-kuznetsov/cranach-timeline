@@ -21,7 +21,8 @@ To build a complete web application with React from scratch, there are many impo
 * You need to do production optimizations such as code splitting.
 * You might want to statically pre-render some pages for performance and SEO. You might also want to use server-side rendering or client-side rendering.
 * You might have to write some server-side code to connect your React app to your data store.
-<br />[Next.js](https://nextjs.org/) provides a solution to all of the above problems. An alternative solution could be the **Gatsby**.
+
+[Next.js](https://nextjs.org/) provides a solution to all of the above problems. An alternative solution could be the **Gatsby**.
 
 [Redux](https://redux.js.org/) is a predictable state container for JavaScript apps. It helps you write applications that behave consistently, run in different environments (client, server, and native), and are easy to test. On top of that, it provides a great developer experience, such as live code editing combined with a time traveling debugger.
 
