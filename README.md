@@ -27,7 +27,9 @@ To build a complete web application with React from scratch, there are many impo
 
 [Material-UI](https://material-ui.com/) is used as the component library. Material-UI provides a wide range of helpful components, like app bars, auto complete, badges, buttons, cards, dialog boxes, icons, menus, sliders and more. Helpfully, Material-UI also offers React themes and templates, so you can have a custom color theme for your app. An alternative solution could be the **React Bootstrap**.
 
-CSS on its own can be fun, but stylesheets are getting larger, more complex, and harder to maintain. This is where a preprocessor can help. [Sass](https://sass-lang.com/) lets you use features that don't exist in CSS yet like variables, nesting, mixins, inheritance and other nifty goodies that make writing CSS fun again.
+CSS on its own can be fun, but stylesheets are getting larger, more complex, and harder to maintain. This is where a preprocessor can help.
+
+[Sass](https://sass-lang.com/) lets you use features that don't exist in CSS yet like variables, nesting, mixins, inheritance and other nifty goodies that make writing CSS fun again.
 
 ## Code Conventios
 * [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
