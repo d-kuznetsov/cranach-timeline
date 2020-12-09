@@ -1,6 +1,4 @@
-# Project 2 - Development
-The goal of this project is to create a web application based on the prototype from *Project 1*.
-
+# Cranach timeline
 You can see the current state of the project [on the website](https://cranach-timeline.dmitry-kuznetsov.vercel.app/).
 
 ## Table of contents
