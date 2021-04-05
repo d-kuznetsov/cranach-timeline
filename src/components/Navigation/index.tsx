@@ -16,7 +16,7 @@ interface navAction {
   IconComponent: OverridableComponent<SvgIconTypeMap<{}, any>>;
 }
 
-const navItems: Array<navAction> = [
+export const navItems: Array<navAction> = [
   { label: "Home", IconComponent: HomeIcon, link: "/" },
   { label: "Timeline", IconComponent: TimelineIcon, link: "/timeline" },
   { label: "Grid", IconComponent: GridOnIcon, link: "/grid" },
