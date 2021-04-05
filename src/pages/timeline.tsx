@@ -11,7 +11,7 @@ import { CategoryContainer as Categories } from "../components/Categories";
 import { LegendContainer as Legend } from "../components/Legend";
 import { HeadersByYearContainer as HeadersByYear } from "../components/HeadersByYear";
 import { TimelineContainer as Timeline } from "../components/TimeLine";
-import { ViewContainer as Viewer } from "../components/Viewer";
+import { ViewerContainer as Viewer } from "../components/Viewer";
 import Typography from "@material-ui/core/Typography";
 import styles from "../styles/pages/TimelinePage.module.scss";
 

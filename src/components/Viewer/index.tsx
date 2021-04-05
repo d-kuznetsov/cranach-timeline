@@ -21,14 +21,14 @@ import styles from "./Viewer.module.scss";
 
 const IMAGE_SIZES: Array<ImageSize> = ["s", "m", "l", "xl"];
 
-export function ViewContainer(props: Partial<Props>) {
+export function ViewerContainer(props: Partial<Props>) {
   const { openViewer, artworkToView } = useSelector((state: RootState) => state);
   const dispatch = useDispatch();
   const handleClose = () => {
     dispatch(setArtworkToView(null));
   };
   return (
-    <ViewComponent
+    <ViewerComponent
       {...(props as Props)}
       open={openViewer}
       data={artworkToView}
@@ -45,7 +45,7 @@ interface Props {
   onClose: () => void;
 }
 
-export function ViewComponent(props: Props) {
+export function ViewerComponent(props: Props) {
   const { open, data, imageSize: initialImageSize = "s", fullScreen = false, onClose } = props;
   const [imageSize, setSize] = useState(initialImageSize);
   const router = useRouter();
@@ -77,7 +77,7 @@ export function ViewComponent(props: Props) {
           <IconButton onClick={handleMoroBtnClick} size="small">
             <OpenInBrowserIcon />
           </IconButton>
-          <IconButton onClick={onClose} size="small">
+          <IconButton onClick={onClose} size="small" data-testid="close-btn">
             <CloseIcon />
           </IconButton>
         </div>
