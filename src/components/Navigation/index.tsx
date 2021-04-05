@@ -58,6 +58,7 @@ export function NavigationComponent({ items, link, onChange }: Props) {
             value={link}
             icon={<IconComponent />}
             showLabel={true}
+            data-testid={"nav-" + label.toLowerCase()}
           ></BottomNavigationAction>
         );
       })}
