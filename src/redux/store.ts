@@ -2,10 +2,10 @@ import { createStore, applyMiddleware } from "redux";
 import thunkMiddleware from "redux-thunk";
 import reducer, { initialState } from "./reducer";
 
-export function createReduxStore() {
+export function createReduxStore(stateToMerge: { [key: string]: any }) {
   return createStore(
     reducer,
-    initialState,
-    applyMiddleware(thunkMiddleware),
+    { ...initialState, ...stateToMerge },
+    applyMiddleware(thunkMiddleware)
   );
 }
