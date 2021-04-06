@@ -1,3 +1,5 @@
+// test comment
+
 interface Options {
   path?: string;
   expires?: Date | string;
