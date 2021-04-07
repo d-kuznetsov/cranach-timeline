@@ -4,9 +4,9 @@
   padding: 0px 12px;
   display: flex;
   align-items: center;
-  background-color: $color-secondary-light;
+  background-color: var(--color-secondary-light);
   border-radius: 10px;
-  box-shadow: 1px 1px 1px $color-secondary-main;
+  box-shadow: 1px 1px 1px var(--color-secondary-main);
   flex: 1;
   max-width: 500px;
 }

@@ -13,12 +13,12 @@
   overflow: hidden;
   font-size: 9px;
   line-height: 9px;
-  color: $color-secondary-dark;
-  background-color: $color-background-light;
+  color: var(--color-secondary-dark);
+  background-color: var(--color-background-light);
   cursor: default;
 
   &:nth-child(2n) {
-    background-color: $color-secondary-light;
+    background-color: var(--color-secondary-light);
   }
 
   &.fullItemStr {

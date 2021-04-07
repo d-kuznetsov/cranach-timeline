@@ -50,7 +50,7 @@ $content-width-desktop: 90%;
   max-width: $content-max-width;
 
   &__heightLimit {
-    background-color: $color-background-light;
+    background-color: var(--color-background-light);
     min-height: 0px;
   }
 }
