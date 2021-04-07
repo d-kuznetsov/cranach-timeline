@@ -20,8 +20,8 @@ function updateArtworks(
   return artworks.filter((item) => {
     return (
       categories[item.categoryId].displayed &&
-      item.dating.begin >= periodStart &&
-      item.dating.end <= periodEnd &&
+      item.dating.end >= periodStart &&
+      item.dating.begin <= periodEnd &&
       hasTextToSearch(item, textToSearch)
     );
   });
@@ -118,7 +118,7 @@ export default function reducer(state: RootState = initialState, action: Action)
       return {
         ...state,
         isLoading: action.isLoading,
-      }
+      };
     default:
       return state;
   }

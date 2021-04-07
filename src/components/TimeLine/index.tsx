@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { setArtworkToView } from "../../redux/actions";
-import { RootState, Artwork } from "../../redux/types";
+import { RootState, Artwork, Period } from "../../redux/types";
 
 import { getArtworkTitle, getPeriod } from "../../lib/extractArtworkData";
 import { CATEGORIES } from "../../constants";
@@ -28,7 +28,7 @@ interface ArtworkLine extends Artwork {
 }
 
 interface Props {
-  period: [number, number];
+  period: Period;
   items: Array<Artwork>;
   lineHeight: number;
   onLineClick: (value: ArtworkLine) => void;
@@ -36,8 +36,8 @@ interface Props {
 
 export function TimelineComponent({ period, items, lineHeight = 16, onLineClick }: Props) {
   const yearList = getYearList(period);
-  const { modifiedItems, maxOffsetFactor } = withAdditionalProps(yearList, items);
-  const itemsByYear = getItemsByYear(modifiedItems);
+  const { modifiedItems, maxOffsetFactor } = withAdditionalProps(yearList, items, period);
+  const itemsByYear = getItemsByYear(modifiedItems, period);
   const offset = lineHeight * 1.25;
   return (
     <div className={styles.container} style={{ height: offset * (maxOffsetFactor + 1) }}>
@@ -92,18 +92,22 @@ function ArtworkLine({ artworkData, offset, lineHeight, onClick }: ArtworkLinePr
   );
 }
 
-function getItemsByYear(items: Array<ArtworkLine>): { [year: number]: Array<ArtworkLine> } {
+function getItemsByYear(
+  items: Array<ArtworkLine>,
+  period: Period
+): { [year: number]: Array<ArtworkLine> } {
   const itemsByYear: { [year: number]: Array<ArtworkLine> } = {};
   items.forEach((item) => {
-    if (!itemsByYear[item.dating.begin]) {
-      itemsByYear[item.dating.begin] = [];
+    const year = item.dating.begin < period[0] ? period[0] : item.dating.begin;
+    if (!itemsByYear[year]) {
+      itemsByYear[year] = [];
     }
-    itemsByYear[item.dating.begin].push(item);
+    itemsByYear[year].push(item);
   });
   return itemsByYear;
 }
 
-function getYearList(period: [number, number]): number[] {
+function getYearList(period: Period): number[] {
   const list = [];
   const [start, end] = period;
   for (let year = start; year <= end; year++) {
@@ -114,35 +118,38 @@ function getYearList(period: [number, number]): number[] {
 
 function withAdditionalProps(
   yearList: number[],
-  items: Array<Artwork>
+  items: Array<Artwork>,
+  period: Period
 ): { modifiedItems: Array<ArtworkLine>; maxOffsetFactor: number } {
   let matrix: { [year: number]: boolean[] } = {};
   let maxOffsetFactor = 0;
   yearList.forEach((year) => (matrix[year] = new Array(items.length).fill(false)));
   const modifiedItems = items.map((item) => {
     let offsetFactor = 0;
-    let year = item.dating.begin;
+    let start = item.dating.begin < period[0] ? period[0] : item.dating.begin;
+    let end = item.dating.end > period[1] ? period[1] : item.dating.end;
+    let year = start;
     while (true) {
       if (matrix[year][offsetFactor]) {
         offsetFactor++;
-        year = item.dating.begin;
+        year = start;
       } else {
         year++;
       }
-      if (year > item.dating.end) {
+      if (year > end) {
         if (offsetFactor > maxOffsetFactor) {
           maxOffsetFactor = offsetFactor;
         }
         break;
       }
     }
-    for (let year = item.dating.begin; year <= item.dating.end; year++) {
+    for (let year = start; year <= end; year++) {
       matrix[year][offsetFactor] = true;
     }
     return {
       ...item,
       offsetFactor,
-      periodLength: item.dating.end - item.dating.begin + 1,
+      periodLength: end - start + 1,
     };
   });
 
