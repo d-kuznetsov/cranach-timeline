@@ -15,7 +15,7 @@ $content-width-desktop: 90%;
   flex: 0 0 56px;
   display: flex;
   justify-content: center;
-  background-color: #222222;
+  background-color: var(--color-background-dark);
 }
 
 .headerContent {
