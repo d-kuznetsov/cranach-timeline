@@ -4,10 +4,10 @@ import DateRangeIcon from "@material-ui/icons/DateRange";
 import CategoryIcon from "@material-ui/icons/Category";
 import SearchIcon from "@material-ui/icons/Search";
 import styles from "./Legend.module.scss";
-import { RootState, Categories, Period } from "../../redux/types";
+import { RootState, Categories, Period, ColorPalette, ColorShade } from "../../redux/types";
 
 export function LegendContainer() {
-  const { categories, period, textToSearch, artworksToView } = useSelector(
+  const { categories, period, textToSearch, artworksToView, colorPalette } = useSelector(
     (state: RootState) => state
   );
   return (
@@ -16,6 +16,7 @@ export function LegendContainer() {
       period={period}
       searchText={textToSearch}
       itemNumber={artworksToView.length}
+      colorPalette={colorPalette}
     />
   );
 }
@@ -25,9 +26,16 @@ interface Props {
   period: Period;
   searchText: string;
   itemNumber: number;
+  colorPalette: ColorPalette;
 }
 
-export function LegendComponent({ categories, period, searchText, itemNumber }: Props) {
+export function LegendComponent({
+  categories,
+  period,
+  searchText,
+  itemNumber,
+  colorPalette,
+}: Props) {
   const [start, end] = period;
   return (
     <div className={styles.container}>
@@ -42,17 +50,14 @@ export function LegendComponent({ categories, period, searchText, itemNumber }: 
         <section className={styles.categories}>
           <CategoryIcon color="secondary" className={styles.categoriesIcon} />
           <div className={styles.categoriesContent}>
-            {Object.keys(categories).map((key) => {
-              const { id, mainColor, label, displayed } = categories[+key];
+            {Object.values(categories).map(({ id, mainColor, label, displayed }) => {
               if (!displayed) {
                 return null;
               }
+              const bgColor = colorPalette.primary[mainColor as ColorShade];
               return (
                 <div key={id} className={styles.category}>
-                  <div
-                    className={styles.categoryColor}
-                    style={{ backgroundColor: mainColor }}
-                  ></div>
+                  <div className={styles.categoryColor} style={{ backgroundColor: bgColor }}></div>
                   <div className={styles.categoryLabel}>{label}</div>
                 </div>
               );

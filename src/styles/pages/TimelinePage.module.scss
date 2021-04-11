@@ -9,11 +9,11 @@
 .filters {
   display: flex;
   align-items: center;
-  background-color: $color-background-light;
+  background-color: var(--color-background-light);
   height: 70px;
   margin-bottom: 4px;
   border-radius: 0px 0px 4px 4px;
-  box-shadow: 1px 1px 1px $color-secondary-main;
+  box-shadow: 1px 1px 1px var(--color-secondary-main);
 }
 
 .rangeSlider {

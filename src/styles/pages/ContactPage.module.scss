@@ -13,7 +13,7 @@ $space-long: 20px;
 .mainContent {
   flex: 1;
   padding: $space-medium;
-  background-color: $color-background-light;
+  background-color: var(--color-background-light);
   border-radius: 4px 4px 0px 0px;
 }
 

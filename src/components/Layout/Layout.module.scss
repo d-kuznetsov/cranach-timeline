@@ -15,10 +15,12 @@ $content-width-desktop: 90%;
   flex: 0 0 56px;
   display: flex;
   justify-content: center;
-  background-color: #222222;
+  background-color: var(--color-background-dark);
 }
 
 .headerContent {
+  display: flex;
+  justify-content: space-between;
   width: $content-width-smartphon;
   max-width: $content-max-width;
 }
@@ -50,7 +52,7 @@ $content-width-desktop: 90%;
   max-width: $content-max-width;
 
   &__heightLimit {
-    background-color: $color-background-light;
+    background-color: var(--color-background-light);
     min-height: 0px;
   }
 }

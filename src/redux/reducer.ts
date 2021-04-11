@@ -6,9 +6,12 @@ import {
   ARTWORK_TO_VIEW,
   TEXT_TO_SEARCH,
   IS_LOADING,
+  COLOR_PALETTE,
 } from "./actions";
 import { CATEGORIES, PERIOD_MIN_VALUE, PERIOD_MAX_VALUE } from "../constants";
 import { RootState, Artwork, Categories, Period, Action } from "./types";
+import createTheme from "../lib/createTheme";
+import { PRIMARY_COLOR, SECONDARY_COLOR } from "../constants";
 
 function updateArtworks(
   artworks: Array<Artwork>,
@@ -61,6 +64,14 @@ export const initialState: RootState = {
   artworkToView: null,
   textToSearch: "",
   isLoading: false,
+  colorPalette: createTheme({
+    primary: {
+      main: PRIMARY_COLOR,
+    },
+    secondary: {
+      main: SECONDARY_COLOR,
+    },
+  }).palette,
 };
 export default function reducer(state: RootState = initialState, action: Action): RootState {
   switch (action.type) {
@@ -118,6 +129,11 @@ export default function reducer(state: RootState = initialState, action: Action)
       return {
         ...state,
         isLoading: action.isLoading,
+      };
+    case COLOR_PALETTE:
+      return {
+        ...state,
+        colorPalette: action.colorPalette,
       };
     default:
       return state;

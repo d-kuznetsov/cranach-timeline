@@ -31,7 +31,7 @@ export interface Artwork {
       xl: Image;
     };
   };
-  locations: Array<{term: string}>;
+  locations: Array<{ term: string }>;
 }
 
 export type Period = [number, number];
@@ -45,6 +45,21 @@ export interface Categories {
   };
 }
 
+export interface ColorPalette {
+  primary: {
+    light: string;
+    main: string;
+    dark: string;
+  };
+  secondary: {
+    light: string;
+    main: string;
+    dark: string;
+  };
+}
+
+export type ColorShade = "light" | "main" | "dark";
+
 export interface RootState {
   period: Period;
   categories: Categories;
@@ -55,6 +70,7 @@ export interface RootState {
   openViewer: boolean;
   textToSearch: string;
   isLoading: false;
+  colorPalette: ColorPalette;
 }
 
 // Actions

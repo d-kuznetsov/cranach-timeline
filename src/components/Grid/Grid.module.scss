@@ -19,7 +19,7 @@
   align-items: center;
   overflow: hidden;
   position: relative;
-  background-color: $color-secondary-light;
+  background-color: var(--color-secondary-light);
   border-radius: 4px;
 }
 
@@ -30,7 +30,7 @@
   right: 0px;
   height: 50px;
   background-color: rgba($color: #000000, $alpha: 0.5);
-  color: white;
+  color: var(--color-background-light);
 }
 
 .titleWrap {
