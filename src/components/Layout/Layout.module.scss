@@ -19,6 +19,8 @@ $content-width-desktop: 90%;
 }
 
 .headerContent {
+  display: flex;
+  justify-content: space-between;
   width: $content-width-smartphon;
   max-width: $content-max-width;
 }

@@ -1,13 +1,15 @@
 import { useSelector, useDispatch } from "react-redux";
 import { setArtworkToView } from "../../redux/actions";
-import { RootState, Artwork, Period } from "../../redux/types";
+import { RootState, Artwork, Period, ColorPalette, ColorShade } from "../../redux/types";
 
 import { getArtworkTitle, getPeriod } from "../../lib/extractArtworkData";
 import { CATEGORIES } from "../../constants";
 import styles from "./TimeLine.module.scss";
 
 export function TimelineContainer() {
-  const { period, artworksToView, lineHeight } = useSelector((state: RootState) => state);
+  const { period, artworksToView, lineHeight, colorPalette } = useSelector(
+    (state: RootState) => state
+  );
   const dispatch = useDispatch();
   const handleLineClick = (artwork: Artwork) => {
     dispatch(setArtworkToView(artwork));
@@ -17,6 +19,7 @@ export function TimelineContainer() {
       period={period}
       items={artworksToView}
       lineHeight={lineHeight}
+      colorPalette={colorPalette}
       onLineClick={handleLineClick}
     />
   );
@@ -31,10 +34,17 @@ interface Props {
   period: Period;
   items: Array<Artwork>;
   lineHeight: number;
+  colorPalette: ColorPalette;
   onLineClick: (value: ArtworkLine) => void;
 }
 
-export function TimelineComponent({ period, items, lineHeight = 16, onLineClick }: Props) {
+export function TimelineComponent({
+  period,
+  items,
+  lineHeight = 16,
+  colorPalette,
+  onLineClick,
+}: Props) {
   const yearList = getYearList(period);
   const { modifiedItems, maxOffsetFactor } = withAdditionalProps(yearList, items, period);
   const itemsByYear = getItemsByYear(modifiedItems, period);
@@ -54,6 +64,7 @@ export function TimelineComponent({ period, items, lineHeight = 16, onLineClick 
                       artworkData={artwork}
                       offset={offset}
                       lineHeight={lineHeight}
+                      colorPalette={colorPalette}
                       onClick={onLineClick}
                     />
                   );
@@ -68,11 +79,13 @@ interface ArtworkLineProps {
   offset: number;
   lineHeight: number;
   artworkData: ArtworkLine;
+  colorPalette: ColorPalette;
   onClick: (artwork: ArtworkLine) => void;
 }
 
-function ArtworkLine({ artworkData, offset, lineHeight, onClick }: ArtworkLineProps) {
+function ArtworkLine({ artworkData, offset, lineHeight, colorPalette, onClick }: ArtworkLineProps) {
   const { offsetFactor, periodLength, categoryId } = artworkData;
+  const bgColor = colorPalette.primary[CATEGORIES[categoryId].mainColor as ColorShade];
   const handleClick = () => {
     onClick(artworkData);
   };
@@ -85,7 +98,7 @@ function ArtworkLine({ artworkData, offset, lineHeight, onClick }: ArtworkLinePr
         top: `${offset * offsetFactor}px`,
         width: `calc(${100 * periodLength}% - 2px)`,
         height: `${lineHeight}px`,
-        backgroundColor: CATEGORIES[categoryId].mainColor,
+        backgroundColor: bgColor,
       }}
       onClick={handleClick}
     ></div>

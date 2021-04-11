@@ -1,19 +1,21 @@
 import { createMuiTheme, Theme } from "@material-ui/core/styles";
-const PALETTE = {
-  primary: "#FAC725",
-  secondary: "#A8A8A8",
-};
 
-export default function createTheme(): Theme {
+interface Palette {
+  primary: {
+    main: string;
+    light?: string;
+    dark?: string;
+  };
+  secondary: {
+    main: string;
+    light?: string;
+    dark?: string;
+  };
+}
+
+export default function createTheme(palette: Palette): Theme {
   const theme = createMuiTheme({
-    palette: {
-      primary: {
-        main: PALETTE.primary,
-      },
-      secondary: {
-        main: PALETTE.secondary,
-      },
-    },
+    palette,
   });
   return theme;
 }

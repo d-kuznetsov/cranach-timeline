@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { loadArtworks } from "../../redux/actions";
 import { RootState } from "../../redux/types";
 
@@ -7,9 +7,8 @@ import { ThemeProvider } from "@material-ui/styles";
 import createTheme from "../../lib/createTheme";
 import { NavigationContainer as Navigation } from "../Navigation";
 import LoadingIndicator from "../LoadingIndicator";
+import Settings from "../Settings";
 import styles from "./Layout.module.scss";
-
-const theme = createTheme();
 
 interface Props {
   children: React.ReactNode;
@@ -18,7 +17,8 @@ interface Props {
 }
 
 export default function Layout({ children, toolbar, heightLimit = true }: Props) {
-  const { artworks, isLoading } = useSelector((state: RootState) => state);
+  const { artworks, isLoading, colorPalette } = useSelector((state: RootState) => state);
+  const theme = useMemo(() => createTheme(colorPalette), [colorPalette]);
   const dispatch = useDispatch();
   useEffect(() => {
     !artworks.length && dispatch(loadArtworks());
@@ -30,6 +30,7 @@ export default function Layout({ children, toolbar, heightLimit = true }: Props)
       <div className={styles.container}>
         <header className={styles.header}>
           <section className={styles.headerContent}>
+            <Settings />
             <Navigation />
           </section>
         </header>
