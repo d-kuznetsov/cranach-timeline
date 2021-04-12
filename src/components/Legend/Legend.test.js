@@ -22,6 +22,18 @@ describe("Legend", () => {
     period: [1500, 1550],
     searchText: "Cranach",
     itemNumber: 70,
+    colorPalette: {
+      primary: {
+        light: "#AAAAAA",
+        main: "#BBBBBB",
+        dark: "#CCCCCC",
+      },
+      secondyry: {
+        light: "#AAAAAA",
+        main: "#BBBBBB",
+        dark: "#CCCCCC",
+      },
+    },
   };
 
   it("renders label of displayed category and doesn't render label of hidden", () => {

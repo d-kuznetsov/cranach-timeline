@@ -41,6 +41,18 @@ describe("Timeline", () => {
     ],
     lineHeight: 5,
     onLineClick: mockFn,
+    colorPalette: {
+      primary: {
+        light: "#AAAAAA",
+        main: "#BBBBBB",
+        dark: "#CCCCCC",
+      },
+      secondyry: {
+        light: "#AAAAAA",
+        main: "#BBBBBB",
+        dark: "#CCCCCC",
+      },
+    },
   };
 
   it("renders only one artwork line & fires line click handler", () => {
