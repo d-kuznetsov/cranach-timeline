@@ -29,7 +29,7 @@
     "lodash.debounce": "^4.0.8",
     "memoize-one": "^5.1.1",
     "next": "9.4.4",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.7",
     "react": "16.13.1",
     "react-colorful": "^5.1.2",
     "react-dom": "16.13.1",
